@@ -97,7 +97,7 @@
             // 
             // btnDeleteCat
             // 
-            this.btnDeleteCat.Location = new System.Drawing.Point(1064, 312);
+            this.btnDeleteCat.Location = new System.Drawing.Point(1078, 312);
             this.btnDeleteCat.Name = "btnDeleteCat";
             this.btnDeleteCat.Size = new System.Drawing.Size(151, 36);
             this.btnDeleteCat.TabIndex = 5;
