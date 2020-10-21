@@ -28,105 +28,105 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnNewPod = new System.Windows.Forms.Button();
-            this.btnSavePod = new System.Windows.Forms.Button();
-            this.btnDeletePod = new System.Windows.Forms.Button();
-            this.btnSaveCat = new System.Windows.Forms.Button();
-            this.btnNewCat = new System.Windows.Forms.Button();
-            this.btnDeleteCat = new System.Windows.Forms.Button();
-            this.cmbUpdateFreq = new System.Windows.Forms.ComboBox();
-            this.cmbCat = new System.Windows.Forms.ComboBox();
+            this.BtnNewPod = new System.Windows.Forms.Button();
+            this.BtnSavePod = new System.Windows.Forms.Button();
+            this.BtnDeletePod = new System.Windows.Forms.Button();
+            this.BtnSaveCat = new System.Windows.Forms.Button();
+            this.BtnNewCat = new System.Windows.Forms.Button();
+            this.BtnDeleteCat = new System.Windows.Forms.Button();
+            this.CmbUpdateFreq = new System.Windows.Forms.ComboBox();
+            this.CmbCat = new System.Windows.Forms.ComboBox();
             this.lblCat = new System.Windows.Forms.Label();
             this.lblUpdateFreq = new System.Windows.Forms.Label();
             this.lblURL = new System.Windows.Forms.Label();
-            this.txtCat = new System.Windows.Forms.TextBox();
-            this.lstPodcasts = new System.Windows.Forms.ListBox();
-            this.lstEpisodes = new System.Windows.Forms.ListBox();
-            this.lstCat = new System.Windows.Forms.ListBox();
+            this.TxtCat = new System.Windows.Forms.TextBox();
+            this.LstPodcasts = new System.Windows.Forms.ListBox();
+            this.LstEpisodes = new System.Windows.Forms.ListBox();
+            this.LstCat = new System.Windows.Forms.ListBox();
             this.lblCats = new System.Windows.Forms.Label();
-            this.lblPodEpi = new System.Windows.Forms.Label();
-            this.lblPodEpiInfo = new System.Windows.Forms.Label();
-            this.lblEpiInfo = new System.Windows.Forms.Label();
-            this.txtURL = new System.Windows.Forms.TextBox();
+            this.LblPodEpi = new System.Windows.Forms.Label();
+            this.LblPodEpiInfo = new System.Windows.Forms.Label();
+            this.LblEpiInfo = new System.Windows.Forms.Label();
+            this.TxtURL = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // btnNewPod
+            // BtnNewPod
             // 
-            this.btnNewPod.Location = new System.Drawing.Point(87, 220);
-            this.btnNewPod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnNewPod.Name = "btnNewPod";
-            this.btnNewPod.Size = new System.Drawing.Size(101, 23);
-            this.btnNewPod.TabIndex = 0;
-            this.btnNewPod.Text = "New...";
-            this.btnNewPod.UseVisualStyleBackColor = true;
+            this.BtnNewPod.Location = new System.Drawing.Point(87, 220);
+            this.BtnNewPod.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnNewPod.Name = "BtnNewPod";
+            this.BtnNewPod.Size = new System.Drawing.Size(101, 23);
+            this.BtnNewPod.TabIndex = 0;
+            this.BtnNewPod.Text = "New...";
+            this.BtnNewPod.UseVisualStyleBackColor = true;
             // 
-            // btnSavePod
+            // BtnSavePod
             // 
-            this.btnSavePod.Location = new System.Drawing.Point(191, 220);
-            this.btnSavePod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnSavePod.Name = "btnSavePod";
-            this.btnSavePod.Size = new System.Drawing.Size(101, 23);
-            this.btnSavePod.TabIndex = 1;
-            this.btnSavePod.Text = "Save";
-            this.btnSavePod.UseVisualStyleBackColor = true;
+            this.BtnSavePod.Location = new System.Drawing.Point(191, 220);
+            this.BtnSavePod.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnSavePod.Name = "BtnSavePod";
+            this.BtnSavePod.Size = new System.Drawing.Size(101, 23);
+            this.BtnSavePod.TabIndex = 1;
+            this.BtnSavePod.Text = "Save";
+            this.BtnSavePod.UseVisualStyleBackColor = true;
             // 
-            // btnDeletePod
+            // BtnDeletePod
             // 
-            this.btnDeletePod.Location = new System.Drawing.Point(296, 220);
-            this.btnDeletePod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnDeletePod.Name = "btnDeletePod";
-            this.btnDeletePod.Size = new System.Drawing.Size(101, 23);
-            this.btnDeletePod.TabIndex = 2;
-            this.btnDeletePod.Text = "Delete...";
-            this.btnDeletePod.UseVisualStyleBackColor = true;
+            this.BtnDeletePod.Location = new System.Drawing.Point(296, 220);
+            this.BtnDeletePod.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnDeletePod.Name = "BtnDeletePod";
+            this.BtnDeletePod.Size = new System.Drawing.Size(101, 23);
+            this.BtnDeletePod.TabIndex = 2;
+            this.BtnDeletePod.Text = "Delete...";
+            this.BtnDeletePod.UseVisualStyleBackColor = true;
             // 
-            // btnSaveCat
+            // BtnSaveCat
             // 
-            this.btnSaveCat.Location = new System.Drawing.Point(592, 203);
-            this.btnSaveCat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnSaveCat.Name = "btnSaveCat";
-            this.btnSaveCat.Size = new System.Drawing.Size(101, 23);
-            this.btnSaveCat.TabIndex = 3;
-            this.btnSaveCat.Text = "Save";
-            this.btnSaveCat.UseVisualStyleBackColor = true;
+            this.BtnSaveCat.Location = new System.Drawing.Point(592, 203);
+            this.BtnSaveCat.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnSaveCat.Name = "BtnSaveCat";
+            this.BtnSaveCat.Size = new System.Drawing.Size(101, 23);
+            this.BtnSaveCat.TabIndex = 3;
+            this.BtnSaveCat.Text = "Save";
+            this.BtnSaveCat.UseVisualStyleBackColor = true;
             // 
-            // btnNewCat
+            // BtnNewCat
             // 
-            this.btnNewCat.Location = new System.Drawing.Point(463, 203);
-            this.btnNewCat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnNewCat.Name = "btnNewCat";
-            this.btnNewCat.Size = new System.Drawing.Size(101, 23);
-            this.btnNewCat.TabIndex = 4;
-            this.btnNewCat.Text = "New...";
-            this.btnNewCat.UseVisualStyleBackColor = true;
+            this.BtnNewCat.Location = new System.Drawing.Point(463, 203);
+            this.BtnNewCat.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnNewCat.Name = "BtnNewCat";
+            this.BtnNewCat.Size = new System.Drawing.Size(101, 23);
+            this.BtnNewCat.TabIndex = 4;
+            this.BtnNewCat.Text = "New...";
+            this.BtnNewCat.UseVisualStyleBackColor = true;
             // 
-            // btnDeleteCat
+            // BtnDeleteCat
             // 
-            this.btnDeleteCat.Location = new System.Drawing.Point(719, 203);
-            this.btnDeleteCat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnDeleteCat.Name = "btnDeleteCat";
-            this.btnDeleteCat.Size = new System.Drawing.Size(101, 23);
-            this.btnDeleteCat.TabIndex = 5;
-            this.btnDeleteCat.Text = "Delete...";
-            this.btnDeleteCat.UseVisualStyleBackColor = true;
+            this.BtnDeleteCat.Location = new System.Drawing.Point(719, 203);
+            this.BtnDeleteCat.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnDeleteCat.Name = "BtnDeleteCat";
+            this.BtnDeleteCat.Size = new System.Drawing.Size(101, 23);
+            this.BtnDeleteCat.TabIndex = 5;
+            this.BtnDeleteCat.Text = "Delete...";
+            this.BtnDeleteCat.UseVisualStyleBackColor = true;
             // 
-            // cmbUpdateFreq
+            // CmbUpdateFreq
             // 
-            this.cmbUpdateFreq.FormattingEnabled = true;
-            this.cmbUpdateFreq.Location = new System.Drawing.Point(159, 186);
-            this.cmbUpdateFreq.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.cmbUpdateFreq.Name = "cmbUpdateFreq";
-            this.cmbUpdateFreq.Size = new System.Drawing.Size(107, 21);
-            this.cmbUpdateFreq.TabIndex = 7;
+            this.CmbUpdateFreq.FormattingEnabled = true;
+            this.CmbUpdateFreq.Location = new System.Drawing.Point(159, 186);
+            this.CmbUpdateFreq.Margin = new System.Windows.Forms.Padding(2);
+            this.CmbUpdateFreq.Name = "CmbUpdateFreq";
+            this.CmbUpdateFreq.Size = new System.Drawing.Size(107, 21);
+            this.CmbUpdateFreq.TabIndex = 7;
             // 
-            // cmbCat
+            // CmbCat
             // 
-            this.cmbCat.FormattingEnabled = true;
-            this.cmbCat.Location = new System.Drawing.Point(291, 186);
-            this.cmbCat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.cmbCat.Name = "cmbCat";
-            this.cmbCat.Size = new System.Drawing.Size(107, 21);
-            this.cmbCat.TabIndex = 8;
+            this.CmbCat.FormattingEnabled = true;
+            this.CmbCat.Location = new System.Drawing.Point(291, 186);
+            this.CmbCat.Margin = new System.Windows.Forms.Padding(2);
+            this.CmbCat.Name = "CmbCat";
+            this.CmbCat.Size = new System.Drawing.Size(107, 21);
+            this.CmbCat.TabIndex = 8;
             // 
             // lblCat
             // 
@@ -159,42 +159,42 @@
             this.lblURL.TabIndex = 12;
             this.lblURL.Text = "URL:";
             // 
-            // txtCat
+            // TxtCat
             // 
-            this.txtCat.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtCat.Location = new System.Drawing.Point(463, 174);
-            this.txtCat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtCat.Name = "txtCat";
-            this.txtCat.Size = new System.Drawing.Size(357, 20);
-            this.txtCat.TabIndex = 13;
-            this.txtCat.Text = "Search for category...";
+            this.TxtCat.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.TxtCat.Location = new System.Drawing.Point(463, 174);
+            this.TxtCat.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtCat.Name = "TxtCat";
+            this.TxtCat.Size = new System.Drawing.Size(357, 20);
+            this.TxtCat.TabIndex = 13;
+            this.TxtCat.Text = "Search for category...";
             // 
-            // lstPodcasts
+            // LstPodcasts
             // 
-            this.lstPodcasts.FormattingEnabled = true;
-            this.lstPodcasts.Location = new System.Drawing.Point(11, 11);
-            this.lstPodcasts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.lstPodcasts.Name = "lstPodcasts";
-            this.lstPodcasts.Size = new System.Drawing.Size(387, 147);
-            this.lstPodcasts.TabIndex = 14;
+            this.LstPodcasts.FormattingEnabled = true;
+            this.LstPodcasts.Location = new System.Drawing.Point(11, 11);
+            this.LstPodcasts.Margin = new System.Windows.Forms.Padding(2);
+            this.LstPodcasts.Name = "LstPodcasts";
+            this.LstPodcasts.Size = new System.Drawing.Size(387, 147);
+            this.LstPodcasts.TabIndex = 14;
             // 
-            // lstEpisodes
+            // LstEpisodes
             // 
-            this.lstEpisodes.FormattingEnabled = true;
-            this.lstEpisodes.Location = new System.Drawing.Point(11, 290);
-            this.lstEpisodes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.lstEpisodes.Name = "lstEpisodes";
-            this.lstEpisodes.Size = new System.Drawing.Size(387, 147);
-            this.lstEpisodes.TabIndex = 15;
+            this.LstEpisodes.FormattingEnabled = true;
+            this.LstEpisodes.Location = new System.Drawing.Point(11, 290);
+            this.LstEpisodes.Margin = new System.Windows.Forms.Padding(2);
+            this.LstEpisodes.Name = "LstEpisodes";
+            this.LstEpisodes.Size = new System.Drawing.Size(387, 147);
+            this.LstEpisodes.TabIndex = 15;
             // 
-            // lstCat
+            // LstCat
             // 
-            this.lstCat.FormattingEnabled = true;
-            this.lstCat.Location = new System.Drawing.Point(463, 24);
-            this.lstCat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.lstCat.Name = "lstCat";
-            this.lstCat.Size = new System.Drawing.Size(357, 134);
-            this.lstCat.TabIndex = 16;
+            this.LstCat.FormattingEnabled = true;
+            this.LstCat.Location = new System.Drawing.Point(463, 24);
+            this.LstCat.Margin = new System.Windows.Forms.Padding(2);
+            this.LstCat.Name = "LstCat";
+            this.LstCat.Size = new System.Drawing.Size(357, 134);
+            this.LstCat.TabIndex = 16;
             // 
             // lblCats
             // 
@@ -206,73 +206,73 @@
             this.lblCats.TabIndex = 17;
             this.lblCats.Text = "Categories:";
             // 
-            // lblPodEpi
+            // LblPodEpi
             // 
-            this.lblPodEpi.AutoSize = true;
-            this.lblPodEpi.Location = new System.Drawing.Point(8, 275);
-            this.lblPodEpi.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblPodEpi.Name = "lblPodEpi";
-            this.lblPodEpi.Size = new System.Drawing.Size(113, 13);
-            this.lblPodEpi.TabIndex = 18;
-            this.lblPodEpi.Text = "Podcast #x: Episode y";
+            this.LblPodEpi.AutoSize = true;
+            this.LblPodEpi.Location = new System.Drawing.Point(8, 275);
+            this.LblPodEpi.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblPodEpi.Name = "LblPodEpi";
+            this.LblPodEpi.Size = new System.Drawing.Size(113, 13);
+            this.LblPodEpi.TabIndex = 18;
+            this.LblPodEpi.Text = "Podcast #x: Episode y";
             // 
-            // lblPodEpiInfo
+            // LblPodEpiInfo
             // 
-            this.lblPodEpiInfo.AutoSize = true;
-            this.lblPodEpiInfo.Location = new System.Drawing.Point(461, 275);
-            this.lblPodEpiInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblPodEpiInfo.Name = "lblPodEpiInfo";
-            this.lblPodEpiInfo.Size = new System.Drawing.Size(113, 13);
-            this.lblPodEpiInfo.TabIndex = 19;
-            this.lblPodEpiInfo.Text = "Podcast #x: Episode y";
+            this.LblPodEpiInfo.AutoSize = true;
+            this.LblPodEpiInfo.Location = new System.Drawing.Point(461, 275);
+            this.LblPodEpiInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblPodEpiInfo.Name = "LblPodEpiInfo";
+            this.LblPodEpiInfo.Size = new System.Drawing.Size(113, 13);
+            this.LblPodEpiInfo.TabIndex = 19;
+            this.LblPodEpiInfo.Text = "Podcast #x: Episode y";
             // 
-            // lblEpiInfo
+            // LblEpiInfo
             // 
-            this.lblEpiInfo.AutoSize = true;
-            this.lblEpiInfo.Location = new System.Drawing.Point(461, 304);
-            this.lblEpiInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblEpiInfo.Name = "lblEpiInfo";
-            this.lblEpiInfo.Size = new System.Drawing.Size(174, 13);
-            this.lblEpiInfo.TabIndex = 20;
-            this.lblEpiInfo.Text = "Information about choosen podcast";
+            this.LblEpiInfo.AutoSize = true;
+            this.LblEpiInfo.Location = new System.Drawing.Point(461, 304);
+            this.LblEpiInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblEpiInfo.Name = "LblEpiInfo";
+            this.LblEpiInfo.Size = new System.Drawing.Size(174, 13);
+            this.LblEpiInfo.TabIndex = 20;
+            this.LblEpiInfo.Text = "Information about choosen podcast";
             // 
-            // txtURL
+            // TxtURL
             // 
-            this.txtURL.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtURL.Location = new System.Drawing.Point(8, 186);
-            this.txtURL.Margin = new System.Windows.Forms.Padding(2);
-            this.txtURL.Name = "txtURL";
-            this.txtURL.Size = new System.Drawing.Size(147, 20);
-            this.txtURL.TabIndex = 21;
-            this.txtURL.Text = "Enter URL here...";
-            this.txtURL.TextChanged += new System.EventHandler(this.txtURL_TextChanged);
+            this.TxtURL.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.TxtURL.Location = new System.Drawing.Point(8, 186);
+            this.TxtURL.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtURL.Name = "TxtURL";
+            this.TxtURL.Size = new System.Drawing.Size(147, 20);
+            this.TxtURL.TabIndex = 21;
+            this.TxtURL.Text = "Enter URL here...";
+            this.TxtURL.TextChanged += new System.EventHandler(this.txtURL_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 443);
-            this.Controls.Add(this.txtURL);
-            this.Controls.Add(this.lblEpiInfo);
-            this.Controls.Add(this.lblPodEpiInfo);
-            this.Controls.Add(this.lblPodEpi);
+            this.Controls.Add(this.TxtURL);
+            this.Controls.Add(this.LblEpiInfo);
+            this.Controls.Add(this.LblPodEpiInfo);
+            this.Controls.Add(this.LblPodEpi);
             this.Controls.Add(this.lblCats);
-            this.Controls.Add(this.lstCat);
-            this.Controls.Add(this.lstEpisodes);
-            this.Controls.Add(this.lstPodcasts);
-            this.Controls.Add(this.txtCat);
+            this.Controls.Add(this.LstCat);
+            this.Controls.Add(this.LstEpisodes);
+            this.Controls.Add(this.LstPodcasts);
+            this.Controls.Add(this.TxtCat);
             this.Controls.Add(this.lblURL);
             this.Controls.Add(this.lblUpdateFreq);
             this.Controls.Add(this.lblCat);
-            this.Controls.Add(this.cmbCat);
-            this.Controls.Add(this.cmbUpdateFreq);
-            this.Controls.Add(this.btnDeleteCat);
-            this.Controls.Add(this.btnNewCat);
-            this.Controls.Add(this.btnSaveCat);
-            this.Controls.Add(this.btnDeletePod);
-            this.Controls.Add(this.btnSavePod);
-            this.Controls.Add(this.btnNewPod);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.CmbCat);
+            this.Controls.Add(this.CmbUpdateFreq);
+            this.Controls.Add(this.BtnDeleteCat);
+            this.Controls.Add(this.BtnNewCat);
+            this.Controls.Add(this.BtnSaveCat);
+            this.Controls.Add(this.BtnDeletePod);
+            this.Controls.Add(this.BtnSavePod);
+            this.Controls.Add(this.BtnNewPod);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -283,26 +283,26 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnNewPod;
-        private System.Windows.Forms.Button btnSavePod;
-        private System.Windows.Forms.Button btnDeletePod;
-        private System.Windows.Forms.Button btnSaveCat;
-        private System.Windows.Forms.Button btnNewCat;
-        private System.Windows.Forms.Button btnDeleteCat;
-        private System.Windows.Forms.ComboBox cmbUpdateFreq;
-        private System.Windows.Forms.ComboBox cmbCat;
+        private System.Windows.Forms.Button BtnNewPod;
+        private System.Windows.Forms.Button BtnSavePod;
+        private System.Windows.Forms.Button BtnDeletePod;
+        private System.Windows.Forms.Button BtnSaveCat;
+        private System.Windows.Forms.Button BtnNewCat;
+        private System.Windows.Forms.Button BtnDeleteCat;
+        private System.Windows.Forms.ComboBox CmbUpdateFreq;
+        private System.Windows.Forms.ComboBox CmbCat;
         private System.Windows.Forms.Label lblCat;
         private System.Windows.Forms.Label lblUpdateFreq;
         private System.Windows.Forms.Label lblURL;
-        private System.Windows.Forms.TextBox txtCat;
-        private System.Windows.Forms.ListBox lstPodcasts;
-        private System.Windows.Forms.ListBox lstEpisodes;
-        private System.Windows.Forms.ListBox lstCat;
+        private System.Windows.Forms.TextBox TxtCat;
+        private System.Windows.Forms.ListBox LstPodcasts;
+        private System.Windows.Forms.ListBox LstEpisodes;
+        private System.Windows.Forms.ListBox LstCat;
         private System.Windows.Forms.Label lblCats;
-        private System.Windows.Forms.Label lblPodEpi;
-        private System.Windows.Forms.Label lblPodEpiInfo;
-        private System.Windows.Forms.Label lblEpiInfo;
-        private System.Windows.Forms.TextBox txtURL;
+        private System.Windows.Forms.Label LblPodEpi;
+        private System.Windows.Forms.Label LblPodEpiInfo;
+        private System.Windows.Forms.Label LblEpiInfo;
+        private System.Windows.Forms.TextBox TxtURL;
     }
 }
 
