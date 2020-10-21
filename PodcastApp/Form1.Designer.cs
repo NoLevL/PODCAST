@@ -161,11 +161,13 @@
             // 
             // txtCat
             // 
+            this.txtCat.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.txtCat.Location = new System.Drawing.Point(463, 174);
             this.txtCat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCat.Name = "txtCat";
             this.txtCat.Size = new System.Drawing.Size(357, 20);
             this.txtCat.TabIndex = 13;
+            this.txtCat.Text = "Search for category...";
             // 
             // lstPodcasts
             // 
@@ -236,11 +238,14 @@
             // 
             // txtURL
             // 
-            this.txtURL.Location = new System.Drawing.Point(8, 187);
+            this.txtURL.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtURL.Location = new System.Drawing.Point(8, 186);
             this.txtURL.Margin = new System.Windows.Forms.Padding(2);
             this.txtURL.Name = "txtURL";
             this.txtURL.Size = new System.Drawing.Size(147, 20);
             this.txtURL.TabIndex = 21;
+            this.txtURL.Text = "Enter URL here...";
+            this.txtURL.TextChanged += new System.EventHandler(this.txtURL_TextChanged);
             // 
             // Form1
             // 

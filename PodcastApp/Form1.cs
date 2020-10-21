@@ -27,5 +27,10 @@ namespace PodcastApp
         {
 
         }
+
+        private void txtURL_TextChanged(object sender, EventArgs e)
+        {
+            txtURL.Text = "";
+        }
     }
 }
