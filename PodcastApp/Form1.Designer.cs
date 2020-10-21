@@ -46,8 +46,8 @@
             this.lblCats = new System.Windows.Forms.Label();
             this.LblPodEpi = new System.Windows.Forms.Label();
             this.LblPodEpiInfo = new System.Windows.Forms.Label();
-            this.LblEpiInfo = new System.Windows.Forms.Label();
             this.TxtURL = new System.Windows.Forms.TextBox();
+            this.TxtEpiInfo = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // BtnNewPod
@@ -219,22 +219,12 @@
             // LblPodEpiInfo
             // 
             this.LblPodEpiInfo.AutoSize = true;
-            this.LblPodEpiInfo.Location = new System.Drawing.Point(461, 275);
+            this.LblPodEpiInfo.Location = new System.Drawing.Point(461, 254);
             this.LblPodEpiInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblPodEpiInfo.Name = "LblPodEpiInfo";
             this.LblPodEpiInfo.Size = new System.Drawing.Size(113, 13);
             this.LblPodEpiInfo.TabIndex = 19;
             this.LblPodEpiInfo.Text = "Podcast #x: Episode y";
-            // 
-            // LblEpiInfo
-            // 
-            this.LblEpiInfo.AutoSize = true;
-            this.LblEpiInfo.Location = new System.Drawing.Point(461, 304);
-            this.LblEpiInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblEpiInfo.Name = "LblEpiInfo";
-            this.LblEpiInfo.Size = new System.Drawing.Size(174, 13);
-            this.LblEpiInfo.TabIndex = 20;
-            this.LblEpiInfo.Text = "Information about choosen podcast";
             // 
             // TxtURL
             // 
@@ -247,13 +237,21 @@
             this.TxtURL.Text = "Enter URL here...";
             this.TxtURL.TextChanged += new System.EventHandler(this.txtURL_TextChanged);
             // 
+            // TxtEpiInfo
+            // 
+            this.TxtEpiInfo.Location = new System.Drawing.Point(463, 270);
+            this.TxtEpiInfo.Multiline = true;
+            this.TxtEpiInfo.Name = "TxtEpiInfo";
+            this.TxtEpiInfo.Size = new System.Drawing.Size(352, 167);
+            this.TxtEpiInfo.TabIndex = 22;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 443);
+            this.Controls.Add(this.TxtEpiInfo);
             this.Controls.Add(this.TxtURL);
-            this.Controls.Add(this.LblEpiInfo);
             this.Controls.Add(this.LblPodEpiInfo);
             this.Controls.Add(this.LblPodEpi);
             this.Controls.Add(this.lblCats);
@@ -301,8 +299,8 @@
         private System.Windows.Forms.Label lblCats;
         private System.Windows.Forms.Label LblPodEpi;
         private System.Windows.Forms.Label LblPodEpiInfo;
-        private System.Windows.Forms.Label LblEpiInfo;
         private System.Windows.Forms.TextBox TxtURL;
+        private System.Windows.Forms.TextBox TxtEpiInfo;
     }
 }
 
