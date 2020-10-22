@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Repositories
+namespace DAL
 {
-    class IRepository
+    interface IRepository
     {
+        void Delete(int index);
     }
 }
