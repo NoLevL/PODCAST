@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    class IPodcastRepository
+    interface IPodcastRepository
     {
+        //List<Podcast> GetSavedPodcasts();
     }
 }

@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Models;
-using Newtonsoft.Json;
 
 namespace DAL
 {
@@ -18,18 +17,18 @@ namespace DAL
             using (FileStream outFile = new FileStream("Podcasts.xml", FileMode.Create,
                 FileAccess.Write))
             {
-                xmlSerializer.Serialize(outFile, personList);
+                xmlSerializer.Serialize(outFile, podcastList);
             }
         }
 
         public List<Podcast> Deserialize()
         {
             List<Podcast> listOfPodcastsToBeReturned;
-            XmlSerialzer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
-            using FileStream inFile = new FileStream("Podcasts.xml", FileMode.Open,
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
+            using (FileStream inFile = new FileStream("Podcasts.xml", FileMode.Open,
                 FileAccess.Read))
             {
-                listOfPersonsToBeReturned = (List<Podcast>)xmlSerializer.Deserialize(inFile);
+                listOfPodcastsToBeReturned = (List<Podcast>)xmlSerializer.Deserialize(inFile);
             }
             return listOfPodcastsToBeReturned;
         }
