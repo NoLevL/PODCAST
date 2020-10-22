@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace BL
 {
-    public class Class1
+    public class PodcastController
     {
-
     }
 }
