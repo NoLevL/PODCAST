@@ -40,7 +40,6 @@
             this.lblUpdateFreq = new System.Windows.Forms.Label();
             this.lblURL = new System.Windows.Forms.Label();
             this.TxtCat = new System.Windows.Forms.TextBox();
-            this.LstPodcasts = new System.Windows.Forms.ListBox();
             this.LstEpisodes = new System.Windows.Forms.ListBox();
             this.LstCat = new System.Windows.Forms.ListBox();
             this.lblCats = new System.Windows.Forms.Label();
@@ -48,6 +47,12 @@
             this.LblPodEpiInfo = new System.Windows.Forms.Label();
             this.TxtURL = new System.Windows.Forms.TextBox();
             this.TxtEpiInfo = new System.Windows.Forms.TextBox();
+            this.PodcastFeed = new System.Windows.Forms.DataGridView();
+            this.ColumnEpisode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnFreq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.PodcastFeed)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnNewPod
@@ -169,15 +174,6 @@
             this.TxtCat.TabIndex = 13;
             this.TxtCat.Text = "Search for category...";
             // 
-            // LstPodcasts
-            // 
-            this.LstPodcasts.FormattingEnabled = true;
-            this.LstPodcasts.Location = new System.Drawing.Point(11, 11);
-            this.LstPodcasts.Margin = new System.Windows.Forms.Padding(2);
-            this.LstPodcasts.Name = "LstPodcasts";
-            this.LstPodcasts.Size = new System.Drawing.Size(387, 147);
-            this.LstPodcasts.TabIndex = 14;
-            // 
             // LstEpisodes
             // 
             this.LstEpisodes.FormattingEnabled = true;
@@ -245,11 +241,64 @@
             this.TxtEpiInfo.Size = new System.Drawing.Size(352, 167);
             this.TxtEpiInfo.TabIndex = 22;
             // 
+            // PodcastFeed
+            // 
+            this.PodcastFeed.AllowUserToAddRows = false;
+            this.PodcastFeed.AllowUserToDeleteRows = false;
+            this.PodcastFeed.AllowUserToResizeColumns = false;
+            this.PodcastFeed.AllowUserToResizeRows = false;
+            this.PodcastFeed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PodcastFeed.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.PodcastFeed.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.PodcastFeed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.PodcastFeed.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnEpisode,
+            this.ColumnName,
+            this.ColumnFreq,
+            this.ColumnCat});
+            this.PodcastFeed.Location = new System.Drawing.Point(10, 24);
+            this.PodcastFeed.MultiSelect = false;
+            this.PodcastFeed.Name = "PodcastFeed";
+            this.PodcastFeed.ReadOnly = true;
+            this.PodcastFeed.RowHeadersVisible = false;
+            this.PodcastFeed.RowHeadersWidth = 10;
+            this.PodcastFeed.Size = new System.Drawing.Size(387, 137);
+            this.PodcastFeed.TabIndex = 23;
+            this.PodcastFeed.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // ColumnEpisode
+            // 
+            this.ColumnEpisode.HeaderText = "Episodes";
+            this.ColumnEpisode.MinimumWidth = 4;
+            this.ColumnEpisode.Name = "ColumnEpisode";
+            this.ColumnEpisode.ReadOnly = true;
+            // 
+            // ColumnName
+            // 
+            this.ColumnName.HeaderText = "Name";
+            this.ColumnName.Name = "ColumnName";
+            this.ColumnName.ReadOnly = true;
+            // 
+            // ColumnFreq
+            // 
+            this.ColumnFreq.HeaderText = "Frequency";
+            this.ColumnFreq.Name = "ColumnFreq";
+            this.ColumnFreq.ReadOnly = true;
+            // 
+            // ColumnCat
+            // 
+            this.ColumnCat.HeaderText = "Category";
+            this.ColumnCat.Name = "ColumnCat";
+            this.ColumnCat.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 443);
+            this.Controls.Add(this.PodcastFeed);
             this.Controls.Add(this.TxtEpiInfo);
             this.Controls.Add(this.TxtURL);
             this.Controls.Add(this.LblPodEpiInfo);
@@ -257,7 +306,6 @@
             this.Controls.Add(this.lblCats);
             this.Controls.Add(this.LstCat);
             this.Controls.Add(this.LstEpisodes);
-            this.Controls.Add(this.LstPodcasts);
             this.Controls.Add(this.TxtCat);
             this.Controls.Add(this.lblURL);
             this.Controls.Add(this.lblUpdateFreq);
@@ -274,6 +322,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.PodcastFeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,7 +342,6 @@
         private System.Windows.Forms.Label lblUpdateFreq;
         private System.Windows.Forms.Label lblURL;
         private System.Windows.Forms.TextBox TxtCat;
-        private System.Windows.Forms.ListBox LstPodcasts;
         private System.Windows.Forms.ListBox LstEpisodes;
         private System.Windows.Forms.ListBox LstCat;
         private System.Windows.Forms.Label lblCats;
@@ -301,6 +349,11 @@
         private System.Windows.Forms.Label LblPodEpiInfo;
         private System.Windows.Forms.TextBox TxtURL;
         private System.Windows.Forms.TextBox TxtEpiInfo;
+        private System.Windows.Forms.DataGridView PodcastFeed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEpisode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFreq;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCat;
     }
 }
 
