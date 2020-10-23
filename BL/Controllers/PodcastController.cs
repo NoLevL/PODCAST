@@ -5,17 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL.Repositories;
 using DAL;
+using Models;
 using System.ComponentModel;
 
 namespace BL.Controllers
 {
-    public class PodcastController : DataManager
+    public class PodcastController
     {
-        IPodcastRepository<Podcast> podcastRepository;
+        private IPodcastRepository<Podcast> podcastRepository;
         public PodcastController()
         {
             podcastRepository = new PodcastRepository();
         }
+
         public void CreatePodcastObject ( string url, string interval, string category, string objectType) //objectType = Category?
         {
             Podcast newPodcast = null;

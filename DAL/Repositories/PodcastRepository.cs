@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
-using DAL.Repositories;
+using Models;
 
 
 
 namespace DAL.Repositories
 {
-    public class PodcastRepository : DataManager, IPodcastRepository<Podcast>
+    public class PodcastRepository : IPodcastRepository<Podcast>
     {
         DataManager dataManager;
         List<Podcast> podcastList;
@@ -32,22 +31,18 @@ namespace DAL.Repositories
             SaveChanges();
         }
 
-        public List<Podcast> GetAllPodcast()
+        public List<Podcast> GetAll()
         {
             List<Podcast> podcastListToBeReturned = new List<Podcast>();
             podcastListToBeReturned = dataManager.ReturnPodcasts();
             return podcastListToBeReturned;
-
-        }
-
-        public List<Podcast> GetAllPodcasts()
-        {
             throw new NotImplementedException();
         }
 
+
         public Podcast GetByName(string name)
         {
-            return GetAllPodcast().First(podcastList => p.Name.Equals(name));
+            return GetAll().First(podcastList => p.Name.Equals(name));
         }
 
         public List<Podcast> ReturnPodcasts()
@@ -58,6 +53,11 @@ namespace DAL.Repositories
         public void SaveChanges()
         {
             dataManager.SavePodcastList(podcastList);
+        }
+
+        public List<Podcast> SavedPodcastList()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(int index, Podcast newEntity)
