@@ -7,15 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Models;
+using BL.Controllers;
 
 namespace PodcastApp
 {
     public partial class Form1 : Form
     {
+        PodcastController podcastController;
         public Form1()
         {
             InitializeComponent();
-            
+            podcastController = new PodcastController();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -36,6 +39,11 @@ namespace PodcastApp
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void BtnNewPod_Click(object sender, EventArgs e)
+        {
+            podcastController.CreatePodcastObject(TxtURL.Text, CmbUpdateFreq.Text, CmbCat.Text, "Podcast");
         }
     }
 }

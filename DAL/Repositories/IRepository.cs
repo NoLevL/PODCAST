@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,11 @@ namespace DAL
 {
     public interface IRepository<T> where T:class
     {
+        void Create(T entity);
         void Delete(int index);
+        void Update(int index, T entity);
+        void SaveChanges();
+        List<T> GetAll();
+        List<Podcast> GetAllPodcasts();
     }
 }

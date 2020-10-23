@@ -64,6 +64,7 @@
             this.BtnNewPod.TabIndex = 0;
             this.BtnNewPod.Text = "New...";
             this.BtnNewPod.UseVisualStyleBackColor = true;
+            this.BtnNewPod.Click += new System.EventHandler(this.BtnNewPod_Click);
             // 
             // BtnSavePod
             // 

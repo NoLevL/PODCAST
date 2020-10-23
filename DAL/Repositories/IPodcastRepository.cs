@@ -7,8 +7,10 @@ using Models;
 
 namespace DAL.Repositories
 {
-    public interface IPodcastRepository
+    public interface IPodcastRepository<T>
     {
         List<Podcast> ReturnPodcasts();
+        T GetByName(string name);
+        List<Podcast> GetAllPodcasts();
     }
 }
