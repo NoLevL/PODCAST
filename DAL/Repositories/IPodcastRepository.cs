@@ -9,6 +9,6 @@ namespace DAL.Repositories
 {
     public interface IPodcastRepository<T>:IRepository<T> where T:Podcast
     {
-        List<Podcast> GetSavedPodcasts();
+        List<Podcast> ReturnPodcasts();
     }
 }

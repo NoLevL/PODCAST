@@ -11,7 +11,7 @@ namespace DAL
 {
     public class DataManager
     {
-        public void Serialize(List<Podcast> podcastList)
+        public void SavePodcastList(List<Podcast> podcastList)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(podcastList.GetType());
             using (FileStream outFile = new FileStream("Podcasts.xml", FileMode.Create,
@@ -21,7 +21,7 @@ namespace DAL
             }
         }
 
-        public List<Podcast> Deserialize()
+        public List<Podcast> ReturnPodcasts()
         {
             List<Podcast> listOfPodcastsToBeReturned;
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));

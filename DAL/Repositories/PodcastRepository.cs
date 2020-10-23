@@ -14,7 +14,7 @@ namespace DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public List<Podcast> GetSavedPodcasts()
+        public List<Podcast> ReturnPodcasts()
         {
             throw new NotImplementedException();
         }
