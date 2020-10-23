@@ -10,9 +10,10 @@ using DAL.Repositories;
 
 namespace DAL
 {
-    public class DataManager : IPodcastRepository
+    public class DataManager : IPodcastRepository<T>
     {
-
+        private readonly string fileOfPodcasts = @"Podcasts.xml";
+        public List<Podcast> listOfPodcasts = new List<Podcast>();
         protected string savedCategories = @"savedCategories.txt";
         public List<string> categories = new List<string>();
 

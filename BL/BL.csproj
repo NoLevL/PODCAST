@@ -42,16 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\PodcastController.cs" />
+    <Compile Include="PodcastRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{adcce599-c392-417d-ab55-8b3bd69ea9f4}</Project>
       <Name>DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{38ef1d31-23d2-4c9d-bf21-d3eb7523f34c}</Project>
-      <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

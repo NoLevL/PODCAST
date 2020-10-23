@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Models;
 using DAL.Repositories;
 using DAL;
 using System.ComponentModel;
 
 namespace BL.Controllers
 {
-    public class PodcastController
+    public class PodcastController : DataManager
     {
         IPodcastRepository<Podcast> podcastRepository;
         public PodcastController()
@@ -36,7 +35,7 @@ namespace BL.Controllers
         {
             Podcast podcastObj;
             podcastObj = podcastRepository.GetByName(name);
-            return podcastObj.Name + " " + podcastObj.Description + " " + podcastObj.Category;
+            return podcastObj.TotalEpisodes + " " + podcastObj.Name + " " + podcastObj.Interval + " " + podcastObj.Category;
         }
     }
 }

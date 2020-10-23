@@ -4,13 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
+using BL;
+using BL.Controllers;
 
 namespace Models
 {
-    public class Category : DataManager
+    public class Category : PodcastController
     {
-        
+
         public void AddCategory(string category)
         {
             categories.Add(category);

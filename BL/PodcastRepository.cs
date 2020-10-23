@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Models;
+using DAL;
+using DAL.Repositories;
+
 
 
 namespace DAL.Repositories
 {
-    public class PodcastRepository : IPodcastRepository<Podcast>
+    public class PodcastRepository : DataManager, IPodcastRepository<Podcast>
     {
         DataManager dataManager;
         List<Podcast> podcastList;
