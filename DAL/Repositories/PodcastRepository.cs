@@ -7,7 +7,7 @@ using Models;
 
 namespace DAL.Repositories
 {
-    class PodcastRepository : IPodcastRepository<Podcast>
+    class PodcastRepository : IPodcastRepository
     {
         public void Delete(int index)
         {

@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Models;
+using DAL.Repositories;
 
 namespace DAL
 {
-    public class DataManager
+    public class DataManager : IPodcastRepository
     {
         public void SavePodcastList(List<Podcast> podcastList)
         {
