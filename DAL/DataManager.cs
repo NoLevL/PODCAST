@@ -12,6 +12,11 @@ namespace DAL
 {
     public class DataManager : IPodcastRepository
     {
+
+        protected string savedCategories = @"savedCategories.txt";
+        public List<string> categories = new List<string>();
+
+
         public void SavePodcastList(List<Podcast> podcastList)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(podcastList.GetType());

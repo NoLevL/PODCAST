@@ -47,11 +47,5 @@
     <Compile Include="Repositories\PodcastRepository.cs" />
     <Compile Include="Repositories\IPodcastRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{38ef1d31-23d2-4c9d-bf21-d3eb7523f34c}</Project>
-      <Name>Models</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
