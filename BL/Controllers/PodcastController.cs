@@ -30,13 +30,13 @@ namespace BL.Controllers
 
         public List<Podcast> RetrieveAllPodcasts()
         {
-            return podcastRepository.GetAllPodcasts();
+            return podcastRepository.GetAll();
         }
 
         public string GetPodCastDetailsByName(string name)
         {
             Podcast podcastObj;
-            podcastObj = podcastRepository.GetByName(name);
+            podcastObj = podcastRepository.GetByIndex(name);
             return podcastObj.TotalEpisodes + " " + podcastObj.Name + " " + podcastObj.Interval + " " + podcastObj.Category;
         }
     }
