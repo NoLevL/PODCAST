@@ -18,9 +18,9 @@ namespace DAL.Repositories
             dataManager = new DataManager();
         }
 
-        public void Create(string category)
+        public void Create(Category category)
         {
-            categories.Add(category);
+            categoryList.Add(category);
             using (StreamWriter sw = File.AppendText(savedCategories))
             {
                 sw.WriteLine(category);

@@ -10,6 +10,13 @@ namespace Models
     public class Category
     {
 
+        public string Name { get; set; }
+
+        public Category(string name)
+        {
+            Name = name;
+        }
+
         public void AddCategory(string category)
         {
             categories.Add(category);
