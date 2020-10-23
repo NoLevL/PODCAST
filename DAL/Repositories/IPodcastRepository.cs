@@ -7,7 +7,7 @@ using Models;
 
 namespace DAL.Repositories
 {
-    interface IPodcastRepository
+    public interface IPodcastRepository<T>:IRepository<T> where T:Podcast
     {
         List<Podcast> GetSavedPodcasts();
     }

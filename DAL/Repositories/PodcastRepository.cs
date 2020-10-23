@@ -7,7 +7,16 @@ using Models;
 
 namespace DAL.Repositories
 {
-    class PodcastRepository 
+    class PodcastRepository : IPodcastRepository<Podcast>
     {
+        public void Delete(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Podcast> GetSavedPodcasts()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
