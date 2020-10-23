@@ -5,18 +5,68 @@ using System.Text;
 using System.Threading.Tasks;
 using Models;
 
+
 namespace DAL.Repositories
 {
-    class PodcastRepository : IPodcastRepository
+    public class PodcastRepository : IPodcastRepository<Podcast>
     {
+        DataManager dataManager;
+        List<Podcast> podcastList;
+        public PodcastRepository()
+        {
+            podcastList = new List<Podcast>();
+            dataManager = new DataManager();
+        }
+
+        public void Create(Podcast entity)
+        {
+            podcastList.Add(entity);
+            SaveChanges();
+        }
+
         public void Delete(int index)
         {
+            podcastList.RemoveAt(index);
+            SaveChanges();
+        }
+
+        public List<Podcast> GetAllPodcast()
+        {
+            List<Podcast> podcastListToBeReturned = new List<Podcast>();
+            podcastListToBeReturned = dataManager.ReturnPodcasts();
+            return podcastListToBeReturned;
+
+        }
+
+        public List<Podcast> GetAllPodcasts()
+        {
             throw new NotImplementedException();
+        }
+
+        public Podcast GetByName(string name)
+        {
+            return GetAllPodcast().First(podcastList => p.Name.Equals(name));
         }
 
         public List<Podcast> ReturnPodcasts()
         {
             throw new NotImplementedException();
         }
+
+        public void SaveChanges()
+        {
+            dataManager.SavePodcastList(podcastList);
+        }
+
+        public void Update(int index, Podcast newEntity)
+        {
+            if (index >= 0)
+            {
+                podcastList[index] = newEntity;
+            }
+            SaveChanges();
+        }
+
+
     }
 }
