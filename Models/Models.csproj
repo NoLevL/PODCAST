@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category.cs" />
+    <Compile Include="Feed.cs" />
     <Compile Include="Episode.cs" />
     <Compile Include="Podcast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
