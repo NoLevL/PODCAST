@@ -56,10 +56,6 @@
       <Project>{38ef1d31-23d2-4c9d-bf21-d3eb7523f34c}</Project>
       <Name>Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PodcastApp\PodcastApp.csproj">
-      <Project>{06b9838e-46ae-4f8d-88f3-e17fdcaa7e84}</Project>
-      <Name>PodcastApp</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

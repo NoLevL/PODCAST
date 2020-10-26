@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
-using PodcastApp;
+using Models;
 
 namespace BL
 {
@@ -42,11 +42,17 @@ namespace BL
         public bool CategoryIsUnique(TextBox category)
         {
             bool isValid = true;
-            if (dataManager.ReturnCategories().Contains(category.Text));
+            List<Category> list = dataManager.ReturnCategories();
+            foreach (var item in list)
             {
-                MessageBox.Show("Category already exists!");
-                //Throw new CategoryAlreadyExistsException();
-                isValid = false;
+                string name = item.Name;
+
+                if (name.Equals(category.Text)) 
+                {
+                    MessageBox.Show("Category already exists!");
+                    //Throw new CategoryAlreadyExistsException();
+                    isValid = false;
+                }
             }
             return isValid;
         }
