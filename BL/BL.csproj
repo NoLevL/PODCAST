@@ -42,7 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Urlinfo.cs" />
+    <Compile Include="Exceptions\ItemAlreadyExistsException.cs" />
+    <Compile Include="Exceptions\ItemNotPickedException.cs" />
+    <Compile Include="Exceptions\ComboBoxIsNullException.cs" />
+    <Compile Include="Exceptions\ListIsEmptyException.cs" />
+    <Compile Include="Exceptions\TextBoxIsEmptyException.cs" />
     <Compile Include="Validation.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\PodcastController.cs" />
@@ -58,5 +62,6 @@
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -32,7 +32,7 @@ namespace BL
             if (listOfCategory.SelectedItem == null)
             {
                 MessageBox.Show("You must pick a category!");
-                //Throw new CategoryNotPickedException();
+                //Throw new ItemNotPickedException();
                 isValid = false;
             }
             return isValid;
@@ -50,7 +50,7 @@ namespace BL
                 if (name.Equals(category.Text)) 
                 {
                     MessageBox.Show("Category already exists!");
-                    //Throw new CategoryAlreadyExistsException();
+                    //Throw new ItemAlreadyExistsException();
                     isValid = false;
                 }
             }
@@ -118,7 +118,7 @@ namespace BL
                 if (podcast.Url.Equals(url.Text))
                 {
                     MessageBox.Show("Podcast already exists!");
-                    //Throw new PodcastAlreadyExistsException();
+                    //Throw new ItemAlreadyExistsException();
                     isValid = false;
                 }
             }
@@ -132,7 +132,7 @@ namespace BL
             if (table.SelectedRows.Count == 0)
             {
                 MessageBox.Show("You must choose a podcast to delete!");
-                //Throw new PodcastNotPickedException();
+                //Throw new ItemNotPickedException();
                 isValid = false;
             }
             return isValid;

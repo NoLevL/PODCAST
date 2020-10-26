@@ -95,6 +95,7 @@
             this.BtnSaveCat.TabIndex = 3;
             this.BtnSaveCat.Text = "Save";
             this.BtnSaveCat.UseVisualStyleBackColor = true;
+            this.BtnSaveCat.Click += new System.EventHandler(this.BtnSaveCat_Click);
             // 
             // BtnNewCat
             // 
