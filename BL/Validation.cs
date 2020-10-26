@@ -9,7 +9,7 @@ using Models;
 
 namespace BL
 {
-    class Validation
+    public class Validation
     {
         private readonly DataManager dataManager = new DataManager();
 
