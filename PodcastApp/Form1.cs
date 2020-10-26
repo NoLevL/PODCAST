@@ -43,7 +43,7 @@ namespace PodcastApp
 
         private void BtnNewPod_Click(object sender, EventArgs e)
         {
-            podcastController.CreatePodcastObject(TxtURL.Text, CmbUpdateFreq.Text, CmbCat.Text, "Podcast");
+            Podcast pod = await podcast
         }
     }
 }
