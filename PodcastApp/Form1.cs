@@ -22,6 +22,9 @@ namespace PodcastApp
             InitializeComponent();
             podcastController = new PodcastController();
             categoryController = new CategoryController();
+            //FormHandler metoder i Load-event istället för kontruktorn?
+            FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
+            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,6 +57,8 @@ namespace PodcastApp
         {
             string addCategory = TxtCat.Text;
             categoryController.CreateCategoryObject(addCategory);
+            FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
+            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
         }
 
         private void LstEpisodes_SelectedIndexChanged(object sender, EventArgs e)
@@ -81,6 +86,8 @@ namespace PodcastApp
             string updateCategory = TxtCat.Text;
             Category updateCategoryObject = new Category(updateCategory);
             categoryController.UpdateCategoryObject(selectedCategory, updateCategoryObject);
+            FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
+            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
         }
     }
 }

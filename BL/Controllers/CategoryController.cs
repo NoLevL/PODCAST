@@ -33,7 +33,7 @@ namespace BL.Controllers
             return categoryRepository.GetAll();
         }
 
-        public void UpdateCategoryObject(int index, Category category)
+        public void UpdateCategoryObject(int index, Category category)//Ej testad än
         {
             Category updateCategory = null;
             if (updateCategory == null)
@@ -42,6 +42,8 @@ namespace BL.Controllers
             }
             categoryRepository.Update(index, category);
         }
+
+        
 
         
     }
