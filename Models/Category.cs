@@ -17,6 +17,11 @@ namespace Models
             Name = name;
         }
 
+        public Category()
+        {
+
+        }
+
         //public void AddCategory(string category)
         //{
         //    categories.Add(category);

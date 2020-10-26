@@ -16,6 +16,7 @@ namespace DAL.Repositories
         {
             categoryList = new List<Category>();
             dataManager = new DataManager();
+            categoryList = GetAll();
         }
 
         public void Create(Category category)

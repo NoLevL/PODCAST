@@ -14,7 +14,7 @@ namespace DAL
     {
         private readonly string fileOfPodcasts = @"Podcasts.xml";
         public List<Podcast> listOfPodcasts = new List<Podcast>();
-        protected string savedCategories = @"savedCategories.txt";
+        protected string savedCategories = @"savedCategories.xml";
         public List<string> categories = new List<string>();
 
 
@@ -42,33 +42,43 @@ namespace DAL
 
         public void SaveCategoryList(List<Category> categoryList)
         {
-            using (StreamWriter sw = File.AppendText(savedCategories))
+        //    using (StreamWriter sw = File.AppendText(savedCategories))
+        //    {
+        //        sw.WriteLine(categoryList);
+        //    }
+            XmlSerializer xmlSerializer = new XmlSerializer(categoryList.GetType());
+            using (FileStream outFile = new FileStream(savedCategories, FileMode.Create,
+                FileAccess.Write))
             {
-                sw.WriteLine(categoryList);
+               // if(File.Exists(savedCategories))
+                xmlSerializer.Serialize(outFile, categoryList);
             }
-            //XmlSerializer xmlSerializer = new XmlSerializer(categoryList.GetType());
-            //using (FileStream outFile = new FileStream(savedCategories, FileMode.Create,
-            //    FileAccess.Write))
-            //{
-            //    xmlSerializer.Serialize(outFile, categoryList);
-            //}
         }
 
-        public List<string> ReturnCategories()
+        public List<Category> ReturnCategories()
         {
-            categories.Clear();
-            if (File.Exists(savedCategories) == true)
+            //categories.Clear();
+            //if (File.Exists(savedCategories) == true)
+            //{
+            //    using (StreamReader sr = new StreamReader(savedCategories))
+            //    {
+            //        string line;
+            //        while ((line = sr.ReadLine()) != null)
+            //        {
+            //            categories.Add(line);
+            //        }
+            //    }
+            //}
+            //return categories;
+            List<Category> listOfCategoriesToBeReturned;
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Category>));
+            using (FileStream inFile = new FileStream(savedCategories, FileMode.Open,
+                FileAccess.Read))
             {
-                using (StreamReader sr = new StreamReader(savedCategories))
-                {
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        categories.Add(line);
-                    }
-                }
+                listOfCategoriesToBeReturned = (List<Category>)xmlSerializer.Deserialize(inFile);
             }
-            return categories;
+            return listOfCategoriesToBeReturned;
+
         }
     }
 }

@@ -15,10 +15,12 @@ namespace PodcastApp
     public partial class Form1 : Form
     {
         PodcastController podcastController;
+        CategoryController categoryController;
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
+            categoryController = new CategoryController();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -43,13 +45,13 @@ namespace PodcastApp
 
         private void BtnNewPod_Click(object sender, EventArgs e)
         {
-            podcastController.CreatePodcastObject(TxtURL.Text, CmbUpdateFreq.Text, CmbCat.Text, "Podcast");
+            //podcastController.CreatePodcastObject(TxtURL.Text, CmbUpdateFreq.Text, CmbCat.Text, "Podcast");
         }
 
         private void BtnNewCat_Click(object sender, EventArgs e)
         {
             string addCategory = TxtCat.Text;
-            Category newCategory = new Category(addCategory);
+            categoryController.CreateCategoryObject(addCategory);
         }
     }
 }
