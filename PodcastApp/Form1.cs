@@ -45,5 +45,11 @@ namespace PodcastApp
         {
             Podcast pod = await podcast
         }
+
+        private void BtnNewCat_Click(object sender, EventArgs e)
+        {
+            string addCategory = TxtCat.Text;
+            Category newCategory = new Category(addCategory);
+        }
     }
 }

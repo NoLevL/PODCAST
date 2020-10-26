@@ -103,8 +103,9 @@
             this.BtnNewCat.Name = "BtnNewCat";
             this.BtnNewCat.Size = new System.Drawing.Size(101, 23);
             this.BtnNewCat.TabIndex = 4;
-            this.BtnNewCat.Text = "New...";
+            this.BtnNewCat.Text = "Add";
             this.BtnNewCat.UseVisualStyleBackColor = true;
+            this.BtnNewCat.Click += new System.EventHandler(this.BtnNewCat_Click);
             // 
             // BtnDeleteCat
             // 

@@ -47,7 +47,7 @@ namespace DAL.Repositories
 
         public Podcast GetByName(string name)
         {
-            return GetAll().First(podcastList => p.Name.Equals(name));
+            return GetAll().FirstOrDefault(p => p.Name.Equals(name));
         }
 
         public List<Podcast> ReturnPodcasts()
