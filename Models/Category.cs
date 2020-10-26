@@ -17,14 +17,14 @@ namespace Models
             Name = name;
         }
 
-        public void AddCategory(string category)
-        {
-            categories.Add(category);
-            using (StreamWriter sw = File.AppendText(savedCategories))
-            {
-                sw.WriteLine(category);
-            }
-        }
+        //public void AddCategory(string category)
+        //{
+        //    categories.Add(category);
+        //    using (StreamWriter sw = File.AppendText(savedCategories))
+        //    {
+        //        sw.WriteLine(category);
+        //    }
+        //}
 
         //public void DeleteCategory(string category)
         //{
