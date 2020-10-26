@@ -18,5 +18,10 @@ namespace BL.Exceptions
             : base(message)
         { }
 
+
+        public ItemNotPickedException(string message, Exception innerException)
+            : base(message, innerException)
+        { }
+
     }
 }
