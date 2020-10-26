@@ -42,24 +42,33 @@ namespace DAL
 
         public void SaveCategoryList(List<Category> categoryList)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(categoryList.GetType());
-            using (FileStream outFile = new FileStream(savedCategories, FileMode.Create,
-                FileAccess.Write))
+            using (StreamWriter sw = File.AppendText(savedCategories))
             {
-                xmlSerializer.Serialize(outFile, categoryList);
+                sw.WriteLine(categoryList);
             }
+            //XmlSerializer xmlSerializer = new XmlSerializer(categoryList.GetType());
+            //using (FileStream outFile = new FileStream(savedCategories, FileMode.Create,
+            //    FileAccess.Write))
+            //{
+            //    xmlSerializer.Serialize(outFile, categoryList);
+            //}
         }
 
-        public List<Category> ReturnCategories()
+        public List<string> ReturnCategories()
         {
-            List<Category> listOfCategoriesToBeReturned;
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
-            using (FileStream inFile = new FileStream(savedCategories, FileMode.Open,
-                FileAccess.Read))
+            categories.Clear();
+            if (File.Exists(savedCategories) == true)
             {
-                listOfCategoriesToBeReturned = (List<Category>)xmlSerializer.Deserialize(inFile);
+                using (StreamReader sr = new StreamReader(savedCategories))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        categories.Add(line);
+                    }
+                }
             }
-            return listOfCategoriesToBeReturned;
+            return categories;
         }
     }
 }
