@@ -18,12 +18,12 @@ namespace BL.Controllers
             podcastRepository = new PodcastRepository();
         }
 
-        public void CreatePodcastObject ( string url, string interval, string category, string name, int totalEpisodes, List<Episode> episodeList, string objectType) //objectType = Category?
+        public void CreatePodcastObject ( string url, string interval, string category) //objectType = Category?
         {
             Podcast newPodcast = null;
-            if(objectType.Equals("Podcast"))
+            
             {
-                newPodcast = new Podcast(url, interval, category, name, totalEpisodes, episodeList);
+                newPodcast = new Podcast(url, interval, category); 
             }
             podcastRepository.Create(newPodcast);
         }
@@ -49,7 +49,5 @@ namespace BL.Controllers
         {
             throw new NotImplementedException();
         }
-
-        
     }
 }

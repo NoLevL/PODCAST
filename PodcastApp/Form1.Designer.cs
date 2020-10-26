@@ -177,6 +177,7 @@
             this.TxtCat.Size = new System.Drawing.Size(357, 20);
             this.TxtCat.TabIndex = 13;
             this.TxtCat.Text = "Search for category...";
+            this.TxtCat.TextChanged += new System.EventHandler(this.TxtCat_TextChanged);
             // 
             // LstEpisodes
             // 
