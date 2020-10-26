@@ -49,10 +49,5 @@ namespace BL.Controllers
         {
             throw new NotImplementedException();
         }
-
-        public List<Episode> GetEpisodeList(object index)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
