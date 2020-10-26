@@ -17,5 +17,10 @@ namespace BL.Exceptions
         public ItemAlreadyExistsException(string message)
             : base(message)
         { }
+
+
+        public ItemAlreadyExistsException(string message, Exception innerException)
+            : base (message, innerException)
+        { }
     }
 }

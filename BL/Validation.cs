@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BL.Exceptions;
 using DAL;
 using Models;
 
@@ -12,15 +13,23 @@ namespace BL
     class Validation
     {
         private readonly DataManager dataManager = new DataManager();
+       
+
 
         public bool TboxCategoryNotEmpty(TextBox category)
         {
-            bool isValid = true;
-            if(category.Text.Equals(""))
+            bool isValid = false;
+            try
             {
-                MessageBox.Show("You must enter a category to add/change it");
-                //Throw new TextBoxIsEmptyException();
-                isValid = false;
+                if (category.Text != "")
+                {
+                    isValid = true;
+                }
+            }
+            catch (TextBoxIsEmptyException e)
+            {
+                string msg = "You must enter a category in the textfield!";
+                throw new ItemNotPickedException(msg, e);
             }
             return isValid;
         }
@@ -28,12 +37,18 @@ namespace BL
 
         public bool CategoryIsPicked(ListBox listOfCategory)
         {
-            bool isValid = true;
-            if (listOfCategory.SelectedItem == null)
+            bool isValid = false;
+            try
             {
-                MessageBox.Show("You must pick a category!");
-                //Throw new ItemNotPickedException();
-                isValid = false;
+                if (listOfCategory.SelectedItem != null)
+                {
+                    isValid = true;
+                }
+            }
+            catch (ItemNotPickedException e)
+            {
+                string msg = "You must pick a category!";
+                throw new ItemNotPickedException(msg, e);    
             }
             return isValid;
         }
@@ -41,18 +56,24 @@ namespace BL
 
         public bool CategoryIsUnique(TextBox category)
         {
-            bool isValid = true;
-            List<Category> list = dataManager.ReturnCategories();
-            foreach (var item in list)
+            bool isValid = false;
+            try
             {
-                string name = item.Name;
-
-                if (name.Equals(category.Text)) 
+                List<Category> list = dataManager.ReturnCategories();
+                foreach (var item in list)
                 {
-                    MessageBox.Show("Category already exists!");
-                    //Throw new ItemAlreadyExistsException();
-                    isValid = false;
+                    string name = item.Name;
+
+                    if (name != category.Text)
+                    {
+                        isValid = true;
+                    }
                 }
+            }
+            catch(ItemAlreadyExistsException e)
+            {
+                string msg = "Category already exists!";
+                throw new ItemAlreadyExistsException(msg, e);
             }
             return isValid;
         }
@@ -60,12 +81,18 @@ namespace BL
 
         public bool IsCategoryListEmpty(List<string> catList)
         {
-            bool notEmpty = true;
-            if (catList.Count == 0)
+            bool notEmpty = false;
+            try
             {
-                MessageBox.Show("You don't have any categories!");
-                //Throw new ListIsEmptyException();
-                notEmpty = false;
+                if (catList.Count > 0)
+                {
+                    notEmpty = true;
+                }
+            }
+            catch (ListIsEmptyException e)
+            {
+                string msg = "You don't have any categories!";
+                throw new ListIsEmptyException(msg, e);
             }
             return notEmpty;
         }
@@ -73,12 +100,18 @@ namespace BL
 
         public bool TboxUrlNotEmpty(TextBox url)
         {
-            bool isValid = true;
-            if (url.Text.Equals(""))
+            bool isValid = false;
+            try
             {
-                MessageBox.Show("You must enter a URL to proceed!");
-                //Throw new TextBoxIsEmptyException();
-                isValid = false;
+                if (url.Text != "")
+                {
+                    isValid = true;
+                }
+            }
+            catch (TextBoxIsEmptyException e)
+            {
+                string msg = "You must enter a URL to proceed!";
+                throw new TextBoxIsEmptyException(msg, e);
             }
             return isValid;
         }
@@ -86,12 +119,18 @@ namespace BL
 
         public bool ComboIntervalChoosen(ComboBox interval)
         {
-            bool isValid = true;
-            if (interval.SelectedItem == null)
+            bool isValid = false;
+            try
             {
-                MessageBox.Show("You must choose an interval!");
-                //Throw new ComboBoxIsNullException();
-                isValid = false;
+                if (interval.SelectedItem != null)
+                {
+                    isValid = true;
+                }
+            }
+            catch (ComboBoxIsNullException e)
+            {
+                string msg = "You must choose an interval!";
+                throw new ComboBoxIsNullException(msg, e);
             }
             return isValid;
         }
@@ -99,12 +138,18 @@ namespace BL
 
         public bool ComboCategoryChoosen(ComboBox category)
         {
-            bool isValid = true;
-            if (category.SelectedItem == null)
+            bool isValid = false;
+            try
             {
-                MessageBox.Show("You must choose a category!");
-                //Throw new ComboBoxIsNullException();
-                isValid = false;
+                if (category.SelectedItem != null)
+                {
+                    isValid = true;
+                }
+            }
+            catch (ComboBoxIsNullException e)
+            {
+                string msg = "You must choose a category!";
+                throw new ComboBoxIsNullException(msg, e);
             }
             return isValid;
         }
@@ -128,12 +173,18 @@ namespace BL
 
         public bool CanPodcastBeDeleted(DataGridView table)
         {
-            bool isValid = true;
-            if (table.SelectedRows.Count == 0)
+            bool isValid = false;
+            try
             {
-                MessageBox.Show("You must choose a podcast to delete!");
-                //Throw new ItemNotPickedException();
-                isValid = false;
+                if (table.SelectedRows.Count > 0)
+                {
+                    isValid = true;
+                }
+            }
+            catch (ItemNotPickedException e)
+            {
+                string msg = "You must choose a podcast to delete!";
+                throw new ItemNotPickedException(msg, e);
             }
             return isValid;
         }

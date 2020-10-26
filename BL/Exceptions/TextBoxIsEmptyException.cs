@@ -6,16 +6,21 @@ using System.Threading.Tasks;
 
 namespace BL.Exceptions
 {
-    class TextBoxCategoryIsEmptyException : Exception
+    public class TextBoxIsEmptyException : Exception
     {
-        public TextBoxCategoryIsEmptyException()
+        public TextBoxIsEmptyException()
             : base()
         { }
         
 
 
-        public TextBoxCategoryIsEmptyException(string message)
+        public TextBoxIsEmptyException(string message)
             : base(message)
+        { }
+
+
+        public TextBoxIsEmptyException(string message, Exception innerException)
+            : base(message, innerException)
         { }
     }
 }
