@@ -10,7 +10,9 @@ namespace DAL.Repositories
     public interface IPodcastRepository<T> : IRepository<T> where T : Podcast
     {
         List<T> SavedPodcastList();
-        T GetByName(string name);
-        List<T> GetAllPodcasts();
+       // T GetByName(string name);
+        //List<T> GetAllPodcasts();
+
+        T GetByIndex(string name);
     }
 }

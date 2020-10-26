@@ -21,31 +21,45 @@ namespace DAL.Repositories
         public void Create(Category category)
         {
             categoryList.Add(category);
-            using (StreamWriter sw = File.AppendText(savedCategories))
-            {
-                sw.WriteLine(category);
-            }
-            throw new NotImplementedException();
+            SaveChanges();
+            //using (StreamWriter sw = File.AppendText(savedCategories))
+            //{
+            //    sw.WriteLine(category);
+            //}
+            //throw new NotImplementedException();
         }
 
         public void Delete(int index)
         {
-            throw new NotImplementedException();
+            categoryList.RemoveAt(index);
+            SaveChanges();
         }
 
         public List<Category> GetAll()
         {
-            throw new NotImplementedException();
+            List<Category> categoryListToBeReturned = new List<Category>();
+            try
+            {
+                categoryListToBeReturned = dataManager.ReturnCategories();
+            }
+            catch (Exception)
+            {
+            }
+            return categoryListToBeReturned;
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            dataManager.SaveCategoryList(categoryList);
         }
 
-        public void Update(int index, Category entity)
+        public void Update(int index, Category category)
         {
-            throw new NotImplementedException();
+            if (index >= 0)
+            {
+                categoryList[index] = category;
+            }
+            SaveChanges();
         }
     }
 }
