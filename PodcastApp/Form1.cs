@@ -15,11 +15,13 @@ namespace PodcastApp
     public partial class Form1 : Form
     {
         PodcastController podcastController;
+        CategoryController categoryController;
         private int podIndex = 0;
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
+            categoryController = new CategoryController();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -51,7 +53,7 @@ namespace PodcastApp
         private void BtnNewCat_Click(object sender, EventArgs e)
         {
             string addCategory = TxtCat.Text;
-            Category newCategory = new Category(addCategory);
+            categoryController.CreateCategoryObject(addCategory);
         }
 
         private void LstEpisodes_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,18 +61,26 @@ namespace PodcastApp
             string selectedPodcast = LstEpisodes.SelectedItem.ToString();
             LblPodEpi.Text = selectedPodcast;
 
-            List<Episode> episodeList = podcastController.GetEpisodeList(podIndex); //nåt som hittar index
+            //List<Episode> episodeList = podcastController.GetEpisodeList(podIndex); //nåt som hittar index
 
-            foreach (var episode in episodeList)
-            {
-                if (episode.EpisodeName.Equals(selectedPodcast))
-                {
-                    string description = episode.EpisodeDescription;
-                    string removeText = @"<br/><br/>";
-                    TxtEpiInfo.Text = description.Replace(removeText + " ", "");
-                }
-            }
+            //foreach (var episode in episodeList)
+            //{
+            //    if (episode.EpisodeName.Equals(selectedPodcast))
+            //    {
+            //        string description = episode.EpisodeDescription;
+            //        string removeText = @"<br/><br/>";
+            //        TxtEpiInfo.Text = description.Replace(removeText + " ", "");
+            //    }
+            //}
 
+        }
+
+        private void BtnSaveCat_Click(object sender, EventArgs e)
+        {
+            int selectedCategory = LstCat.SelectedIndex;
+            string updateCategory = TxtCat.Text;
+            Category updateCategoryObject = new Category(updateCategory);
+            categoryController.UpdateCategoryObject(selectedCategory, updateCategoryObject);
         }
     }
 }

@@ -33,6 +33,16 @@ namespace BL.Controllers
             return categoryRepository.GetAll();
         }
 
+        public void UpdateCategoryObject(int index, Category category)
+        {
+            Category updateCategory = null;
+            if (updateCategory == null)
+            {
+                updateCategory = new Category(category.Name);
+            }
+            categoryRepository.Update(index, category);
+        }
+
         
     }
 }
