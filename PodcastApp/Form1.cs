@@ -97,6 +97,9 @@ namespace PodcastApp
             FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
         }
 
-        
+        private void TxtCat_Click(object sender, EventArgs e)
+        {
+            TxtCat.Text = "";
+        }
     }
 }
