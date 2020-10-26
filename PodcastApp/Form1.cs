@@ -89,5 +89,14 @@ namespace PodcastApp
             FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
             FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
         }
+
+        private void BtnDeleteCat_Click(object sender, EventArgs e)
+        {
+            categoryController.DeleteCategory(LstCat.SelectedIndex);
+            FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
+            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+        }
+
+        
     }
 }

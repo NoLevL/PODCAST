@@ -43,6 +43,12 @@ namespace BL.Controllers
             categoryRepository.Update(index, category);
         }
 
+        public void DeleteCategory(int index)
+        {
+            //int index = categoryRepository.GetIndex(name);
+            categoryRepository.Delete(index);
+        }
+
         
 
         

@@ -31,6 +31,12 @@ namespace Models
             TotalEpisodes = totalEpisodes;
             EpisodeList = episodeList;
         }
+        public Podcast(string url, string interval, string category)
+        {
+            Url = url;
+            Interval = interval;
+            Category = category;
+        }
 
         public Podcast()
         {
