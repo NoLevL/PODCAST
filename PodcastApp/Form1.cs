@@ -15,6 +15,7 @@ namespace PodcastApp
     public partial class Form1 : Form
     {
         PodcastController podcastController;
+        private int podIndex = 0;
         public Form1()
         {
             InitializeComponent();
@@ -41,15 +42,35 @@ namespace PodcastApp
 
         }
 
-        private void BtnNewPod_Click(object sender, EventArgs e)
+        private async void BtnNewPod_Click(object sender, EventArgs e)
         {
-            Podcast pod = await podcast
+            Podcast p = await PodcastController.CreatePodcastObject(TxtURL.Text, CmbCat.Text, CmbCat.SelectedItem.ToString(), CmbUpdateFreq.SelectedItem.ToString());
+            PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
         }
 
         private void BtnNewCat_Click(object sender, EventArgs e)
         {
             string addCategory = TxtCat.Text;
             Category newCategory = new Category(addCategory);
+        }
+
+        private void LstEpisodes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedPodcast = LstEpisodes.SelectedItem.ToString();
+            LblPodEpi.Text = selectedPodcast;
+
+            List<Episode> episodeList = podcastController.GetEpisodeList(podIndex); //nåt som hittar index
+
+            foreach (var episode in episodeList)
+            {
+                if (episode.EpisodeName.Equals(selectedPodcast))
+                {
+                    string description = episode.EpisodeDescription;
+                    string removeText = @"<br/><br/>";
+                    TxtEpiInfo.Text = description.Replace(removeText + " ", "");
+                }
+            }
+
         }
     }
 }

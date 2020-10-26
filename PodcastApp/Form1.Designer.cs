@@ -184,6 +184,7 @@
             this.LstEpisodes.Name = "LstEpisodes";
             this.LstEpisodes.Size = new System.Drawing.Size(387, 147);
             this.LstEpisodes.TabIndex = 15;
+            this.LstEpisodes.SelectedIndexChanged += new System.EventHandler(this.LstEpisodes_SelectedIndexChanged);
             // 
             // LstCat
             // 
