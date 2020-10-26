@@ -117,6 +117,7 @@
             this.BtnDeleteCat.TabIndex = 5;
             this.BtnDeleteCat.Text = "Delete...";
             this.BtnDeleteCat.UseVisualStyleBackColor = true;
+            this.BtnDeleteCat.Click += new System.EventHandler(this.BtnDeleteCat_Click);
             // 
             // CmbUpdateFreq
             // 
@@ -176,7 +177,7 @@
             this.TxtCat.Size = new System.Drawing.Size(357, 20);
             this.TxtCat.TabIndex = 13;
             this.TxtCat.Text = "Search for category...";
-            this.TxtCat.TextChanged += new System.EventHandler(this.TxtCat_TextChanged);
+            this.TxtCat.Click += new System.EventHandler(this.TxtCat_Click);
             // 
             // LstEpisodes
             // 

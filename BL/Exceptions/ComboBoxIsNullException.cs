@@ -17,5 +17,10 @@ namespace BL.Exceptions
         public ComboBoxIsNullException(string message)
             : base(message)
         { }
+
+
+        public ComboBoxIsNullException(string message, Exception innerException)
+            : base (message, innerException)
+        { }
     }
 }

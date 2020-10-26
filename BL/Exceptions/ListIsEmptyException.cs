@@ -17,5 +17,10 @@ namespace BL.Exceptions
         public ListIsEmptyException(string message)
             : base(message)
         { }
+
+
+        public ListIsEmptyException(string message, Exception innerException)
+            : base (message, innerException)
+        { }
     }
 }

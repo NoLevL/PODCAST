@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Models;
 using BL.Controllers;
-using BL;
 
 namespace PodcastApp
 {
@@ -17,7 +16,7 @@ namespace PodcastApp
     {
         PodcastController podcastController;
         CategoryController categoryController;
-        // private int podIndex = 0;
+        private int podIndex = 0;
         public Form1()
         {
             InitializeComponent();
@@ -40,7 +39,7 @@ namespace PodcastApp
 
         private void txtURL_TextChanged(object sender, EventArgs e)
         {
-        
+            TxtURL.Text = "";
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -48,15 +47,10 @@ namespace PodcastApp
 
         }
 
-        private void BtnNewPod_Click(object sender, EventArgs e)
+        private async void BtnNewPod_Click(object sender, EventArgs e)
         {
-            PodcastController p = new PodcastController;
-            p.CreatePodcastObject(TxtURL.Text,
-                                                      CmbCat.SelectedItem.ToString(),
-                                                      CmbUpdateFreq.SelectedItem.ToString());
-
+            Podcast p = await PodcastController.CreatePodcastObject(TxtURL.Text, CmbCat.Text, CmbCat.SelectedItem.ToString(), CmbUpdateFreq.SelectedItem.ToString());
             PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
-            
         }
 
         private void BtnNewCat_Click(object sender, EventArgs e)
@@ -96,9 +90,16 @@ namespace PodcastApp
             FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
         }
 
-        private void TxtCat_TextChanged(object sender, EventArgs e)
+        private void BtnDeleteCat_Click(object sender, EventArgs e)
         {
+            categoryController.DeleteCategory(LstCat.SelectedIndex);
+            FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
+            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+        }
 
+        private void TxtCat_Click(object sender, EventArgs e)
+        {
+            TxtCat.Text = "";
         }
     }
 }
