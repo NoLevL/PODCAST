@@ -29,7 +29,7 @@ namespace BL
             catch (TextBoxIsEmptyException e)
             {
                 string msg = "You must enter a category in the textfield!";
-                throw new ItemNotPickedException(msg, e);
+                throw new TextBoxIsEmptyException(msg, e);
             }
             return isValid;
         }
