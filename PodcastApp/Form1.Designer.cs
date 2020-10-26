@@ -117,6 +117,7 @@
             this.BtnDeleteCat.TabIndex = 5;
             this.BtnDeleteCat.Text = "Delete...";
             this.BtnDeleteCat.UseVisualStyleBackColor = true;
+            this.BtnDeleteCat.Click += new System.EventHandler(this.BtnDeleteCat_Click);
             // 
             // CmbUpdateFreq
             // 
