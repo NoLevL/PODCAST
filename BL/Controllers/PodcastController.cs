@@ -40,7 +40,7 @@ namespace BL.Controllers
             return podcastObj.TotalEpisodes + " " + podcastObj.Name + " " + podcastObj.Interval + " " + podcastObj.Category;
         }
 
-        public static Task<Podcast> CreatePodcastObject(string text1, string text2, string v1, string v2)
+        public List<Podcast> CreatePodcastObject(string text1, string text2, string v1, string v2)
         {
             throw new NotImplementedException();
         }
