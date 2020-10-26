@@ -9,7 +9,7 @@ using Models;
 
 namespace BL.Controllers
 {
-    class CategoryController
+    public class CategoryController
     {
         private ICategoryRepository<Category> categoryRepository;
 
@@ -32,5 +32,7 @@ namespace BL.Controllers
         {
             return categoryRepository.GetAll();
         }
+
+        
     }
 }
