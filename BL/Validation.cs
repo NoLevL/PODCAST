@@ -9,6 +9,7 @@ using DAL;
 using Models;
 using BL;
 using PodcastApp;
+using System.Net.Configuration;
 
 namespace BL
 {
@@ -27,12 +28,13 @@ namespace BL
                 if (category.Text != "")
                 {
                     isValid = true;
+                    throw new TextBoxIsEmptyException();
                 }
             }
-            catch (TextBoxIsEmptyException e)
+            catch (TextBoxIsEmptyException)
             {
                 string msg = "You must enter a category in the textfield!";
-                throw new TextBoxIsEmptyException(msg, e);
+                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -46,20 +48,20 @@ namespace BL
                 if (listOfCategory.SelectedItem != null)
                 {
                     isValid = true;
+                    throw new ItemNotPickedException();
                 }
             }
-            catch (ItemNotPickedException e)
+            catch (ItemNotPickedException)
             {
                 string msg = "You must pick a category!";
-                throw new ItemNotPickedException(msg, e);    
+                MessageBox.Show(msg);
             }
             return isValid;
         }
 
-
-        public bool CategoryIsUnique(TextBox category)
+        public bool CategoryIsUnique(string category)
         {
-            bool isValid = false;
+            bool isValid = true;
             try
             {
                 List<Category> list = dataManager.ReturnCategories();
@@ -67,16 +69,18 @@ namespace BL
                 {
                     string name = item.Name;
 
-                    if (name != category.Text)
+                    if (name.Equals(category))
                     {
-                        isValid = true;
+                        isValid = false;
+                        throw new ItemAlreadyExistsException();
                     }
                 }
+                
             }
-            catch(ItemAlreadyExistsException e)
+            catch (ItemAlreadyExistsException)
             {
                 string msg = "Category already exists!";
-                throw new ItemAlreadyExistsException(msg, e);
+                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -90,12 +94,14 @@ namespace BL
                 if (catList.Count > 0)
                 {
                     notEmpty = true;
+                    throw new ListIsEmptyException();
                 }
+                
             }
-            catch (ListIsEmptyException e)
+            catch (ListIsEmptyException)
             {
                 string msg = "You don't have any categories!";
-                throw new ListIsEmptyException(msg, e);
+                MessageBox.Show(msg);
             }
             return notEmpty;
         }
@@ -109,12 +115,13 @@ namespace BL
                 if (url.Text != "")
                 {
                     isValid = true;
+                    throw new TextBoxIsEmptyException();
                 }
             }
-            catch (TextBoxIsEmptyException e)
+            catch (TextBoxIsEmptyException)
             {
                 string msg = "You must enter a URL to proceed!";
-                throw new TextBoxIsEmptyException(msg, e);
+                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -128,12 +135,13 @@ namespace BL
                 if (interval.SelectedItem != null)
                 {
                     isValid = true;
+                    throw new ComboBoxIsNullException();
                 }
             }
-            catch (ComboBoxIsNullException e)
+            catch (ComboBoxIsNullException)
             {
                 string msg = "You must choose an interval!";
-                throw new ComboBoxIsNullException(msg, e);
+                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -147,28 +155,36 @@ namespace BL
                 if (category.SelectedItem != null)
                 {
                     isValid = true;
+                    throw new ComboBoxIsNullException();
                 }
             }
-            catch (ComboBoxIsNullException e)
+            catch (ComboBoxIsNullException)
             {
                 string msg = "You must choose a category!";
-                throw new ComboBoxIsNullException(msg, e);
+                MessageBox.Show(msg);
             }
             return isValid;
         }
 
 
-        public bool IsUrlValid(TextBox url) //Behöver komplettering för att se om URL är legit eller ej
+        public bool IsUrlValid(TextBox url)
         {
-            bool isValid = true;
-            foreach (var podcast in dataManager.ReturnPodcasts())
+            bool isValid = false;
+            try
             {
-                if (podcast.Url.Equals(url.Text) || uH.DoesUrlExist(url.Text))
+                foreach (var podcast in dataManager.ReturnPodcasts())
                 {
-                    MessageBox.Show("Podcast already exists!");
-                    //Throw new ItemAlreadyExistsException();
-                    isValid = false;
+                    if (podcast.Url != url.Text || uH.DoesUrlExist(url.Text) == false)
+                    {
+                        isValid = true;
+                        throw new ItemAlreadyExistsException();
+                    }
                 }
+            }
+            catch (ItemAlreadyExistsException)
+            {
+                string msg = "Podcast already exists!";
+                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -182,12 +198,13 @@ namespace BL
                 if (table.SelectedRows.Count > 0)
                 {
                     isValid = true;
+                    throw new ItemNotPickedException();
                 }
             }
-            catch (ItemNotPickedException e)
+            catch (ItemNotPickedException)
             {
                 string msg = "You must choose a podcast to delete!";
-                throw new ItemNotPickedException(msg, e);
+                MessageBox.Show(msg);
             }
             return isValid;
         }

@@ -18,12 +18,13 @@ namespace PodcastApp
         PodcastController podcastController;
         CategoryController categoryController;
         private int podIndex = 0;
-        Validation validation = new Validation();
+        private Validation validator;
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
             categoryController = new CategoryController();
+            validator = new Validation();
             //FormHandler metoder i Load-event istället för kontruktorn?
             FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
             FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
@@ -41,7 +42,7 @@ namespace PodcastApp
 
         private void txtURL_TextChanged(object sender, EventArgs e)
         {
-        
+            TxtURL.Text = "";
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -49,36 +50,29 @@ namespace PodcastApp
 
         }
 
-        private async void BtnNewPod_Click(object sender, EventArgs e)
+        private async Task<Podcast> BtnNewPod_Click(object sender, EventArgs e)
         {
-            if (validation.TboxUrlNotEmpty(TxtURL) && validation.IsUrlValid(TxtURL) && validation.ComboIntervalChoosen(CmbUpdateFreq))
+           
+            Podcast p = new Podcast();
+            await Task.Run(() =>
             {
-                Podcast p = new Podcast();
-                await Task.Run(() =>
-                {
-                    podcastController.CreatePodcastObject(TxtURL.Text, CmbCat.SelectedItem.ToString(), CmbUpdateFreq.SelectedItem.ToString());
+                podcastController.CreatePodcastObject(TxtURL.Text, CmbCat.SelectedItem.ToString(), CmbUpdateFreq.SelectedItem.ToString());
 
-                    PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
-                });
-            } 
-            else
-            {
-                Podcast p = new Podcast();
-                await Task.Run(() =>
-                {
-                    podcastController.CreatePodcastObject(TxtURL.Text, CmbUpdateFreq.SelectedItem.ToString());
-
-                    PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
-                });
-            }
+                PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
+            });
+            return p;
+            
         }
 
         private void BtnNewCat_Click(object sender, EventArgs e)
         {
             string addCategory = TxtCat.Text;
-            categoryController.CreateCategoryObject(addCategory);
-            FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
-            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+            if (validator.CategoryIsUnique(addCategory))
+            {
+                categoryController.CreateCategoryObject(addCategory);
+                FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
+                FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+            }
         }
 
         private void LstEpisodes_SelectedIndexChanged(object sender, EventArgs e)
@@ -102,12 +96,17 @@ namespace PodcastApp
 
         private void BtnSaveCat_Click(object sender, EventArgs e)
         {
-            int selectedCategory = LstCat.SelectedIndex;
             string updateCategory = TxtCat.Text;
-            Category updateCategoryObject = new Category(updateCategory);
-            categoryController.UpdateCategoryObject(selectedCategory, updateCategoryObject);
-            FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
-            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+
+            if (validator.CategoryIsUnique(updateCategory))
+            {
+                int selectedCategory = LstCat.SelectedIndex;
+                Category updateCategoryObject = new Category(updateCategory);
+                categoryController.UpdateCategoryObject(selectedCategory, updateCategoryObject);
+                FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
+                FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+                
+            }
         }
 
         private void BtnDeleteCat_Click(object sender, EventArgs e)
