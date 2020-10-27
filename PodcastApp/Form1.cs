@@ -121,9 +121,19 @@ namespace PodcastApp
 
         private void BtnDeleteCat_Click(object sender, EventArgs e)
         {
-            categoryController.DeleteCategory(LstCat.SelectedIndex);
-            FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
-            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+            string message = "Are you sure you want to delete this category?\nAll podcasts of this category will be deleted";
+            string header = "Delete category";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result;
+
+            result = MessageBox.Show(message, header, buttons);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                categoryController.DeleteCategory(LstCat.SelectedIndex);
+                FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
+                FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+                //Kod för att ta bort podcast som hör till vald kategori
+            }
         }
 
         private void TxtCat_Click(object sender, EventArgs e)
