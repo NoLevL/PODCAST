@@ -115,6 +115,9 @@ namespace BL
                 if (url.Text != "")
                 {
                     isValid = true;
+                }
+                else
+                {
                     throw new TextBoxIsEmptyException();
                 }
             }
