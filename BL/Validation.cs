@@ -9,6 +9,7 @@ using DAL;
 using Models;
 using BL;
 using PodcastApp;
+using System.Net.Configuration;
 
 namespace BL
 {
@@ -56,10 +57,9 @@ namespace BL
             return isValid;
         }
 
-
-        public bool CategoryIsUnique(TextBox category)
+        public bool CategoryIsUnique(string category)
         {
-            bool isValid = false;
+            bool isValid = true;
             try
             {
                 List<Category> list = dataManager.ReturnCategories();
@@ -67,47 +67,21 @@ namespace BL
                 {
                     string name = item.Name;
 
-                    if (!name.Equals(category.Text))
-                    {
-                        isValid = true;
-                    }
-                    else
+                    if (name.Equals(category))
                     {
                         isValid = false;
+                        throw new ItemAlreadyExistsException();
                     }
                 }
+                
             }
-            catch (ItemAlreadyExistsException e)
+            catch (ItemAlreadyExistsException)
             {
                 string msg = "Category already exists!";
-                throw new ItemAlreadyExistsException(msg, e);
+                MessageBox.Show(msg);
             }
             return isValid;
         }
-
-        //public bool CategoryIsUnique(string category)
-        //{
-        //    bool isValid = true;
-        //    try
-        //    {
-        //        List<Category> list = dataManager.ReturnCategories();
-        //        foreach (var item in list)
-        //        {
-        //            string name = item.Name;
-
-        //            if (name.Equals(category))
-        //            {
-        //                isValid = false;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        string msg = "Category already exists!";
-        //        throw new ItemAlreadyExistsException(msg, e);
-        //    }
-        //    return isValid;
-        //}
 
 
         public bool IsCategoryListEmpty(List<string> catList)
@@ -118,7 +92,9 @@ namespace BL
                 if (catList.Count > 0)
                 {
                     notEmpty = true;
+                    throw new ListIsEmptyException();
                 }
+                
             }
             catch (ListIsEmptyException e)
             {

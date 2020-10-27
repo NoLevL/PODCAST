@@ -67,9 +67,12 @@ namespace PodcastApp
         private void BtnNewCat_Click(object sender, EventArgs e)
         {
             string addCategory = TxtCat.Text;
-            categoryController.CreateCategoryObject(addCategory);
-            FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
-            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+            if (validator.CategoryIsUnique(addCategory))
+            {
+                categoryController.CreateCategoryObject(addCategory);
+                FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
+                FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+            }
         }
 
         private void LstEpisodes_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,7 +98,7 @@ namespace PodcastApp
         {
             string updateCategory = TxtCat.Text;
 
-            if (validator.CategoryIsUnique(TxtCat))
+            if (validator.CategoryIsUnique(updateCategory))
             {
                 int selectedCategory = LstCat.SelectedIndex;
                 Category updateCategoryObject = new Category(updateCategory);
