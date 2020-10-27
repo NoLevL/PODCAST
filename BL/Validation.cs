@@ -64,19 +64,47 @@ namespace BL
                 {
                     string name = item.Name;
 
-                    if (name != category.Text)
+                    if (!name.Equals(category.Text))
                     {
                         isValid = true;
                     }
+                    else
+                    {
+                        isValid = false;
+                    }
                 }
             }
-            catch(ItemAlreadyExistsException e)
+            catch (ItemAlreadyExistsException e)
             {
                 string msg = "Category already exists!";
                 throw new ItemAlreadyExistsException(msg, e);
             }
             return isValid;
         }
+
+        //public bool CategoryIsUnique(string category)
+        //{
+        //    bool isValid = true;
+        //    try
+        //    {
+        //        List<Category> list = dataManager.ReturnCategories();
+        //        foreach (var item in list)
+        //        {
+        //            string name = item.Name;
+
+        //            if (name.Equals(category))
+        //            {
+        //                isValid = false;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        string msg = "Category already exists!";
+        //        throw new ItemAlreadyExistsException(msg, e);
+        //    }
+        //    return isValid;
+        //}
 
 
         public bool IsCategoryListEmpty(List<string> catList)

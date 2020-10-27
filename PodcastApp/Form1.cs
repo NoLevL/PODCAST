@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Models;
 using BL.Controllers;
+using BL;
 
 namespace PodcastApp
 {
@@ -17,11 +18,13 @@ namespace PodcastApp
         PodcastController podcastController;
         CategoryController categoryController;
         private int podIndex = 0;
+        private Validation validator;
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
             categoryController = new CategoryController();
+            validator = new Validation();
             //FormHandler metoder i Load-event istället för kontruktorn?
             FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
             FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
@@ -90,12 +93,17 @@ namespace PodcastApp
 
         private void BtnSaveCat_Click(object sender, EventArgs e)
         {
-            int selectedCategory = LstCat.SelectedIndex;
             string updateCategory = TxtCat.Text;
-            Category updateCategoryObject = new Category(updateCategory);
-            categoryController.UpdateCategoryObject(selectedCategory, updateCategoryObject);
-            FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
-            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+
+            if (validator.CategoryIsUnique(TxtCat))
+            {
+                int selectedCategory = LstCat.SelectedIndex;
+                Category updateCategoryObject = new Category(updateCategory);
+                categoryController.UpdateCategoryObject(selectedCategory, updateCategoryObject);
+                FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
+                FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+                
+            }
         }
 
         private void BtnDeleteCat_Click(object sender, EventArgs e)
