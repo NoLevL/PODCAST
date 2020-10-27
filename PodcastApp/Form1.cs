@@ -47,10 +47,18 @@ namespace PodcastApp
 
         }
 
-        private async void BtnNewPod_Click(object sender, EventArgs e)
+        private async Task<Podcast> BtnNewPod_Click(object sender, EventArgs e)
         {
-            Podcast p = await PodcastController.CreatePodcastObject(TxtURL.Text, CmbCat.Text, CmbCat.SelectedItem.ToString(), CmbUpdateFreq.SelectedItem.ToString());
-            PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
+           
+            Podcast p = new Podcast();
+            await Task.Run(() =>
+            {
+                podcastController.CreatePodcastObject(TxtURL.Text, CmbCat.SelectedItem.ToString(), CmbUpdateFreq.SelectedItem.ToString());
+
+                PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
+            });
+            return p;
+            
         }
 
         private void BtnNewCat_Click(object sender, EventArgs e)
