@@ -52,7 +52,7 @@ namespace PodcastApp
 
         private async void BtnNewPod_Click(object sender, EventArgs e)
         {
-            if (validation.TboxUrlNotEmpty(TxtURL) && validation.IsUrlValid(TxtURL) && validation.ComboIntervalChoosen(CmbUpdateFreq))
+            if (validator.TboxUrlNotEmpty(TxtURL) && validator.IsUrlValid(TxtURL) && validator.ComboIntervalChoosen(CmbUpdateFreq))
             {
                 Podcast p = new Podcast();
                 await Task.Run(() =>
