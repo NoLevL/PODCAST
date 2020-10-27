@@ -28,12 +28,13 @@ namespace BL
                 if (category.Text != "")
                 {
                     isValid = true;
+                    throw new TextBoxIsEmptyException();
                 }
             }
-            catch (TextBoxIsEmptyException e)
+            catch (TextBoxIsEmptyException)
             {
                 string msg = "You must enter a category in the textfield!";
-                throw new TextBoxIsEmptyException(msg, e);
+                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -47,12 +48,13 @@ namespace BL
                 if (listOfCategory.SelectedItem != null)
                 {
                     isValid = true;
+                    throw new ItemNotPickedException();
                 }
             }
-            catch (ItemNotPickedException e)
+            catch (ItemNotPickedException)
             {
                 string msg = "You must pick a category!";
-                throw new ItemNotPickedException(msg, e);    
+                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -96,10 +98,10 @@ namespace BL
                 }
                 
             }
-            catch (ListIsEmptyException e)
+            catch (ListIsEmptyException)
             {
                 string msg = "You don't have any categories!";
-                throw new ListIsEmptyException(msg, e);
+                MessageBox.Show(msg);
             }
             return notEmpty;
         }
@@ -113,12 +115,13 @@ namespace BL
                 if (url.Text != "")
                 {
                     isValid = true;
+                    throw new TextBoxIsEmptyException();
                 }
             }
-            catch (TextBoxIsEmptyException e)
+            catch (TextBoxIsEmptyException)
             {
                 string msg = "You must enter a URL to proceed!";
-                throw new TextBoxIsEmptyException(msg, e);
+                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -132,12 +135,13 @@ namespace BL
                 if (interval.SelectedItem != null)
                 {
                     isValid = true;
+                    throw new ComboBoxIsNullException();
                 }
             }
-            catch (ComboBoxIsNullException e)
+            catch (ComboBoxIsNullException)
             {
                 string msg = "You must choose an interval!";
-                throw new ComboBoxIsNullException(msg, e);
+                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -151,12 +155,13 @@ namespace BL
                 if (category.SelectedItem != null)
                 {
                     isValid = true;
+                    throw new ComboBoxIsNullException();
                 }
             }
-            catch (ComboBoxIsNullException e)
+            catch (ComboBoxIsNullException)
             {
                 string msg = "You must choose a category!";
-                throw new ComboBoxIsNullException(msg, e);
+                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -172,13 +177,14 @@ namespace BL
                     if (podcast.Url != url.Text || uH.DoesUrlExist(url.Text) == false)
                     {
                         isValid = true;
+                        throw new ItemAlreadyExistsException();
                     }
                 }
             }
-            catch (ItemAlreadyExistsException e)
+            catch (ItemAlreadyExistsException)
             {
                 string msg = "Podcast already exists!";
-                throw new ItemAlreadyExistsException(msg, e);
+                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -192,12 +198,13 @@ namespace BL
                 if (table.SelectedRows.Count > 0)
                 {
                     isValid = true;
+                    throw new ItemNotPickedException();
                 }
             }
-            catch (ItemNotPickedException e)
+            catch (ItemNotPickedException)
             {
                 string msg = "You must choose a podcast to delete!";
-                throw new ItemNotPickedException(msg, e);
+                MessageBox.Show(msg);
             }
             return isValid;
         }

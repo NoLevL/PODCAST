@@ -22,8 +22,6 @@ namespace BL.Exceptions
 
         public ItemAlreadyExistsException(string message, Exception innerException)
             : base (message, innerException)
-        {
-            MessageBox.Show(message);
-        }
+        { }
     }
 }
