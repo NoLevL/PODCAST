@@ -77,12 +77,12 @@ namespace PodcastApp
         private void BtnNewCat_Click(object sender, EventArgs e)
         {
             string addCategory = TxtCat.Text;
-            if (validator.CategoryIsUnique(addCategory))
-            {
+            //if (validator.CategoryIsUnique(addCategory))
+            //{
                 categoryController.CreateCategoryObject(addCategory);
                 FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
                 FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
-            }
+            //}
         }
 
         private void LstEpisodes_SelectedIndexChanged(object sender, EventArgs e)
