@@ -47,6 +47,7 @@
     <Compile Include="Exceptions\ComboBoxIsNullException.cs" />
     <Compile Include="Exceptions\ListIsEmptyException.cs" />
     <Compile Include="Exceptions\TextBoxIsEmptyException.cs" />
+    <Compile Include="Urlhandler.cs" />
     <Compile Include="Validation.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\PodcastController.cs" />

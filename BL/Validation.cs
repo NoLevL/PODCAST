@@ -7,12 +7,15 @@ using System.Windows.Forms;
 using BL.Exceptions;
 using DAL;
 using Models;
+using BL;
+using PodcastApp;
 
 namespace BL
 {
     public class Validation
     {
         private readonly DataManager dataManager = new DataManager();
+        private readonly Urlhandler uH = new Urlhandler();
        
 
 
@@ -183,17 +186,23 @@ namespace BL
         }
 
 
-        public bool IsUrlValid(TextBox url) //Behöver komplettering för att se om URL är legit eller ej
+        public bool IsUrlValid(TextBox url)
         {
-            bool isValid = true;
-            foreach (var podcast in dataManager.ReturnPodcasts())
+            bool isValid = false;
+            try
             {
-                if (podcast.Url.Equals(url.Text))
+                foreach (var podcast in dataManager.ReturnPodcasts())
                 {
-                    MessageBox.Show("Podcast already exists!");
-                    //Throw new ItemAlreadyExistsException();
-                    isValid = false;
+                    if (podcast.Url != url.Text || uH.DoesUrlExist(url.Text) == false)
+                    {
+                        isValid = true;
+                    }
                 }
+            }
+            catch (ItemAlreadyExistsException e)
+            {
+                string msg = "Podcast already exists!";
+                throw new ItemAlreadyExistsException(msg, e);
             }
             return isValid;
         }
