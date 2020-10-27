@@ -37,6 +37,11 @@ namespace Models
             Interval = interval;
             Category = category;
         }
+        public Podcast(string url, string interval)
+        {
+            Url = url;
+            Interval = interval;
+        }
 
         public Podcast()
         {

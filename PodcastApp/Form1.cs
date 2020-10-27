@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Models;
 using BL.Controllers;
+using BL;
 
 namespace PodcastApp
 {
@@ -17,6 +18,7 @@ namespace PodcastApp
         PodcastController podcastController;
         CategoryController categoryController;
         private int podIndex = 0;
+        Validation validation = new Validation();
         public Form1()
         {
             InitializeComponent();
@@ -39,7 +41,7 @@ namespace PodcastApp
 
         private void txtURL_TextChanged(object sender, EventArgs e)
         {
-            TxtURL.Text = "";
+        
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -47,18 +49,28 @@ namespace PodcastApp
 
         }
 
-        private async Task<Podcast> BtnNewPod_Click(object sender, EventArgs e)
+        private async void BtnNewPod_Click(object sender, EventArgs e)
         {
-           
-            Podcast p = new Podcast();
-            await Task.Run(() =>
+            if (validation.TboxUrlNotEmpty(TxtURL) && validation.IsUrlValid(TxtURL) && validation.ComboIntervalChoosen(CmbUpdateFreq))
             {
-                podcastController.CreatePodcastObject(TxtURL.Text, CmbCat.SelectedItem.ToString(), CmbUpdateFreq.SelectedItem.ToString());
+                Podcast p = new Podcast();
+                await Task.Run(() =>
+                {
+                    podcastController.CreatePodcastObject(TxtURL.Text, CmbCat.SelectedItem.ToString(), CmbUpdateFreq.SelectedItem.ToString());
 
-                PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
-            });
-            return p;
-            
+                    PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
+                });
+            } 
+            else
+            {
+                Podcast p = new Podcast();
+                await Task.Run(() =>
+                {
+                    podcastController.CreatePodcastObject(TxtURL.Text, CmbUpdateFreq.SelectedItem.ToString());
+
+                    PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
+                });
+            }
         }
 
         private void BtnNewCat_Click(object sender, EventArgs e)
