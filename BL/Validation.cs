@@ -7,12 +7,15 @@ using System.Windows.Forms;
 using BL.Exceptions;
 using DAL;
 using Models;
+using BL;
+using PodcastApp;
 
 namespace BL
 {
     public class Validation
     {
         private readonly DataManager dataManager = new DataManager();
+        private readonly Urlhandler uH = new Urlhandler();
        
 
 
@@ -160,7 +163,7 @@ namespace BL
             bool isValid = true;
             foreach (var podcast in dataManager.ReturnPodcasts())
             {
-                if (podcast.Url.Equals(url.Text))
+                if (podcast.Url.Equals(url.Text) || uH.DoesUrlExist(url.Text))
                 {
                     MessageBox.Show("Podcast already exists!");
                     //Throw new ItemAlreadyExistsException();
