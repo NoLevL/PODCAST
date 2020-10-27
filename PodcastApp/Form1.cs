@@ -42,7 +42,7 @@ namespace PodcastApp
 
         private void txtURL_TextChanged(object sender, EventArgs e)
         {
-            TxtURL.Text = "";
+        
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -50,18 +50,28 @@ namespace PodcastApp
 
         }
 
-        private async Task<Podcast> BtnNewPod_Click(object sender, EventArgs e)
+        private async void BtnNewPod_Click(object sender, EventArgs e)
         {
-           
-            Podcast p = new Podcast();
-            await Task.Run(() =>
+            if (validation.TboxUrlNotEmpty(TxtURL) && validation.IsUrlValid(TxtURL) && validation.ComboIntervalChoosen(CmbUpdateFreq))
             {
-                podcastController.CreatePodcastObject(TxtURL.Text, CmbCat.SelectedItem.ToString(), CmbUpdateFreq.SelectedItem.ToString());
+                Podcast p = new Podcast();
+                await Task.Run(() =>
+                {
+                    podcastController.CreatePodcastObject(TxtURL.Text, CmbCat.SelectedItem.ToString(), CmbUpdateFreq.SelectedItem.ToString());
 
-                PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
-            });
-            return p;
-            
+                    PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
+                });
+            } 
+            else
+            {
+                Podcast p = new Podcast();
+                await Task.Run(() =>
+                {
+                    podcastController.CreatePodcastObject(TxtURL.Text, CmbUpdateFreq.SelectedItem.ToString());
+
+                    PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
+                });
+            }
         }
 
         private void BtnNewCat_Click(object sender, EventArgs e)
@@ -111,19 +121,9 @@ namespace PodcastApp
 
         private void BtnDeleteCat_Click(object sender, EventArgs e)
         {
-            string message = "Are you sure you want to delete this category?\nAll podcasts of this category will be deleted";
-            string header = "Delete category";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            DialogResult result;
-
-            result = MessageBox.Show(message, header, buttons);
-            if (result == System.Windows.Forms.DialogResult.Yes)
-            {
-                categoryController.DeleteCategory(LstCat.SelectedIndex);
-                FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
-                FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
-                //Kod för att ta bort podcast som hör till vald kategori
-            }
+            categoryController.DeleteCategory(LstCat.SelectedIndex);
+            FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
+            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
         }
 
         private void TxtCat_Click(object sender, EventArgs e)
