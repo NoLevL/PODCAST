@@ -33,14 +33,14 @@ namespace BL.Controllers
             return categoryRepository.GetAll();
         }
 
-        public void UpdateCategoryObject(int index, Category category)//Ej testad än
+        public void UpdateCategoryObject(int index, Category updateCategory)//Ej testad än
         {
-            Category updateCategory = null;
+            //Category updateCategory = null;
             if (updateCategory == null)
             {
-                updateCategory = new Category(category.Name);
+                updateCategory = new Category(updateCategory.Name);
             }
-            categoryRepository.Update(index, category);
+            categoryRepository.Update(index, updateCategory);
         }
 
         public void DeleteCategory(int index)
