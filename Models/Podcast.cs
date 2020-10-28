@@ -11,7 +11,7 @@ namespace Models
     {
         public string Url { get; set; }
 
-        public string Interval { get; set; }
+        public double Interval { get; set; }
 
         public string Name { get; set; }
 
@@ -22,7 +22,7 @@ namespace Models
         public List<Episode> EpisodeList { get; set; }
 
 
-        public Podcast(string url, string interval, string category, string name, int totalEpisodes, List<Episode> episodeList)
+        public Podcast(string url, double interval, string category, string name, int totalEpisodes, List<Episode> episodeList)
         {
             Url = url;
             Interval = interval;
@@ -31,13 +31,13 @@ namespace Models
             TotalEpisodes = totalEpisodes;
             EpisodeList = episodeList;
         }
-        public Podcast(string url, string interval, string category)
+        public Podcast(string url, double interval, string category)
         {
             Url = url;
             Interval = interval;
             Category = category;
         }
-        public Podcast(string url, string interval)
+        public Podcast(string url, double interval)
         {
             Url = url;
             Interval = interval;

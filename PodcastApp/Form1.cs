@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Models;
 using BL.Controllers;
 using BL;
+using System.Xml;
+using System.ServiceModel.Syndication;
 
 namespace PodcastApp
 {
@@ -28,6 +30,7 @@ namespace PodcastApp
             //FormHandler metoder i Load-event istället för kontruktorn?
             FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
             FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+            FormHandler.FillIntervalComboBox(CmbUpdateFreq);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -52,26 +55,46 @@ namespace PodcastApp
 
         private async void BtnNewPod_Click(object sender, EventArgs e)
         {
-            if (validator.TboxUrlNotEmpty(TxtURL) && validator.IsUrlValid(TxtURL) && validator.ComboIntervalChoosen(CmbUpdateFreq))
+            //if (validator.TboxUrlNotEmpty(TxtURL) && validator.IsUrlValid(TxtURL) && validator.ComboIntervalChoosen(CmbUpdateFreq))
+            //{
+            Podcast p = new Podcast();
+            string category = CmbCat.SelectedItem.ToString();
+            double interval = IntervalToDouble(CmbUpdateFreq);
+            SetInterval intervalObj = new SetInterval(interval);
+            XmlReader reader = XmlReader.Create(TxtURL.Text);
+            SyndicationFeed feed = SyndicationFeed.Load(reader);
+            int numberOfEpisodes = 0;
+            List<Episode> episodeList = new List<Episode>();
+            string podcastName = feed.Title.Text;
+            foreach (SyndicationItem item in feed.Items)
             {
-                Podcast p = new Podcast();
-                await Task.Run(() =>
-                {
-                    podcastController.CreatePodcastObject(TxtURL.Text, CmbCat.SelectedItem.ToString(), CmbUpdateFreq.SelectedItem.ToString());
-
-                    PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
-                });
-            } 
-            else
-            {
-                Podcast p = new Podcast();
-                await Task.Run(() =>
-                {
-                    podcastController.CreatePodcastObject(TxtURL.Text, CmbUpdateFreq.SelectedItem.ToString());
-
-                    PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
-                });
+                numberOfEpisodes++;
             }
+            foreach (SyndicationItem item in feed.Items)
+            {
+                string episodeName = item.Title.Text;
+                string description = item.Summary.Text;
+                Episode anEpisode = new Episode(episodeName, description);
+                episodeList.Add(anEpisode);
+
+            }
+            await Task.Run(() =>
+            {
+                podcastController.CreatePodcastObject(TxtURL.Text, intervalObj.UpdateInterval, category, podcastName, numberOfEpisodes, episodeList);
+
+                PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
+            });
+            //} 
+            //else
+            //{
+            //    Podcast p = new Podcast();
+            //    await Task.Run(() =>
+            //    {
+            //        podcastController.CreatePodcastObject(TxtURL.Text, CmbUpdateFreq.SelectedItem.ToString());
+
+            //        PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
+            //    });
+            //}
         }
 
         private void BtnNewCat_Click(object sender, EventArgs e)
@@ -145,6 +168,14 @@ namespace PodcastApp
         private void TxtCat_Click(object sender, EventArgs e)
         {
             TxtCat.Text = "";
+        }
+
+        private double IntervalToDouble(ComboBox comboBox)
+        {
+            string lineToTrim = comboBox.SelectedItem.ToString();
+            lineToTrim.Remove(2, 5);
+            double interval = Double.Parse(lineToTrim);
+            return interval;
         }
     }
 }
