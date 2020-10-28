@@ -10,6 +10,7 @@ using Models;
 using BL;
 using PodcastApp;
 using System.Net.Configuration;
+using System.IO;
 
 namespace BL
 {
@@ -210,6 +211,13 @@ namespace BL
                 MessageBox.Show(msg);
             }
             return isValid;
+        }
+
+        public bool SavedCategoryFileExists()
+        {
+            string file = @"savedCategories.xml";
+            bool fileExists = File.Exists(file);
+            return fileExists;
         }
 
 
