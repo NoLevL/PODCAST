@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -18,7 +19,10 @@ namespace DAL.Repositories
         {
             podcastList = new List<Podcast>();
             dataManager = new DataManager();
-            podcastList = GetAll();
+            if (PodcastFileExists())
+            {
+                podcastList = GetAll();
+            }
         }
 
 
@@ -74,6 +78,13 @@ namespace DAL.Repositories
                 podcastList[index] = newEntity;
             }
             SaveChanges();
+        }
+
+        private bool PodcastFileExists()
+        {
+            string file = @"Podcasts.xml";
+            bool fileExists = File.Exists(file);
+            return fileExists;
         }
 
 
