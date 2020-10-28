@@ -220,6 +220,13 @@ namespace BL
             return fileExists;
         }
 
+        public bool PodcastFileExists()
+        {
+            string file = @"Podcasts.xml";
+            bool fileExists = File.Exists(file);
+            return fileExists;
+        }
+
 
 
     }

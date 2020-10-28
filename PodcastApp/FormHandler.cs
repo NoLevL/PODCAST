@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BL;
+using BL.Controllers;
 using Models;
+
 
 namespace PodcastApp
 {
     public class FormHandler
     {
+         
         public static void ClearText(TextBox textBox)
         {
             textBox.Text = "";
@@ -39,5 +43,22 @@ namespace PodcastApp
             comboBox.Items.Add("30 min");
             comboBox.Items.Add("60 min");
         }
+
+        public static void AllPodcasts(DataGridView podcastFeed)
+        {
+            Validation validator = new Validation();
+            if (validator.PodcastFileExists())
+            {
+                PodcastController podcastController = new PodcastController();
+                List<Podcast> listToBeReturned = new List<Podcast>();
+                listToBeReturned = podcastController.RetrieveAllPodcasts();
+                foreach (var item in listToBeReturned)
+                {
+                    podcastFeed.Rows.Add(item.TotalEpisodes, item.Name, item.Interval, item.Category);
+                }
+            }
+        }
+
+
     }
 }

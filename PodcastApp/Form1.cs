@@ -31,6 +31,7 @@ namespace PodcastApp
             FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
             FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
             FormHandler.FillIntervalComboBox(CmbUpdateFreq);
+            FormHandler.AllPodcasts(PodcastFeed);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -82,7 +83,6 @@ namespace PodcastApp
             {
                 podcastController.CreatePodcastObject(TxtURL.Text, intervalObj.UpdateInterval, category, podcastName, numberOfEpisodes, episodeList);
 
-                PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
             });
             //} 
             //else
@@ -167,14 +167,16 @@ namespace PodcastApp
 
         private void TxtCat_Click(object sender, EventArgs e)
         {
-            TxtCat.Text = "";
+            TxtCat.Text = "";          
         }
 
         private double IntervalToDouble(ComboBox comboBox)
         {
+            
             string lineToTrim = comboBox.SelectedItem.ToString();
-            lineToTrim.Remove(2, 5);
-            double interval = Double.Parse(lineToTrim);
+            Console.WriteLine(lineToTrim);
+            double interval = Double.Parse(lineToTrim.Remove(2));
+            Console.WriteLine(interval);
             return interval;
         }
     }

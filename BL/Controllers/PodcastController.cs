@@ -13,6 +13,7 @@ namespace BL.Controllers
     public class PodcastController
     {
         private IPodcastRepository<Podcast> podcastRepository;
+        private Validation validator = new Validation();
         public PodcastController()
         {
             podcastRepository = new PodcastRepository();
@@ -31,7 +32,7 @@ namespace BL.Controllers
         public void CreatePodcastObject(string url, double interval, string category, string name, int totalEpisodes, List<Episode> episodes)
         {
             Podcast newPodcast = null;
-
+            //if(newPodcast != null)
             {
                 newPodcast = new Podcast(url, interval, category, name, totalEpisodes, episodes);
             }

@@ -18,7 +18,9 @@ namespace DAL.Repositories
         {
             podcastList = new List<Podcast>();
             dataManager = new DataManager();
+            podcastList = GetAll();
         }
+
 
         public void Create(Podcast entity)
         {
@@ -37,7 +39,6 @@ namespace DAL.Repositories
             List<Podcast> podcastListToBeReturned = new List<Podcast>();
             podcastListToBeReturned = dataManager.ReturnPodcasts();
             return podcastListToBeReturned;
-            throw new NotImplementedException();
         }
 
 
