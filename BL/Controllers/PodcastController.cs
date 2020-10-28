@@ -51,6 +51,33 @@ namespace BL.Controllers
             return podcastObj.TotalEpisodes + " " + podcastObj.Name + " " + podcastObj.Interval + " " + podcastObj.Category;
         }
 
+        public string GetPodcastUrl(int index)
+        {
+            DataManager dataManager = new DataManager();
+            Podcast podcastObj;
+            podcastObj = dataManager.listOfPodcasts[index];
+            string url = podcastObj.Url;
+                return url;
+        }
+
+        public string GetPodcastCategory(int index)
+        {
+            DataManager dataManager = new DataManager();
+            Podcast podcastObj;
+            podcastObj = dataManager.listOfPodcasts[index];
+            string category = podcastObj.Category;
+            return category;
+        }
+
+        public double GetPodcastInterval(int index)
+        {
+            DataManager dataManager = new DataManager();
+            Podcast podcastObj;
+            podcastObj = dataManager.listOfPodcasts[index];
+            double interval = podcastObj.Interval;
+            return interval;
+        }
+
         public void CreatePodcastObject(string url, double interval)
         {
             Podcast newPodcast = null;
@@ -60,9 +87,13 @@ namespace BL.Controllers
             podcastRepository.Create(newPodcast);
         }
 
-        public List<Episode> GetEpisodeList(object podIndex)
+        public List<Episode> GetEpisodeList(int podIndex)
         {
-            throw new NotImplementedException();
+            DataManager dataManager = new DataManager();
+            List<Episode> listOfEpisodes;
+            Podcast podcast = dataManager.listOfPodcasts[podIndex];
+            listOfEpisodes = podcast.EpisodeList;
+            return listOfEpisodes;
         }
     }
 }

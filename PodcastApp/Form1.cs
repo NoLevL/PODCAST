@@ -21,12 +21,15 @@ namespace PodcastApp
         CategoryController categoryController;
         private int podIndex = 0;
         private Validation validator;
+        Urlhandler handler;
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
             categoryController = new CategoryController();
             validator = new Validation();
+            handler = new Urlhandler();
+            
             //FormHandler metoder i Load-event istället för kontruktorn?
             FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
             FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
@@ -51,6 +54,30 @@ namespace PodcastApp
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            LblPodEpi.Text = "";
+            LstEpisodes.Items.Clear();
+
+            int selectedRowCount = PodcastFeed.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            podIndex = 0;
+            // LblPodEpi.Text = PodcastFeed.SelectedRows[podIndex].Cells[1].Value.ToString();
+
+            for (int i = 0; i < selectedRowCount; i++)
+            {
+                podIndex = PodcastFeed.SelectedRows[i].Index;
+            }
+
+            List<Episode> episodeList = podcastController.GetEpisodeList(podIndex);
+            foreach (var item in episodeList)
+            {
+                LstEpisodes.Items.Add(item.EpisodeName);
+            }
+
+            string url = podcastController.GetPodcastUrl(podIndex);
+            LblPodEpi.Text = handler.GetUrlName(url);
+            TxtURL.Text = url;
+            CmbCat.SelectedItem = podcastController.GetPodcastCategory(podIndex);
+            CmbUpdateFreq.SelectedItem = podcastController.GetPodcastInterval(podIndex);
+
 
         }
 
@@ -116,8 +143,8 @@ namespace PodcastApp
 
         private void LstEpisodes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedPodcast = LstEpisodes.SelectedItem.ToString();
-            LblPodEpi.Text = selectedPodcast;
+            //string selectedPodcast = LstEpisodes.SelectedItem.ToString();
+            //LblPodEpi.Text = selectedPodcast;
 
             //List<Episode> episodeList = podcastController.GetEpisodeList(podIndex); //nåt som hittar index
 
@@ -130,7 +157,6 @@ namespace PodcastApp
             //        TxtEpiInfo.Text = description.Replace(removeText + " ", "");
             //    }
             //}
-
         }
 
         private void BtnSaveCat_Click(object sender, EventArgs e)

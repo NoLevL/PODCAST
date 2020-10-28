@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace PodcastApp
 {
-    class Urlhandler
+    public class Urlhandler
     {
         private XDocument urlDocument = new XDocument();
         private string podTitleName;
