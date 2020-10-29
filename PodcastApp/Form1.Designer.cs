@@ -215,9 +215,9 @@
             this.LblPodEpi.Location = new System.Drawing.Point(8, 275);
             this.LblPodEpi.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblPodEpi.Name = "LblPodEpi";
-            this.LblPodEpi.Size = new System.Drawing.Size(113, 13);
+            this.LblPodEpi.Size = new System.Drawing.Size(50, 13);
             this.LblPodEpi.TabIndex = 18;
-            this.LblPodEpi.Text = "Podcast #x: Episode y";
+            this.LblPodEpi.Text = "Episodes";
             // 
             // LblPodEpiInfo
             // 
@@ -225,9 +225,9 @@
             this.LblPodEpiInfo.Location = new System.Drawing.Point(461, 254);
             this.LblPodEpiInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblPodEpiInfo.Name = "LblPodEpiInfo";
-            this.LblPodEpiInfo.Size = new System.Drawing.Size(113, 13);
+            this.LblPodEpiInfo.Size = new System.Drawing.Size(99, 13);
             this.LblPodEpiInfo.TabIndex = 19;
-            this.LblPodEpiInfo.Text = "Podcast #x: Episode y";
+            this.LblPodEpiInfo.Text = "Episode description";
             // 
             // TxtURL
             // 

@@ -59,6 +59,17 @@ namespace PodcastApp
             }
         }
 
+        public static void ClearEpisodeList(ListBox list)
+        {
+            list.Items.Clear();
+        }
+
+        public static void ClearEpisodeText(TextBox text)
+        {
+            text.Text = "";
+        }
+
+
 
     }
 }

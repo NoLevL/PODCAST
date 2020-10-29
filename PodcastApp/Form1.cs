@@ -79,6 +79,7 @@ namespace PodcastApp
 
         private async void BtnNewPod_Click(object sender, EventArgs e)
         {
+            PodcastFeed.Rows.Clear();
             //if (validator.TboxUrlNotEmpty(TxtURL) && validator.IsUrlValid(TxtURL) && validator.ComboIntervalChoosen(CmbUpdateFreq))
             //{
             Podcast p = new Podcast();
@@ -104,9 +105,9 @@ namespace PodcastApp
             }
             await Task.Run(() =>
             {
-                podcastController.CreatePodcastObject(TxtURL.Text, intervalObj.UpdateInterval, category, podcastName, numberOfEpisodes, episodeList);
-
+                podcastController.CreatePodcastObject(TxtURL.Text, intervalObj.UpdateInterval, category, podcastName, numberOfEpisodes, episodeList);        
             });
+            FormHandler.AllPodcasts(PodcastFeed);
             //} 
             //else
             //{
@@ -213,6 +214,12 @@ namespace PodcastApp
             if (result == DialogResult.Yes)
             {
                 podcastController.DeletePodcast(PodcastFeed.CurrentCell.RowIndex);
+                PodcastFeed.Rows.Clear();
+                FormHandler.ClearEpisodeList(LstEpisodes);
+                FormHandler.ClearEpisodeText(TxtEpiInfo);
+                LblPodEpi.Text = "Episodes";
+                LblPodEpiInfo.Text = "Episode description";
+                FormHandler.AllPodcasts(PodcastFeed);
             }
         }
     }
