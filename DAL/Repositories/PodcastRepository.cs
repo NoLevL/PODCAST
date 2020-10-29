@@ -38,6 +38,19 @@ namespace DAL.Repositories
             SaveChanges();
         }
 
+        public void Delete(string category)
+        {
+            List<Podcast> list = GetAll();
+            foreach (var item in list.ToList())
+            {
+                if (item.Category.Equals(category)) 
+                {
+                    list.Remove(item);
+                }
+            }
+            dataManager.SavePodcastList(list);
+        }
+
         public List<Podcast> GetAll()
         {
             List<Podcast> podcastListToBeReturned = new List<Podcast>();

@@ -99,5 +99,10 @@ namespace BL.Controllers
         {
             podcastRepository.Delete(index);
         }
+
+        public void DeletePodcast(string category)
+        {
+            podcastRepository.Delete(category);
+        }
     }
 }

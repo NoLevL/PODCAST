@@ -35,6 +35,11 @@ namespace DAL.Repositories
             categoryList.RemoveAt(index);
             SaveChanges();
         }
+        
+        public void Delete(string aString)
+        {
+
+        }
 
         public List<Category> GetAll()
         {

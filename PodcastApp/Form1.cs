@@ -181,16 +181,27 @@ namespace PodcastApp
             result = MessageBox.Show(message, header, buttons);
             if (result == DialogResult.Yes)
             {
+                string category = LstCat.SelectedItem.ToString();
+                var podList = podcastController.RetrieveAllPodcasts();
+                foreach (var item in podList)
+                {
+                    if (item.Category.Equals(category))
+                    {
+                        podcastController.DeletePodcast(category);
+                        
+                    }
+                }
                 categoryController.DeleteCategory(LstCat.SelectedIndex);
                 FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
                 FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+                ClearAndSet();
                 //Kod för att ta bort podcast som hör till vald kategori
             }
         }
 
         private void TxtCat_Click(object sender, EventArgs e)
         {
-            TxtCat.Text = "";          
+            TxtCat.Text = "";
         }
 
         private double IntervalToDouble(ComboBox comboBox)
@@ -214,13 +225,21 @@ namespace PodcastApp
             if (result == DialogResult.Yes)
             {
                 podcastController.DeletePodcast(PodcastFeed.CurrentCell.RowIndex);
-                PodcastFeed.Rows.Clear();
-                FormHandler.ClearEpisodeList(LstEpisodes);
-                FormHandler.ClearEpisodeText(TxtEpiInfo);
-                LblPodEpi.Text = "Episodes";
-                LblPodEpiInfo.Text = "Episode description";
-                FormHandler.AllPodcasts(PodcastFeed);
+                ClearAndSet();
             }
         }
+
+        private void ClearAndSet()
+        {
+            PodcastFeed.Rows.Clear();
+            FormHandler.ClearEpisodeList(LstEpisodes);
+            FormHandler.ClearEpisodeText(TxtEpiInfo);
+            LblPodEpi.Text = "Episodes";
+            LblPodEpiInfo.Text = "Episode description";
+            TxtURL.Text = "";
+            CmbCat.Text = "";
+            FormHandler.AllPodcasts(PodcastFeed);
+        }
+
     }
 }
