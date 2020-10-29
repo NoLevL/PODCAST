@@ -139,20 +139,20 @@ namespace PodcastApp
 
         private void LstEpisodes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //string selectedPodcast = LstEpisodes.SelectedItem.ToString();
-            //LblPodEpi.Text = selectedPodcast;
+            string selectedPod = LstEpisodes.SelectedItem.ToString();
+            LblPodEpiInfo.Text = selectedPod;
 
-            //List<Episode> episodeList = podcastController.GetEpisodeList(podIndex); //nåt som hittar index
+            List<Episode> episodeList = handler.GetEpisodes(TxtURL.Text);
 
-            //foreach (var episode in episodeList)
-            //{
-            //    if (episode.EpisodeName.Equals(selectedPodcast))
-            //    {
-            //        string description = episode.EpisodeDescription;
-            //        string removeText = @"<br/><br/>";
-            //        TxtEpiInfo.Text = description.Replace(removeText + " ", "");
-            //    }
-            //}
+            foreach (var item in episodeList)
+            {
+                if (item.EpisodeName.Equals(selectedPod))
+                {
+                    string description = item.EpisodeDescription;
+                    string chars = @"<br/><br/>";
+                    TxtEpiInfo.Text = description.Replace(chars + " ", "");
+                }
+            }
         }
 
         private void BtnSaveCat_Click(object sender, EventArgs e)

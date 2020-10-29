@@ -244,6 +244,8 @@
             this.TxtEpiInfo.Location = new System.Drawing.Point(463, 270);
             this.TxtEpiInfo.Multiline = true;
             this.TxtEpiInfo.Name = "TxtEpiInfo";
+            this.TxtEpiInfo.ReadOnly = true;
+            this.TxtEpiInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TxtEpiInfo.Size = new System.Drawing.Size(352, 167);
             this.TxtEpiInfo.TabIndex = 22;
             // 

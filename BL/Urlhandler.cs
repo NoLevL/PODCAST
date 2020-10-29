@@ -67,11 +67,11 @@ namespace PodcastApp
             return podTitleName;
         }
 
-        public async Task<List<Episode>> GetEpisodes (string url)
+        public List<Episode> GetEpisodes (string url)
         {
             List<Episode> episodeList = new List<Episode>();
-            await Task.Run(() =>
-            {
+            
+            
                 urlDocument = XDocument.Load(url);
                 episodeList = (from x in urlDocument.Descendants("item")
                                select new Episode
@@ -79,7 +79,7 @@ namespace PodcastApp
                                    EpisodeName = x.Element("title").Value,
                                    EpisodeDescription = x.Element("description").Value
                                }).ToList();
-            });
+            
             return episodeList;
         }
 
