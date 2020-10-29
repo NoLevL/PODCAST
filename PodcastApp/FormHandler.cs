@@ -69,6 +69,18 @@ namespace PodcastApp
             text.Text = "";
         }
 
+        public static void HideNewPodcastName(TextBox text, Button button)
+        {
+            text.Visible = false;
+            button.Visible = false;
+        }
+
+        public static void ShowNewPodcastName(TextBox text, Button button)
+        {
+            text.Visible = true;
+            button.Visible = true;
+        }
+
 
 
     }

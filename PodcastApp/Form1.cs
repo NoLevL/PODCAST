@@ -38,6 +38,8 @@ namespace PodcastApp
             FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
             FormHandler.FillIntervalComboBox(CmbUpdateFreq);
             FormHandler.AllPodcasts(PodcastFeed);
+            FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -59,6 +61,8 @@ namespace PodcastApp
         {
             LblPodEpi.Text = "";
             LstEpisodes.Items.Clear();
+
+            FormHandler.ShowNewPodcastName(TxtNewPodName, BtnNewPodName);
 
             int selectedRow = PodcastFeed.CurrentCell.RowIndex;
            
@@ -108,6 +112,7 @@ namespace PodcastApp
                 podcastController.CreatePodcastObject(TxtURL.Text, intervalObj.UpdateInterval, category, podcastName, numberOfEpisodes, episodeList);        
             });
             FormHandler.AllPodcasts(PodcastFeed);
+            FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
             //} 
             //else
             //{
@@ -135,11 +140,13 @@ namespace PodcastApp
                 categoryController.CreateCategoryObject(addCategory);
                 FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
                 FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+                FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
             }
         }
 
         private void LstEpisodes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
             string selectedPod = LstEpisodes.SelectedItem.ToString();
             LblPodEpiInfo.Text = selectedPod;
 
@@ -158,6 +165,7 @@ namespace PodcastApp
 
         private void BtnSaveCat_Click(object sender, EventArgs e)
         {
+            FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
             string updateCategory = TxtCat.Text;
 
             if (validator.CategoryIsUnique(updateCategory))
@@ -173,6 +181,7 @@ namespace PodcastApp
 
         private void BtnDeleteCat_Click(object sender, EventArgs e)
         {
+            FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
             string message = "Are you sure you want to delete this category?\nAll podcasts of this category will be deleted";
             string header = "Delete category";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -201,6 +210,7 @@ namespace PodcastApp
 
         private void TxtCat_Click(object sender, EventArgs e)
         {
+            FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
             TxtCat.Text = "";
         }
 
@@ -216,6 +226,7 @@ namespace PodcastApp
 
         private void BtnDeletePod_Click(object sender, EventArgs e)
         {
+            FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
             string message = "Are you sure you want to delete this Podcast?";
             string header = "Delete Podcast";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -240,6 +251,8 @@ namespace PodcastApp
             CmbCat.Text = "";
             FormHandler.AllPodcasts(PodcastFeed);
         }
+
+
 
     }
 }

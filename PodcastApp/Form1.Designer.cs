@@ -52,6 +52,8 @@
             this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnFreq = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TxtNewPodName = new System.Windows.Forms.TextBox();
+            this.BtnNewPodName = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PodcastFeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -302,11 +304,34 @@
             this.ColumnCat.Name = "ColumnCat";
             this.ColumnCat.ReadOnly = true;
             // 
+            // TxtNewPodName
+            // 
+            this.TxtNewPodName.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.TxtNewPodName.Location = new System.Drawing.Point(10, 253);
+            this.TxtNewPodName.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtNewPodName.Name = "TxtNewPodName";
+            this.TxtNewPodName.Size = new System.Drawing.Size(147, 20);
+            this.TxtNewPodName.TabIndex = 24;
+            this.TxtNewPodName.Visible = false;
+            // 
+            // BtnNewPodName
+            // 
+            this.BtnNewPodName.Location = new System.Drawing.Point(165, 251);
+            this.BtnNewPodName.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnNewPodName.Name = "BtnNewPodName";
+            this.BtnNewPodName.Size = new System.Drawing.Size(101, 23);
+            this.BtnNewPodName.TabIndex = 25;
+            this.BtnNewPodName.Text = "Save Name";
+            this.BtnNewPodName.UseVisualStyleBackColor = true;
+            this.BtnNewPodName.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 443);
+            this.Controls.Add(this.BtnNewPodName);
+            this.Controls.Add(this.TxtNewPodName);
             this.Controls.Add(this.PodcastFeed);
             this.Controls.Add(this.TxtEpiInfo);
             this.Controls.Add(this.TxtURL);
@@ -363,6 +388,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFreq;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCat;
+        private System.Windows.Forms.TextBox TxtNewPodName;
+        private System.Windows.Forms.Button BtnNewPodName;
     }
 }
 
