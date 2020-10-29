@@ -94,5 +94,10 @@ namespace BL.Controllers
             
             return listOfEpisodes;
         }
+
+        public void DeletePodcast(int index)
+        {
+            podcastRepository.Delete(index);
+        }
     }
 }

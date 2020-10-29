@@ -201,5 +201,19 @@ namespace PodcastApp
             Console.WriteLine(interval);
             return interval;
         }
+
+        private void BtnDeletePod_Click(object sender, EventArgs e)
+        {
+            string message = "Are you sure you want to delete this Podcast?";
+            string header = "Delete Podcast";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result;
+
+            result = MessageBox.Show(message, header, buttons);
+            if (result == DialogResult.Yes)
+            {
+                podcastController.DeletePodcast(PodcastFeed.CurrentCell.RowIndex);
+            }
+        }
     }
 }

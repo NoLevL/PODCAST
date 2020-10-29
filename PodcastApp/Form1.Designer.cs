@@ -85,6 +85,7 @@
             this.BtnDeletePod.TabIndex = 2;
             this.BtnDeletePod.Text = "Delete...";
             this.BtnDeletePod.UseVisualStyleBackColor = true;
+            this.BtnDeletePod.Click += new System.EventHandler(this.BtnDeletePod_Click);
             // 
             // BtnSaveCat
             // 
