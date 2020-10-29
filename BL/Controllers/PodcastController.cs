@@ -62,20 +62,16 @@ namespace BL.Controllers
 
         public string GetPodcastCategory(int index)
         {
-            DataManager dataManager = new DataManager();
-            Podcast podcastObj;
-            podcastObj = dataManager.listOfPodcasts[index];
+            Podcast podcastObj = podcastRepository.GetAll()[index];
             string category = podcastObj.Category;
             return category;
         }
 
-        public double GetPodcastInterval(int index)
+        public string GetPodcastInterval(int index)
         {
-            DataManager dataManager = new DataManager();
-            Podcast podcastObj;
-            podcastObj = dataManager.listOfPodcasts[index];
-            double interval = podcastObj.Interval;
-            return interval;
+            Podcast podcastObj = podcastRepository.GetAll()[index];
+            string interval = podcastObj.Interval.ToString();
+            return interval + " min";
         }
 
         public void CreatePodcastObject(string url, double interval)
