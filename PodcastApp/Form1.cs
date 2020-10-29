@@ -19,7 +19,7 @@ namespace PodcastApp
     {
         PodcastController podcastController;
         CategoryController categoryController;
-        private int podIndex = 0;
+        //private int podIndex = 0;
         private Validation validator;
         Urlhandler handler;
         public Form1()
@@ -58,25 +58,26 @@ namespace PodcastApp
             LstEpisodes.Items.Clear();
 
             int selectedRowCount = PodcastFeed.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            podIndex = 0;
-            // LblPodEpi.Text = PodcastFeed.SelectedRows[podIndex].Cells[1].Value.ToString();
+            int podIndex = 0;
+            //LblPodEpi.Text = PodcastFeed.SelectedRows[podIndex].Cells[1].Value.ToString();
 
             for (int i = 0; i < selectedRowCount; i++)
             {
                 podIndex = PodcastFeed.SelectedRows[i].Index;
+                
             }
-
+            Console.WriteLine(podIndex);
             List<Episode> episodeList = podcastController.GetEpisodeList(podIndex);
             foreach (var item in episodeList)
             {
                 LstEpisodes.Items.Add(item.EpisodeName);
             }
 
-            string url = podcastController.GetPodcastUrl(podIndex);
-            LblPodEpi.Text = handler.GetUrlName(url);
-            TxtURL.Text = url;
-            CmbCat.SelectedItem = podcastController.GetPodcastCategory(podIndex);
-            CmbUpdateFreq.SelectedItem = podcastController.GetPodcastInterval(podIndex);
+           // string url = podcastController.GetPodcastUrl(podIndex);
+            //LblPodEpi.Text = handler.GetUrlName(url);
+            //TxtURL.Text = url;
+            //CmbCat.SelectedItem = podcastController.GetPodcastCategory(podIndex);
+            //CmbUpdateFreq.SelectedItem = podcastController.GetPodcastInterval(podIndex);
 
 
         }

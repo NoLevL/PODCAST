@@ -46,9 +46,9 @@ namespace DAL.Repositories
         }
 
 
-        public Podcast GetByIndex(string name)
+        public int GetByIndex(string name)
         {
-            throw new NotImplementedException();
+            return GetAll().FindIndex(p => p.Name.Equals(name));
         }
 
         public Podcast GetByName(string name)

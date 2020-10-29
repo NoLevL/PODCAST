@@ -47,18 +47,21 @@ namespace BL.Controllers
         public string GetPodCastDetailsByName(string name)
         {
             Podcast podcastObj;
-            podcastObj = podcastRepository.GetByIndex(name);
+            
+            int podcastIndex = podcastRepository.GetByIndex(name);
+            podcastObj = podcastRepository.GetAll()[podcastIndex];
             return podcastObj.TotalEpisodes + " " + podcastObj.Name + " " + podcastObj.Interval + " " + podcastObj.Category;
         }
 
-        public string GetPodcastUrl(int index)
-        {
-            DataManager dataManager = new DataManager();
-            Podcast podcastObj;
-            podcastObj = dataManager.listOfPodcasts[index];
-            string url = podcastObj.Url;
-                return url;
-        }
+        //public string GetPodcastUrl(int index)
+        //{
+        //    DataManager dataManager = new DataManager();
+        //    Podcast podcastObj;
+
+        //    podcastObj = podcastRepository.GetByIndex();
+        //    // string url = podcastObj.Url;
+        //    return url;
+        //}
 
         public string GetPodcastCategory(int index)
         {
@@ -91,8 +94,11 @@ namespace BL.Controllers
         {
             DataManager dataManager = new DataManager();
             List<Episode> listOfEpisodes;
-            Podcast podcast = dataManager.listOfPodcasts[podIndex];
+            //Console.WriteLine(podcastRepository.GetAll().Count);
+            Podcast podcast = podcastRepository.GetAll()[podIndex];
+
             listOfEpisodes = podcast.EpisodeList;
+            
             return listOfEpisodes;
         }
     }
