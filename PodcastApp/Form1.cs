@@ -182,7 +182,7 @@ namespace PodcastApp
             DialogResult result;
 
             result = MessageBox.Show(message, header, buttons);
-            if (result == System.Windows.Forms.DialogResult.Yes)
+            if (result == DialogResult.Yes)
             {
                 categoryController.DeleteCategory(LstCat.SelectedIndex);
                 FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
