@@ -46,7 +46,7 @@ namespace DAL.Repositories
         }
 
 
-        public int GetByIndex(string name)
+        public int GetIndex(string name)
         {
             return GetAll().FindIndex(p => p.Name.Equals(name));
         }

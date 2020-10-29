@@ -48,20 +48,17 @@ namespace BL.Controllers
         {
             Podcast podcastObj;
             
-            int podcastIndex = podcastRepository.GetByIndex(name);
+            int podcastIndex = podcastRepository.GetIndex(name);
             podcastObj = podcastRepository.GetAll()[podcastIndex];
             return podcastObj.TotalEpisodes + " " + podcastObj.Name + " " + podcastObj.Interval + " " + podcastObj.Category;
         }
 
-        //public string GetPodcastUrl(int index)
-        //{
-        //    DataManager dataManager = new DataManager();
-        //    Podcast podcastObj;
-
-        //    podcastObj = podcastRepository.GetByIndex();
-        //    // string url = podcastObj.Url;
-        //    return url;
-        //}
+        public string GetPodcastUrl(int index)
+        {
+            Podcast podcastObj = podcastRepository.GetAll()[index];
+            string url = podcastObj.Url;
+            return url;
+        }
 
         public string GetPodcastCategory(int index)
         {

@@ -13,6 +13,6 @@ namespace DAL.Repositories
         //T GetByName(string name);
         //List<T> GetAllPodcasts();
 
-        int GetByIndex(string name);
+        int GetIndex(string name);
     }
 }

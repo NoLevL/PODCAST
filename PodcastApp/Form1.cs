@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Models;
 using BL.Controllers;
 using BL;
+using DAL.Repositories;
 using System.Xml;
 using System.ServiceModel.Syndication;
 
@@ -22,6 +23,7 @@ namespace PodcastApp
         //private int podIndex = 0;
         private Validation validator;
         Urlhandler handler;
+        PodcastRepository podRepo;
         public Form1()
         {
             InitializeComponent();
@@ -29,6 +31,7 @@ namespace PodcastApp
             categoryController = new CategoryController();
             validator = new Validation();
             handler = new Urlhandler();
+            podRepo = new PodcastRepository();
             
             //FormHandler metoder i Load-event istället för kontruktorn?
             FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
@@ -57,27 +60,19 @@ namespace PodcastApp
             LblPodEpi.Text = "";
             LstEpisodes.Items.Clear();
 
-            int selectedRowCount = PodcastFeed.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            int podIndex = 0;
-            //LblPodEpi.Text = PodcastFeed.SelectedRows[podIndex].Cells[1].Value.ToString();
-
-            for (int i = 0; i < selectedRowCount; i++)
-            {
-                podIndex = PodcastFeed.SelectedRows[i].Index;
-                
-            }
-            Console.WriteLine(podIndex);
-            List<Episode> episodeList = podcastController.GetEpisodeList(podIndex);
+            int selectedRow = PodcastFeed.CurrentCell.RowIndex;
+           
+            List<Episode> episodeList = podcastController.GetEpisodeList(selectedRow);
             foreach (var item in episodeList)
             {
                 LstEpisodes.Items.Add(item.EpisodeName);
             }
 
-           // string url = podcastController.GetPodcastUrl(podIndex);
-            //LblPodEpi.Text = handler.GetUrlName(url);
-            //TxtURL.Text = url;
-            //CmbCat.SelectedItem = podcastController.GetPodcastCategory(podIndex);
-            //CmbUpdateFreq.SelectedItem = podcastController.GetPodcastInterval(podIndex);
+            string url = podcastController.GetPodcastUrl(selectedRow);
+            LblPodEpi.Text = handler.GetUrlName(url);
+            TxtURL.Text = url;
+            CmbCat.SelectedItem = podcastController.GetPodcastCategory(selectedRow);
+            CmbUpdateFreq.SelectedItem = podcastController.GetPodcastInterval(selectedRow);
 
 
         }
