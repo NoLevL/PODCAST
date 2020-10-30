@@ -21,6 +21,7 @@ namespace PodcastApp
         PodcastController podcastController;
         CategoryController categoryController;
         //private int podIndex = 0;
+        PodcastRepository podRepo;
         private Validation validator;
         Urlhandler handler;
         public Form1()
@@ -30,6 +31,7 @@ namespace PodcastApp
             categoryController = new CategoryController();
             validator = new Validation();
             handler = new Urlhandler();
+            podRepo = new PodcastRepository();
             
             //FormHandler metoder i Load-event istället för kontruktorn?
             FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
@@ -274,6 +276,32 @@ namespace PodcastApp
         private void TxtURL_Click(object sender, EventArgs e)
         {
             TxtURL.Text = "";
+        }
+
+        private void BtnSortPodByCat_Click(object sender, EventArgs e)
+        {
+            
+            string category = LstCat.SelectedItem.ToString();
+            var podList = podcastController.RetrieveAllPodcasts();
+            ClearAndSet();
+            if (PodcastFeed.Rows.Count > 0)
+            {
+                foreach (var pod in podList)
+                {
+                    if (pod.Category != category)
+                    {
+                        string name = pod.Name;
+                        int index = podRepo.GetIndex(name);
+                        PodcastFeed.Rows[index].Visible = false;
+                    }
+                }
+            }
+            
+        }
+
+        private void BtnListAllPodcasts_Click(object sender, EventArgs e)
+        {
+            ClearAndSet();
         }
     }
 }
