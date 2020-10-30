@@ -55,6 +55,8 @@
             this.TxtNewPodName = new System.Windows.Forms.TextBox();
             this.BtnNewPodName = new System.Windows.Forms.Button();
             this.LblDate = new System.Windows.Forms.Label();
+            this.BtnSortPodByCat = new System.Windows.Forms.Button();
+            this.BtnListAllPodcasts = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PodcastFeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,7 +95,7 @@
             // 
             // BtnSaveCat
             // 
-            this.BtnSaveCat.Location = new System.Drawing.Point(592, 203);
+            this.BtnSaveCat.Location = new System.Drawing.Point(614, 203);
             this.BtnSaveCat.Margin = new System.Windows.Forms.Padding(2);
             this.BtnSaveCat.Name = "BtnSaveCat";
             this.BtnSaveCat.Size = new System.Drawing.Size(101, 23);
@@ -104,7 +106,7 @@
             // 
             // BtnNewCat
             // 
-            this.BtnNewCat.Location = new System.Drawing.Point(463, 203);
+            this.BtnNewCat.Location = new System.Drawing.Point(509, 203);
             this.BtnNewCat.Margin = new System.Windows.Forms.Padding(2);
             this.BtnNewCat.Name = "BtnNewCat";
             this.BtnNewCat.Size = new System.Drawing.Size(101, 23);
@@ -176,10 +178,10 @@
             // TxtCat
             // 
             this.TxtCat.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.TxtCat.Location = new System.Drawing.Point(463, 174);
+            this.TxtCat.Location = new System.Drawing.Point(509, 174);
             this.TxtCat.Margin = new System.Windows.Forms.Padding(2);
             this.TxtCat.Name = "TxtCat";
-            this.TxtCat.Size = new System.Drawing.Size(357, 20);
+            this.TxtCat.Size = new System.Drawing.Size(311, 20);
             this.TxtCat.TabIndex = 13;
             this.TxtCat.Text = "Search for category...";
             this.TxtCat.Click += new System.EventHandler(this.TxtCat_Click);
@@ -197,16 +199,16 @@
             // LstCat
             // 
             this.LstCat.FormattingEnabled = true;
-            this.LstCat.Location = new System.Drawing.Point(463, 24);
+            this.LstCat.Location = new System.Drawing.Point(509, 24);
             this.LstCat.Margin = new System.Windows.Forms.Padding(2);
             this.LstCat.Name = "LstCat";
-            this.LstCat.Size = new System.Drawing.Size(357, 134);
+            this.LstCat.Size = new System.Drawing.Size(311, 134);
             this.LstCat.TabIndex = 16;
             // 
             // lblCats
             // 
             this.lblCats.AutoSize = true;
-            this.lblCats.Location = new System.Drawing.Point(461, 9);
+            this.lblCats.Location = new System.Drawing.Point(506, 9);
             this.lblCats.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCats.Name = "lblCats";
             this.lblCats.Size = new System.Drawing.Size(60, 13);
@@ -336,11 +338,35 @@
             this.LblDate.Size = new System.Drawing.Size(0, 13);
             this.LblDate.TabIndex = 26;
             // 
+            // BtnSortPodByCat
+            // 
+            this.BtnSortPodByCat.Location = new System.Drawing.Point(402, 123);
+            this.BtnSortPodByCat.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnSortPodByCat.Name = "BtnSortPodByCat";
+            this.BtnSortPodByCat.Size = new System.Drawing.Size(101, 38);
+            this.BtnSortPodByCat.TabIndex = 27;
+            this.BtnSortPodByCat.Text = "Sort Podcasts By Category";
+            this.BtnSortPodByCat.UseVisualStyleBackColor = true;
+            this.BtnSortPodByCat.Click += new System.EventHandler(this.BtnSortPodByCat_Click);
+            // 
+            // BtnListAllPodcasts
+            // 
+            this.BtnListAllPodcasts.Location = new System.Drawing.Point(402, 48);
+            this.BtnListAllPodcasts.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnListAllPodcasts.Name = "BtnListAllPodcasts";
+            this.BtnListAllPodcasts.Size = new System.Drawing.Size(101, 38);
+            this.BtnListAllPodcasts.TabIndex = 28;
+            this.BtnListAllPodcasts.Text = "List All Podcasts";
+            this.BtnListAllPodcasts.UseVisualStyleBackColor = true;
+            this.BtnListAllPodcasts.Click += new System.EventHandler(this.BtnListAllPodcasts_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 443);
+            this.Controls.Add(this.BtnListAllPodcasts);
+            this.Controls.Add(this.BtnSortPodByCat);
             this.Controls.Add(this.LblDate);
             this.Controls.Add(this.BtnNewPodName);
             this.Controls.Add(this.TxtNewPodName);
@@ -403,6 +429,8 @@
         private System.Windows.Forms.TextBox TxtNewPodName;
         private System.Windows.Forms.Button BtnNewPodName;
         private System.Windows.Forms.Label LblDate;
+        private System.Windows.Forms.Button BtnSortPodByCat;
+        private System.Windows.Forms.Button BtnListAllPodcasts;
     }
 }
 
