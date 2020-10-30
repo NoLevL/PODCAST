@@ -69,11 +69,6 @@ namespace DAL.Repositories
             return GetAll().FirstOrDefault(p => p.Name.Equals(name));
         }
 
-        public List<Podcast> ReturnPodcasts()
-        {
-            throw new NotImplementedException();
-        }
-
         public void SaveChanges()
         {
             dataManager.SavePodcastList(podcastList);

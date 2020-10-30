@@ -7,6 +7,7 @@ using DAL.Repositories;
 using DAL;
 using Models;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace BL.Controllers
 {
@@ -103,6 +104,24 @@ namespace BL.Controllers
         public void DeletePodcast(string category)
         {
             podcastRepository.Delete(category);
+        }
+
+
+        public void UpdatePodcastName(int index, string name)
+        {
+            Podcast podcastObj = podcastRepository.GetAll()[index];
+            string newName = name;
+            podcastObj.Name = newName;
+            podcastRepository.Update(index, podcastObj);
+        }
+
+
+        public void UpdatePodcast(int index, string cat, double interval)
+        {
+            Podcast podcastObj = podcastRepository.GetAll()[index];
+            podcastObj.Category = cat;
+            podcastObj.Interval = interval;
+            podcastRepository.Update(index, podcastObj);
         }
     }
 }

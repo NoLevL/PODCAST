@@ -11,13 +11,15 @@ using BL;
 using PodcastApp;
 using System.Net.Configuration;
 using System.IO;
+using DAL.Repositories;
 
 namespace BL
 {
     public class Validation
     {
-        private readonly DataManager dataManager = new DataManager();
         private readonly Urlhandler uH = new Urlhandler();
+        private readonly PodcastRepository podRepo = new PodcastRepository();
+        private readonly CategoryRepository catRepo = new CategoryRepository();
        
 
 
@@ -29,6 +31,9 @@ namespace BL
                 if (category.Text != "")
                 {
                     isValid = true;
+                }
+                else
+                {
                     throw new TextBoxIsEmptyException();
                 }
             }
@@ -49,6 +54,9 @@ namespace BL
                 if (listOfCategory.SelectedItem != null)
                 {
                     isValid = true;
+                }
+                else
+                {
                     throw new ItemNotPickedException();
                 }
             }
@@ -65,7 +73,7 @@ namespace BL
             bool isValid = true;
             try
             {
-                List<Category> list = dataManager.ReturnCategories();
+                List<Category> list = catRepo.GetAll();
                 foreach (var item in list)
                 {
                     string name = item.Name;
@@ -73,6 +81,9 @@ namespace BL
                     if (name.Equals(category))
                     {
                         isValid = false;
+                    }
+                    else
+                    {
                         throw new ItemAlreadyExistsException();
                     }
                 }
@@ -95,6 +106,9 @@ namespace BL
                 if (catList.Count > 0)
                 {
                     notEmpty = true;
+                }
+                else
+                {
                     throw new ListIsEmptyException();
                 }
                 
@@ -124,7 +138,7 @@ namespace BL
             }
             catch (TextBoxIsEmptyException)
             {
-                string msg = "You must enter a URL to proceed!";
+                string msg = "You must enter something in the textbox to proceed!";
                 MessageBox.Show(msg);
             }
             return isValid;
@@ -139,6 +153,9 @@ namespace BL
                 if (interval.SelectedItem != null)
                 {
                     isValid = true;
+                }
+                else
+                {
                     throw new ComboBoxIsNullException();
                 }
             }
@@ -159,6 +176,9 @@ namespace BL
                 if (category.SelectedItem != null)
                 {
                     isValid = true;
+                }
+                else
+                {
                     throw new ComboBoxIsNullException();
                 }
             }
@@ -176,11 +196,14 @@ namespace BL
             bool isValid = false;
             try
             {
-                foreach (var podcast in dataManager.ReturnPodcasts())
+                foreach (var podcast in podRepo.GetAll())
                 {
                     if (podcast.Url != url.Text || uH.DoesUrlExist(url.Text) == false)
                     {
                         isValid = true;
+                    }
+                    else
+                    {
                         throw new ItemAlreadyExistsException();
                     }
                 }
@@ -202,6 +225,9 @@ namespace BL
                 if (table.SelectedRows.Count > 0)
                 {
                     isValid = true;
+                }
+                else
+                {
                     throw new ItemNotPickedException();
                 }
             }

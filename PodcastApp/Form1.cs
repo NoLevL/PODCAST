@@ -52,11 +52,6 @@ namespace PodcastApp
 
         }
 
-        private void txtURL_TextChanged(object sender, EventArgs e)
-        {
-        
-        }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             LblPodEpi.Text = "";
@@ -214,24 +209,13 @@ namespace PodcastApp
         {
             FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
             TxtCat.Text = "";
-            var episodes = podcastController.GetEpisodeList(PodcastFeed.CurrentCell.RowIndex);
-            foreach (var item in episodes)
-            {
-                if (LstEpisodes.SelectedItem.ToString().Equals(item.EpisodeName))
-                {
-                    string hej = handler.GetDateInfo(TxtURL.Text, item);
-                    LblDate.Text = hej;
-                }
-            }
         }
 
         private double IntervalToDouble(ComboBox comboBox)
         {
             
             string lineToTrim = comboBox.SelectedItem.ToString();
-            Console.WriteLine(lineToTrim);
             double interval = Double.Parse(lineToTrim.Remove(2));
-            Console.WriteLine(interval);
             return interval;
         }
 
@@ -260,11 +244,38 @@ namespace PodcastApp
             LblPodEpiInfo.Text = "Episode description";
             TxtURL.Text = "";
             CmbCat.Text = "";
+            CmbUpdateFreq.Text = "";
             LblDate.Text = "";
             FormHandler.AllPodcasts(PodcastFeed);
         }
 
+        private void BtnNewPodName_Click(object sender, EventArgs e)
+        {
+            if (validator.TboxUrlNotEmpty(TxtNewPodName))
+            {
+                int selectedRow = PodcastFeed.CurrentCell.RowIndex;
+                podcastController.UpdatePodcastName(selectedRow, TxtNewPodName.Text);
+                ClearAndSet();
+                FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
+            }
+        }
 
+        private void BtnSavePod_Click(object sender, EventArgs e)
+        {
+            if (validator.ComboIntervalChoosen(CmbUpdateFreq) && validator.ComboCategoryChoosen(CmbCat))
+            {
+                int podToUpdate = PodcastFeed.CurrentCell.RowIndex;
+                string category = CmbCat.SelectedItem.ToString();
+                double interval = IntervalToDouble(CmbUpdateFreq);
+                podcastController.UpdatePodcast(podToUpdate, category, interval);
+                ClearAndSet();
+                FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
+            }
+        }
 
+        private void TxtURL_Click(object sender, EventArgs e)
+        {
+            TxtURL.Text = "";
+        }
     }
 }

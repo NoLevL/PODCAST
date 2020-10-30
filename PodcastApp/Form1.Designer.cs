@@ -78,6 +78,7 @@
             this.BtnSavePod.TabIndex = 1;
             this.BtnSavePod.Text = "Save";
             this.BtnSavePod.UseVisualStyleBackColor = true;
+            this.BtnSavePod.Click += new System.EventHandler(this.BtnSavePod_Click);
             // 
             // BtnDeletePod
             // 
@@ -174,7 +175,7 @@
             // 
             // TxtCat
             // 
-            this.TxtCat.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.TxtCat.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.TxtCat.Location = new System.Drawing.Point(463, 174);
             this.TxtCat.Margin = new System.Windows.Forms.Padding(2);
             this.TxtCat.Name = "TxtCat";
@@ -234,14 +235,14 @@
             // 
             // TxtURL
             // 
-            this.TxtURL.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.TxtURL.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.TxtURL.Location = new System.Drawing.Point(8, 186);
             this.TxtURL.Margin = new System.Windows.Forms.Padding(2);
             this.TxtURL.Name = "TxtURL";
             this.TxtURL.Size = new System.Drawing.Size(147, 20);
             this.TxtURL.TabIndex = 21;
             this.TxtURL.Text = "Enter URL here...";
-            this.TxtURL.TextChanged += new System.EventHandler(this.txtURL_TextChanged);
+            this.TxtURL.Click += new System.EventHandler(this.TxtURL_Click);
             // 
             // TxtEpiInfo
             // 
@@ -307,7 +308,7 @@
             // 
             // TxtNewPodName
             // 
-            this.TxtNewPodName.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.TxtNewPodName.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.TxtNewPodName.Location = new System.Drawing.Point(10, 253);
             this.TxtNewPodName.Margin = new System.Windows.Forms.Padding(2);
             this.TxtNewPodName.Name = "TxtNewPodName";
@@ -325,6 +326,7 @@
             this.BtnNewPodName.Text = "Save Name";
             this.BtnNewPodName.UseVisualStyleBackColor = true;
             this.BtnNewPodName.Visible = false;
+            this.BtnNewPodName.Click += new System.EventHandler(this.BtnNewPodName_Click);
             // 
             // LblDate
             // 
