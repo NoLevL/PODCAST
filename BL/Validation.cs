@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using BL.Exceptions;
-using DAL;
 using Models;
-using BL;
-using PodcastApp;
-using System.Net.Configuration;
 using System.IO;
 using DAL.Repositories;
 
@@ -17,56 +9,9 @@ namespace BL
 {
     public class Validation
     {
-        private readonly Urlhandler uH = new Urlhandler();
         private readonly PodcastRepository podRepo = new PodcastRepository();
         private readonly CategoryRepository catRepo = new CategoryRepository();
        
-
-
-        public bool TboxCategoryNotEmpty(TextBox category)
-        {
-            bool isValid = false;
-            try
-            {
-                if (category.Text != "")
-                {
-                    isValid = true;
-                }
-                else
-                {
-                    throw new TextBoxIsEmptyException();
-                }
-            }
-            catch (TextBoxIsEmptyException)
-            {
-                string msg = "You must enter a category in the textfield!";
-                MessageBox.Show(msg);
-            }
-            return isValid;
-        }
-
-
-        public bool CategoryIsPicked(ListBox listOfCategory)
-        {
-            bool isValid = false;
-            try
-            {
-                if (listOfCategory.SelectedItem != null)
-                {
-                    isValid = true;
-                }
-                else
-                {
-                    throw new ItemNotPickedException();
-                }
-            }
-            catch (ItemNotPickedException)
-            {
-                string msg = "You must pick a category!";
-                MessageBox.Show(msg);
-            }
-            return isValid;
-        }
 
         public bool CategoryIsUnique(string category)
         {
@@ -83,10 +28,6 @@ namespace BL
                         isValid = false;
                         throw new ItemAlreadyExistsException();
                     }
-                    //else
-                    //{
-                    //    throw new ItemAlreadyExistsException();
-                    //}
                 }
                 
             }
@@ -98,28 +39,29 @@ namespace BL
             return isValid;
         }
 
-
-        public bool IsCategoryListEmpty(List<string> catList)
+        public bool PodcastIsUnique(string url)
         {
-            bool notEmpty = false;
+            bool isValid = true;
             try
             {
-                if (catList.Count > 0)
+                List<Podcast> list = podRepo.GetAll();
+                foreach (var item in list)
                 {
-                    notEmpty = true;
+                    string link = item.Url;
+
+                    if(link.Equals(url))
+                    {
+                        isValid = false;
+                        throw new ItemAlreadyExistsException();
+                    }
                 }
-                else
-                {
-                    throw new ListIsEmptyException();
-                }
-                
             }
-            catch (ListIsEmptyException)
+            catch (ItemAlreadyExistsException)
             {
-                string msg = "You don't have any categories!";
+                string msg = "Podcast already exists!";
                 MessageBox.Show(msg);
             }
-            return notEmpty;
+            return isValid;
         }
 
 
@@ -192,29 +134,26 @@ namespace BL
         }
 
 
-        public bool IsUrlValid(TextBox url)
+        public bool CategorySelected(ListBox list)
         {
-            bool isValid = false;
+            bool isSelected = false;
             try
             {
-                foreach (var podcast in podRepo.GetAll())
+                if (list.SelectedItem == null)
                 {
-                    if (podcast.Url != url.Text || uH.DoesUrlExist(url.Text) == false)
-                    {
-                        isValid = true;
-                    }
-                    else
-                    {
-                        throw new ItemAlreadyExistsException();
-                    }
+                    throw new ItemNotPickedException();
+                }
+                else
+                {
+                    isSelected = true;
                 }
             }
-            catch (ItemAlreadyExistsException)
+            catch
             {
-                string msg = "Podcast already exists!";
+                string msg = "You must select a category first!";
                 MessageBox.Show(msg);
             }
-            return isValid;
+            return isSelected;
         }
 
 
@@ -223,7 +162,7 @@ namespace BL
             bool isValid = false;
             try
             {
-                if (table.SelectedRows.Count > 0)
+                if (table.CurrentCell.RowIndex > -1)
                 {
                     isValid = true;
                 }

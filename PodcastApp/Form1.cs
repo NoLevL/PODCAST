@@ -79,46 +79,41 @@ namespace PodcastApp
         private async void BtnNewPod_Click(object sender, EventArgs e)
         {
             PodcastFeed.Rows.Clear();
-            //if (validator.TboxUrlNotEmpty(TxtURL) && validator.IsUrlValid(TxtURL) && validator.ComboIntervalChoosen(CmbUpdateFreq))
-            //{
-            Podcast p = new Podcast();
-            string category = CmbCat.SelectedItem.ToString();
-            double interval = IntervalToDouble(CmbUpdateFreq);
-            SetInterval intervalObj = new SetInterval(interval);
-            XmlReader reader = XmlReader.Create(TxtURL.Text);
-            SyndicationFeed feed = SyndicationFeed.Load(reader);
-            int numberOfEpisodes = 0;
-            List<Episode> episodeList = new List<Episode>();
-            string podcastName = feed.Title.Text;
-            foreach (SyndicationItem item in feed.Items)
+            if (validator.TboxUrlNotEmpty(TxtURL) && validator.PodcastIsUnique(TxtURL.Text) && validator.ComboIntervalChoosen(CmbUpdateFreq) && validator.ComboCategoryChoosen(CmbCat))
             {
-                numberOfEpisodes++;
-            }
-            foreach (SyndicationItem item in feed.Items)
-            {
-                string episodeName = item.Title.Text;
-                string description = item.Summary.Text;
-                Episode anEpisode = new Episode(episodeName, description);
-                episodeList.Add(anEpisode);
+                Podcast p = new Podcast();
+                string category = CmbCat.SelectedItem.ToString();
+                double interval = IntervalToDouble(CmbUpdateFreq);
+                SetInterval intervalObj = new SetInterval(interval);
+                XmlReader reader = XmlReader.Create(TxtURL.Text);
+                SyndicationFeed feed = SyndicationFeed.Load(reader);
+                int numberOfEpisodes = 0;
+                List<Episode> episodeList = new List<Episode>();
+                string podcastName = feed.Title.Text;
+                foreach (SyndicationItem item in feed.Items)
+                {
+                    numberOfEpisodes++;
+                }
+                foreach (SyndicationItem item in feed.Items)
+                {
+                    string episodeName = item.Title.Text;
+                    string description = item.Summary.Text;
+                    Episode anEpisode = new Episode(episodeName, description);
+                    episodeList.Add(anEpisode);
 
+                }
+                await Task.Run(() =>
+                {
+                    podcastController.CreatePodcastObject(TxtURL.Text, intervalObj.UpdateInterval, category, podcastName, numberOfEpisodes, episodeList);
+                });
+                FormHandler.AllPodcasts(PodcastFeed);
+                FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
+            
             }
-            await Task.Run(() =>
+            else
             {
-                podcastController.CreatePodcastObject(TxtURL.Text, intervalObj.UpdateInterval, category, podcastName, numberOfEpisodes, episodeList);        
-            });
-            FormHandler.AllPodcasts(PodcastFeed);
-            FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
-            //} 
-            //else
-            //{
-            //    Podcast p = new Podcast();
-            //    await Task.Run(() =>
-            //    {
-            //        podcastController.CreatePodcastObject(TxtURL.Text, CmbUpdateFreq.SelectedItem.ToString());
-
-            //        PodcastFeed.Rows.Add(p.TotalEpisodes, p.Name, p.Interval, p.Category);
-            //    });
-            //}
+                ClearAndSet();
+            }
         }
 
         private void BtnNewCat_Click(object sender, EventArgs e)
@@ -222,17 +217,20 @@ namespace PodcastApp
 
         private void BtnDeletePod_Click(object sender, EventArgs e)
         {
-            FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
-            string message = "Are you sure you want to delete this Podcast?";
-            string header = "Delete Podcast";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            DialogResult result;
-
-            result = MessageBox.Show(message, header, buttons);
-            if (result == DialogResult.Yes)
+            if (validator.CanPodcastBeDeleted(PodcastFeed))
             {
-                podcastController.DeletePodcast(PodcastFeed.CurrentCell.RowIndex);
-                ClearAndSet();
+                FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
+                string message = "Are you sure you want to delete this Podcast?";
+                string header = "Delete Podcast";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result;
+
+                result = MessageBox.Show(message, header, buttons);
+                if (result == DialogResult.Yes)
+                {
+                    podcastController.DeletePodcast(PodcastFeed.CurrentCell.RowIndex);
+                    ClearAndSet();
+                }
             }
         }
 
@@ -281,19 +279,21 @@ namespace PodcastApp
 
         private void BtnSortPodByCat_Click(object sender, EventArgs e)
         {
-            
-            string category = LstCat.SelectedItem.ToString();
-            var podList = podcastController.RetrieveAllPodcasts();
-            ClearAndSet();
-            if (PodcastFeed.Rows.Count > 0)
+            if (validator.CategorySelected(LstCat))
             {
-                foreach (var pod in podList)
+                string category = LstCat.SelectedItem.ToString();
+                var podList = podcastController.RetrieveAllPodcasts();
+                ClearAndSet();
+                if (PodcastFeed.Rows.Count > 0)
                 {
-                    if (pod.Category != category)
+                    foreach (var pod in podList)
                     {
-                        string name = pod.Name;
-                        int index = podRepo.GetIndex(name);
-                        PodcastFeed.Rows[index].Visible = false;
+                        if (pod.Category != category)
+                        {
+                            string name = pod.Name;
+                            int index = podRepo.GetIndex(name);
+                            PodcastFeed.Rows[index].Visible = false;
+                        }
                     }
                 }
             }
