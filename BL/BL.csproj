@@ -43,10 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\ItemAlreadyExistsException.cs" />
-    <Compile Include="Exceptions\ItemNotPickedException.cs" />
-    <Compile Include="Exceptions\ComboBoxIsNullException.cs" />
+    <Compile Include="Exceptions\ComboBoxCategoryIsNullException.cs" />
+    <Compile Include="Exceptions\CategoryAlreadyExistsException.cs" />
+    <Compile Include="Exceptions\CategoryNotPickedException.cs" />
+    <Compile Include="Exceptions\ComboBoxIntervalIsNullException.cs" />
     <Compile Include="Exceptions\ListIsEmptyException.cs" />
+    <Compile Include="Exceptions\PodcastAlreadyExistsException.cs" />
+    <Compile Include="Exceptions\PodcastNotPickedException.cs" />
     <Compile Include="Exceptions\TextBoxIsEmptyException.cs" />
     <Compile Include="Urlhandler.cs" />
     <Compile Include="Validation.cs" />

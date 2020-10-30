@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BL.Exceptions
 {
     public class TextBoxIsEmptyException : Exception
     {
+        string msg = "You must enter something in the textbox to proceed!";
         public TextBoxIsEmptyException()
             : base()
-        { }
+        { MessageBox.Show(msg); }
         
 
 

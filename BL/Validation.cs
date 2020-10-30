@@ -26,15 +26,13 @@ namespace BL
                     if (name.Equals(category))
                     {
                         isValid = false;
-                        throw new ItemAlreadyExistsException();
+                        throw new CategoryAlreadyExistsException();
                     }
                 }
                 
             }
-            catch (ItemAlreadyExistsException)
+            catch (CategoryAlreadyExistsException)
             {
-                string msg = "Category already exists!";
-                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -52,14 +50,12 @@ namespace BL
                     if(link.Equals(url))
                     {
                         isValid = false;
-                        throw new ItemAlreadyExistsException();
+                        throw new PodcastAlreadyExistsException();
                     }
                 }
             }
-            catch (ItemAlreadyExistsException)
+            catch (PodcastAlreadyExistsException)
             {
-                string msg = "Podcast already exists!";
-                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -81,8 +77,6 @@ namespace BL
             }
             catch (TextBoxIsEmptyException)
             {
-                string msg = "You must enter something in the textbox to proceed!";
-                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -90,7 +84,6 @@ namespace BL
 
         public bool ComboIntervalChoosen(ComboBox interval)
         {
-            string freq = "interval menu!";
             bool isValid = false;
             try
             {
@@ -100,10 +93,10 @@ namespace BL
                 }
                 else
                 {
-                    throw new ComboBoxIsNullException(freq);
+                    throw new ComboBoxIntervalIsNullException();
                 }
             }
-            catch (ComboBoxIsNullException)
+            catch (ComboBoxIntervalIsNullException)
             {
             }
             return isValid;
@@ -121,13 +114,11 @@ namespace BL
                 }
                 else
                 {
-                    throw new ComboBoxIsNullException();
+                    throw new ComboBoxCategoryIsNullException();
                 }
             }
-            catch (ComboBoxIsNullException)
+            catch (ComboBoxCategoryIsNullException)
             {
-                string msg = "You must choose a category!";
-                MessageBox.Show(msg);
             }
             return isValid;
         }
@@ -140,7 +131,7 @@ namespace BL
             {
                 if (list.SelectedItem == null)
                 {
-                    throw new ItemNotPickedException();
+                    throw new CategoryNotPickedException();
                 }
                 else
                 {
@@ -149,8 +140,6 @@ namespace BL
             }
             catch
             {
-                string msg = "You must select a category first!";
-                MessageBox.Show(msg);
             }
             return isSelected;
         }
@@ -167,10 +156,10 @@ namespace BL
                 }
                 else
                 {
-                    throw new ItemNotPickedException();
+                    throw new PodcastNotPickedException();
                 }
             }
-            catch (ItemNotPickedException)
+            catch (PodcastNotPickedException)
             {
                 string msg = "You must choose a podcast to delete!";
                 MessageBox.Show(msg);

@@ -27,7 +27,8 @@ namespace PodcastApp
             handler = new Urlhandler();
             podRepo = new PodcastRepository();
 
-            
+            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+            FormHandler.FillIntervalComboBox(CmbUpdateFreq);
             ClearAndSet();
 
         }
@@ -221,8 +222,6 @@ namespace PodcastApp
             FormHandler.ClearEpisodeList(LstEpisodes);
             FormHandler.ClearEpisodeText(TxtEpiInfo);
             FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
-            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
-            FormHandler.FillIntervalComboBox(CmbUpdateFreq);
             LblPodEpi.Text = "Episodes";
             LblPodEpiInfo.Text = "Episode description";
             TxtURL.Text = "";
