@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Schema;
+﻿using System.Collections.Generic;
 using DAL.Repositories;
 using Models;
 
@@ -22,7 +16,7 @@ namespace BL.Controllers
         public void CreateCategoryObject(string name)
         {
             Category newCategory = null;
-            if (newCategory == null) // Validering om kategorin finns eller inte.
+            if (newCategory == null)
             {
                 newCategory = new Category(name);
             }
@@ -34,9 +28,9 @@ namespace BL.Controllers
             return categoryRepository.GetAll();
         }
 
-        public void UpdateCategoryObject(int index, string oldCategory, Category updateCategory)//Ej testad än
+        public void UpdateCategoryObject(int index, string oldCategory, Category updateCategory)
         {
-            //Category updateCategory = null;
+            
             if (updateCategory == null)
             {
                 updateCategory = new Category(updateCategory.Name);
@@ -56,7 +50,6 @@ namespace BL.Controllers
 
         public void DeleteCategory(int index)
         {
-            //int index = categoryRepository.GetIndex(name);
             categoryRepository.Delete(index);
         }
 

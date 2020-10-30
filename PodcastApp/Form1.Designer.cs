@@ -153,7 +153,6 @@
             this.lblCat.Size = new System.Drawing.Size(52, 13);
             this.lblCat.TabIndex = 9;
             this.lblCat.Text = "Category:";
-            this.lblCat.Click += new System.EventHandler(this.label1_Click);
             // 
             // lblUpdateFreq
             // 
@@ -393,7 +392,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            //this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PodcastFeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

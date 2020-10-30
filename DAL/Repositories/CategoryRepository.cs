@@ -1,33 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Models;
 
 namespace DAL.Repositories
 {
-   public class CategoryRepository : ICategoryRepository<Category>
+    public class CategoryRepository : ICategoryRepository<Category>
     {
-        DataManager dataManager;
-        List<Category> categoryList;
+        private readonly DataManager dataManager;
+        private readonly List<Category> categoryList;
 
             public CategoryRepository()
-        {
-            categoryList = new List<Category>();
-            dataManager = new DataManager();
-            categoryList = GetAll();
-        }
+            {
+                categoryList = new List<Category>();
+                dataManager = new DataManager();
+                categoryList = GetAll();
+            }
 
         public void Create(Category category)
         {
             categoryList.Add(category);
             SaveChanges();
-            //using (StreamWriter sw = File.AppendText(savedCategories))
-            //{
-            //    sw.WriteLine(category);
-            //}
-            //throw new NotImplementedException();
         }
 
         public void Delete(int index)
@@ -35,7 +27,7 @@ namespace DAL.Repositories
             categoryList.RemoveAt(index);
             SaveChanges();
         }
-        
+
         public void Delete(string aString)
         {
 

@@ -2,10 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.ServiceModel.Syndication;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -22,8 +19,6 @@ namespace PodcastApp
             XmlReader reader = XmlReader.Create(url);
             SyndicationFeed feed = SyndicationFeed.Load(reader);
             
-            List<Episode> episodeList = new List<Episode>();
-            
             foreach (SyndicationItem item in feed.Items)
             {
                 if (item.Title.Text.Equals(episode.EpisodeName))
@@ -34,41 +29,6 @@ namespace PodcastApp
             }
             return datePublished;
 
-        }
-        public bool DoesUrlExist(string url)
-        {
-            try
-            {
-                urlDocument = XDocument.Load(url);
-                try
-                {
-                    var totalEpi = GetTotalEpisodes(url);
-                    if (totalEpi > 0)
-                    {
-                        return true;
-                    }
-                }catch (Exception) { }
-            }catch (Exception) { }
-            return false;
-        }
-
-        public int GetTotalEpisodes(string url)
-        {
-            int totalEpisodes = 0;
-            urlDocument = XDocument.Load(url);
-            var items = (from x in urlDocument.Descendants("item")
-                         select new { 
-                             title = x.Element("title") 
-                         });
-
-            if (items != null)
-            {
-                foreach (var item in items)
-                {
-                    totalEpisodes++;
-                }
-            }
-            return totalEpisodes;
         }
 
         public string GetUrlName(string url)

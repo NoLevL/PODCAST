@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 
 namespace Models
@@ -30,17 +26,6 @@ namespace Models
             Name = name;
             TotalEpisodes = totalEpisodes;
             EpisodeList = episodeList;
-        }
-        public Podcast(string url, double interval, string category)
-        {
-            Url = url;
-            Interval = interval;
-            Category = category;
-        }
-        public Podcast(string url, double interval)
-        {
-            Url = url;
-            Interval = interval;
         }
 
         public Podcast()

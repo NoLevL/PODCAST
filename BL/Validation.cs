@@ -90,6 +90,7 @@ namespace BL
 
         public bool ComboIntervalChoosen(ComboBox interval)
         {
+            string freq = "interval menu!";
             bool isValid = false;
             try
             {
@@ -99,13 +100,11 @@ namespace BL
                 }
                 else
                 {
-                    throw new ComboBoxIsNullException();
+                    throw new ComboBoxIsNullException(freq);
                 }
             }
             catch (ComboBoxIsNullException)
             {
-                string msg = "You must choose an interval!";
-                MessageBox.Show(msg);
             }
             return isValid;
         }

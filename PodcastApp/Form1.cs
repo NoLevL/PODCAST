@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Models;
@@ -18,12 +13,11 @@ namespace PodcastApp
 {
     public partial class Form1 : Form
     {
-        PodcastController podcastController;
-        CategoryController categoryController;
-        //private int podIndex = 0;
-        PodcastRepository podRepo;
-        private Validation validator;
-        Urlhandler handler;
+        private readonly PodcastController podcastController;
+        private readonly CategoryController categoryController;
+        private readonly PodcastRepository podRepo;
+        private readonly Validation validator;
+        private readonly Urlhandler handler;
         public Form1()
         {
             InitializeComponent();
@@ -32,25 +26,12 @@ namespace PodcastApp
             validator = new Validation();
             handler = new Urlhandler();
             podRepo = new PodcastRepository();
+
             
-            //FormHandler metoder i Load-event istället för kontruktorn?
-            FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
-            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
-            FormHandler.FillIntervalComboBox(CmbUpdateFreq);
-            FormHandler.AllPodcasts(PodcastFeed);
-            FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
+            ClearAndSet();
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
- 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -81,15 +62,20 @@ namespace PodcastApp
             PodcastFeed.Rows.Clear();
             if (validator.TboxUrlNotEmpty(TxtURL) && validator.PodcastIsUnique(TxtURL.Text) && validator.ComboIntervalChoosen(CmbUpdateFreq) && validator.ComboCategoryChoosen(CmbCat))
             {
-                Podcast p = new Podcast();
+
                 string category = CmbCat.SelectedItem.ToString();
                 double interval = IntervalToDouble(CmbUpdateFreq);
+
                 SetInterval intervalObj = new SetInterval(interval);
+
                 XmlReader reader = XmlReader.Create(TxtURL.Text);
                 SyndicationFeed feed = SyndicationFeed.Load(reader);
+
                 int numberOfEpisodes = 0;
+
                 List<Episode> episodeList = new List<Episode>();
                 string podcastName = feed.Title.Text;
+
                 foreach (SyndicationItem item in feed.Items)
                 {
                     numberOfEpisodes++;
@@ -166,8 +152,6 @@ namespace PodcastApp
                 int selectedCategory = LstCat.SelectedIndex;
                 Category updateCategoryObject = new Category(updateCategory);
                 categoryController.UpdateCategoryObject(selectedCategory, oldCategory, updateCategoryObject);
-                FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
-                FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
                 ClearAndSet();
             }
         }
@@ -194,10 +178,7 @@ namespace PodcastApp
                     }
                 }
                 categoryController.DeleteCategory(LstCat.SelectedIndex);
-                FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
-                FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
                 ClearAndSet();
-                //Kod för att ta bort podcast som hör till vald kategori
             }
         }
 
@@ -239,6 +220,9 @@ namespace PodcastApp
             PodcastFeed.Rows.Clear();
             FormHandler.ClearEpisodeList(LstEpisodes);
             FormHandler.ClearEpisodeText(TxtEpiInfo);
+            FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
+            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+            FormHandler.FillIntervalComboBox(CmbUpdateFreq);
             LblPodEpi.Text = "Episodes";
             LblPodEpiInfo.Text = "Episode description";
             TxtURL.Text = "";

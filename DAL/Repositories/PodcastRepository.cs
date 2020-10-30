@@ -79,11 +79,6 @@ namespace DAL.Repositories
             dataManager.SavePodcastList(podList);
         }
 
-        public List<Podcast> SavedPodcastList()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update(int index, Podcast newEntity)
         {
             if (index >= 0)

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using BL;
 using BL.Controllers;
@@ -13,11 +9,6 @@ namespace PodcastApp
 {
     public class FormHandler
     {
-         
-        public static void ClearText(TextBox textBox)
-        {
-            textBox.Text = "";
-        }
 
         public static void FillCategoryList(List<Category> list, ListBox listBox)
         {
@@ -50,8 +41,7 @@ namespace PodcastApp
             if (validator.PodcastFileExists())
             {
                 PodcastController podcastController = new PodcastController();
-                List<Podcast> listToBeReturned = new List<Podcast>();
-                listToBeReturned = podcastController.RetrieveAllPodcasts();
+                List<Podcast> listToBeReturned = podcastController.RetrieveAllPodcasts();
                 foreach (var item in listToBeReturned)
                 {
                     podcastFeed.Rows.Add(item.TotalEpisodes, item.Name, item.Interval, item.Category);
