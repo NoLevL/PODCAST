@@ -74,6 +74,11 @@ namespace DAL.Repositories
             dataManager.SavePodcastList(podcastList);
         }
 
+        public void SaveChanges(List<Podcast> podList)
+        {
+            dataManager.SavePodcastList(podList);
+        }
+
         public List<Podcast> SavedPodcastList()
         {
             throw new NotImplementedException();

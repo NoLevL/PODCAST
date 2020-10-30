@@ -81,11 +81,12 @@ namespace BL
                     if (name.Equals(category))
                     {
                         isValid = false;
-                    }
-                    else
-                    {
                         throw new ItemAlreadyExistsException();
                     }
+                    //else
+                    //{
+                    //    throw new ItemAlreadyExistsException();
+                    //}
                 }
                 
             }
