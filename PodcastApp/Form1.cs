@@ -23,7 +23,6 @@ namespace PodcastApp
         //private int podIndex = 0;
         private Validation validator;
         Urlhandler handler;
-        PodcastRepository podRepo;
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +30,6 @@ namespace PodcastApp
             categoryController = new CategoryController();
             validator = new Validation();
             handler = new Urlhandler();
-            podRepo = new PodcastRepository();
             
             //FormHandler metoder i Load-event istället för kontruktorn?
             FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
