@@ -10,7 +10,8 @@ namespace Models
     {
         public virtual string GetDateInfo(string url, Episode episode)
         {
-            return url;
+            string stringToBeReturned = "";
+            return stringToBeReturned;
         }
     }
 }
