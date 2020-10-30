@@ -167,12 +167,13 @@ namespace PodcastApp
 
             if (validator.CategoryIsUnique(updateCategory))
             {
+                string oldCategory = LstCat.SelectedItem.ToString();
                 int selectedCategory = LstCat.SelectedIndex;
                 Category updateCategoryObject = new Category(updateCategory);
-                categoryController.UpdateCategoryObject(selectedCategory, updateCategoryObject);
+                categoryController.UpdateCategoryObject(selectedCategory, oldCategory, updateCategoryObject);
                 FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
                 FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
-                
+                ClearAndSet();
             }
         }
 
