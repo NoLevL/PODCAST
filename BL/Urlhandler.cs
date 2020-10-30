@@ -2,17 +2,39 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace PodcastApp
 {
-    public class Urlhandler
+    public class Urlhandler : Feed
     {
         private XDocument urlDocument = new XDocument();
         private string podTitleName;
+        private string datePublished;
 
+        public override string GetDateInfo(string url, Episode episode)
+        {
+            XmlReader reader = XmlReader.Create(url);
+            SyndicationFeed feed = SyndicationFeed.Load(reader);
+            
+            List<Episode> episodeList = new List<Episode>();
+            
+            foreach (SyndicationItem item in feed.Items)
+            {
+                if (item.Title.Text.Equals(episode.EpisodeName))
+                {
+                    DateTimeOffset date = item.PublishDate;
+                    datePublished = date.ToString();
+                }
+            }
+            return datePublished;
+
+        }
         public bool DoesUrlExist(string url)
         {
             try

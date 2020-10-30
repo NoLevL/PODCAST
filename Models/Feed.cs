@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    class Feed
+    public abstract class Feed
     {
+        public virtual string GetDateInfo(string url, Episode episode)
+        {
+            return url;
+        }
     }
 }

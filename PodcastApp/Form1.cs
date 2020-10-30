@@ -154,11 +154,13 @@ namespace PodcastApp
 
             foreach (var item in episodeList)
             {
-                if (item.EpisodeName.Equals(selectedPod))
+                if (item.EpisodeName.Equals(selectedPod) && LstEpisodes.SelectedItem.ToString().Equals(item.EpisodeName))
                 {
                     string description = item.EpisodeDescription;
                     string chars = @"<br/><br/>";
                     TxtEpiInfo.Text = description.Replace(chars + " ", "");
+                    string pubDate = handler.GetDateInfo(TxtURL.Text, item);
+                    LblDate.Text = pubDate.Remove(10);
                 }
             }
         }
@@ -212,6 +214,15 @@ namespace PodcastApp
         {
             FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
             TxtCat.Text = "";
+            var episodes = podcastController.GetEpisodeList(PodcastFeed.CurrentCell.RowIndex);
+            foreach (var item in episodes)
+            {
+                if (LstEpisodes.SelectedItem.ToString().Equals(item.EpisodeName))
+                {
+                    string hej = handler.GetDateInfo(TxtURL.Text, item);
+                    LblDate.Text = hej;
+                }
+            }
         }
 
         private double IntervalToDouble(ComboBox comboBox)
@@ -249,6 +260,7 @@ namespace PodcastApp
             LblPodEpiInfo.Text = "Episode description";
             TxtURL.Text = "";
             CmbCat.Text = "";
+            LblDate.Text = "";
             FormHandler.AllPodcasts(PodcastFeed);
         }
 

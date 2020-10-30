@@ -54,6 +54,7 @@
             this.ColumnCat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TxtNewPodName = new System.Windows.Forms.TextBox();
             this.BtnNewPodName = new System.Windows.Forms.Button();
+            this.LblDate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PodcastFeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -325,11 +326,20 @@
             this.BtnNewPodName.UseVisualStyleBackColor = true;
             this.BtnNewPodName.Visible = false;
             // 
+            // LblDate
+            // 
+            this.LblDate.AutoSize = true;
+            this.LblDate.Location = new System.Drawing.Point(275, 275);
+            this.LblDate.Name = "LblDate";
+            this.LblDate.Size = new System.Drawing.Size(0, 13);
+            this.LblDate.TabIndex = 26;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 443);
+            this.Controls.Add(this.LblDate);
             this.Controls.Add(this.BtnNewPodName);
             this.Controls.Add(this.TxtNewPodName);
             this.Controls.Add(this.PodcastFeed);
@@ -390,6 +400,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCat;
         private System.Windows.Forms.TextBox TxtNewPodName;
         private System.Windows.Forms.Button BtnNewPodName;
+        private System.Windows.Forms.Label LblDate;
     }
 }
 
