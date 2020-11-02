@@ -93,7 +93,7 @@ namespace PodcastApp
                 {
                     podcastController.CreatePodcastObject(TxtURL.Text, intervalObj.UpdateInterval, category, podcastName, numberOfEpisodes, episodeList);
                 });
-                FormHandler.AllPodcasts(PodcastFeed);
+                ClearAndSet();
                 FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
             
             }
@@ -287,5 +287,6 @@ namespace PodcastApp
         {
             ClearAndSet();
         }
+
     }
 }

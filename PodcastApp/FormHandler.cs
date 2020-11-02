@@ -30,6 +30,7 @@ namespace PodcastApp
 
         public static void FillIntervalComboBox(ComboBox comboBox)
         {
+            comboBox.Items.Clear();
             comboBox.Items.Add("15 min");
             comboBox.Items.Add("30 min");
             comboBox.Items.Add("60 min");

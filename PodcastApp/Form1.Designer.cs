@@ -57,6 +57,7 @@
             this.LblDate = new System.Windows.Forms.Label();
             this.BtnSortPodByCat = new System.Windows.Forms.Button();
             this.BtnListAllPodcasts = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PodcastFeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -359,11 +360,21 @@
             this.BtnListAllPodcasts.UseVisualStyleBackColor = true;
             this.BtnListAllPodcasts.Click += new System.EventHandler(this.BtnListAllPodcasts_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(219, 275);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Published:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 443);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnListAllPodcasts);
             this.Controls.Add(this.BtnSortPodByCat);
             this.Controls.Add(this.LblDate);
@@ -392,7 +403,6 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
-            //this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PodcastFeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -430,6 +440,7 @@
         private System.Windows.Forms.Label LblDate;
         private System.Windows.Forms.Button BtnSortPodByCat;
         private System.Windows.Forms.Button BtnListAllPodcasts;
+        private System.Windows.Forms.Label label1;
     }
 }
 
