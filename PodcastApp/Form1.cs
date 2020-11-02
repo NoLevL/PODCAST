@@ -28,7 +28,7 @@ namespace PodcastApp
             podRepo = new PodcastRepository();
             SetTimerWhenPageOpens();
 
-            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+            
             FormHandler.FillIntervalComboBox(CmbUpdateFreq);
             ClearAndSet();
 
@@ -153,7 +153,7 @@ namespace PodcastApp
             FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
             string updateCategory = TxtCat.Text;
 
-            if (validator.CategoryIsUnique(updateCategory))
+            if (validator.CategoryIsUnique(updateCategory) && validator.CategorySelected(LstCat))
             {
                 string oldCategory = LstCat.SelectedItem.ToString();
                 int selectedCategory = LstCat.SelectedIndex;
@@ -242,6 +242,7 @@ namespace PodcastApp
             CmbUpdateFreq.Text = "";
             LblDate.Text = "";
             FormHandler.AllPodcasts(PodcastFeed);
+            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
         }
 
         //Changes the name of a selected podcast
