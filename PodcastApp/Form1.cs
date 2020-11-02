@@ -26,6 +26,7 @@ namespace PodcastApp
             validator = new Validation();
             handler = new Urlhandler();
             podRepo = new PodcastRepository();
+            SetTimerWhenPageOpens();
 
             FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
             FormHandler.FillIntervalComboBox(CmbUpdateFreq);
@@ -67,8 +68,6 @@ namespace PodcastApp
                 string category = CmbCat.SelectedItem.ToString();
                 double interval = IntervalToDouble(CmbUpdateFreq);
 
-                SetInterval intervalObj = new SetInterval(interval);
-
                 XmlReader reader = XmlReader.Create(TxtURL.Text);
                 SyndicationFeed feed = SyndicationFeed.Load(reader);
 
@@ -91,7 +90,8 @@ namespace PodcastApp
                 }
                 await Task.Run(() =>
                 {
-                    podcastController.CreatePodcastObject(TxtURL.Text, intervalObj.UpdateInterval, category, podcastName, numberOfEpisodes, episodeList);
+                    podcastController.CreatePodcastObject(TxtURL.Text, interval, category, podcastName, numberOfEpisodes, episodeList);
+                    SetTimer(interval);
                 });
                 FormHandler.AllPodcasts(PodcastFeed);
                 FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
@@ -277,6 +277,12 @@ namespace PodcastApp
                             int index = podRepo.GetIndex(name);
                             PodcastFeed.Rows[index].Visible = false;
                         }
+                        else
+                        {
+                            string name = pod.Name;
+                            int index = podRepo.GetIndex(name);
+                            PodcastFeed.Rows[index].Visible = true;
+                        }
                     }
                 }
             }
@@ -286,6 +292,74 @@ namespace PodcastApp
         private void BtnListAllPodcasts_Click(object sender, EventArgs e)
         {
             ClearAndSet();
+        }
+
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            ClearAndSet();
+        }
+
+        public void SetTimer(double interval)
+        {
+            int chosenInterval;
+
+            if (interval == 15)
+            {
+                chosenInterval = 900000;
+                CreateTimer(chosenInterval);
+
+            }
+            if (interval == 30)
+            {
+                chosenInterval = 1800000;
+                CreateTimer(chosenInterval);
+            }
+            else if (interval == 60)
+            {
+                chosenInterval = 3600000;
+                CreateTimer(chosenInterval);
+            }
+        }
+
+        public void SetTimerWhenPageOpens()
+        {
+            int nextUpdate;
+            List<Podcast> podcastList = podcastController.RetrieveAllPodcasts();
+
+            foreach (var p in podcastList)
+            {
+                double pInterval = p.Interval;
+                string eachUrl = p.Url;
+
+                if (pInterval == 15)
+                {
+                    nextUpdate = 900000;
+                    CreateTimer(nextUpdate);
+                }
+                if (pInterval == 30)
+                {
+                    nextUpdate = 1800000;
+                    CreateTimer(nextUpdate);
+                }
+                else if (pInterval == 60)
+                {
+                    nextUpdate = 3600000;
+                    CreateTimer(nextUpdate);
+                }
+            }
+        }
+
+        public void CreateTimer(int interval)
+        {
+            var timer = new Timer
+            {
+                Interval = interval,
+                Enabled = true,
+                Tag = TxtURL.Text
+            };
+            timer.Tick += new EventHandler(timer1_Tick);
+            timer.Start();
         }
     }
 }
