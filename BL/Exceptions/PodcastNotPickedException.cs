@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BL.Exceptions
@@ -17,11 +13,11 @@ namespace BL.Exceptions
 
         public PodcastNotPickedException(string message)
             : base(message)
-        { }
+        { MessageBox.Show(msg + message); }
 
 
         public PodcastNotPickedException(string message, Exception innerException)
             : base(message, innerException)
-        { }
+        { MessageBox.Show(msg + message + innerException); }
     }
 }

@@ -9,7 +9,7 @@ namespace BL.Exceptions
 {
     class CategoryNotPickedException : Exception
     {
-        string msg = "You must choose a categpry to continue!";
+        string msg = "You must choose a category to continue!";
         public CategoryNotPickedException()
             : base()
         { MessageBox.Show(msg); }

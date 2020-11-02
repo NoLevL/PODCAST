@@ -14,11 +14,11 @@ namespace BL.Exceptions
 
         public TextBoxIsEmptyException(string message)
             : base(message)
-        { }
+        { MessageBox.Show(msg + message); }
 
 
         public TextBoxIsEmptyException(string message, Exception innerException)
             : base(message, innerException)
-        { }
+        { MessageBox.Show(msg + message + innerException); }
     }
 }
