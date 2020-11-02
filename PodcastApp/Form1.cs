@@ -113,6 +113,7 @@ namespace PodcastApp
                 categoryController.CreateCategoryObject(addCategory);
                 FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
                 FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
+                TxtCat.Text = "";
             }
             else if (validator.CategoryIsUnique(addCategory))
             {
@@ -120,6 +121,7 @@ namespace PodcastApp
                 FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
                 FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
                 FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
+                TxtCat.Text = "";
             }
         }
 
