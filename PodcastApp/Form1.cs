@@ -234,6 +234,7 @@ namespace PodcastApp
             FormHandler.ClearEpisodeList(LstEpisodes);
             FormHandler.ClearEpisodeText(TxtEpiInfo);
             FormHandler.FillCategoryList(categoryController.RetrieveAllCategories(), LstCat);
+            FormHandler.FillCategoryComboBox(categoryController.RetrieveAllCategories(), CmbCat);
             LblPodEpi.Text = "Episodes";
             LblPodEpiInfo.Text = "Episode description";
             TxtURL.Text = "";
