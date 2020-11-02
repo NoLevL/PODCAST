@@ -58,15 +58,10 @@ namespace DAL.Repositories
             return podcastListToBeReturned;
         }
 
-
+        //Finds the index from the saved podcasts based on it's name
         public int GetIndex(string name)
         {
             return GetAll().FindIndex(p => p.Name.Equals(name));
-        }
-
-        public Podcast GetByName(string name)
-        {
-            return GetAll().FirstOrDefault(p => p.Name.Equals(name));
         }
 
         public void SaveChanges()
