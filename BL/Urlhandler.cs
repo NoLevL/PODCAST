@@ -8,14 +8,14 @@ using System.Xml.Linq;
 
 namespace PodcastApp
 {
-    public class Urlhandler : Feed
+    public class Urlhandler : Date
     {
-        private XDocument urlDocument = new XDocument();
-        private string podTitleName;
-        private string datePublished;
-
+        private XDocument xDocument = new XDocument();
+        
+        //Overrides the method of the parent class and returns the string value of the published date of an episode
         public override string GetDateInfo(string url, Episode episode)
         {
+            string datePublished = "";
             XmlReader reader = XmlReader.Create(url);
             SyndicationFeed feed = SyndicationFeed.Load(reader);
             
@@ -31,42 +31,38 @@ namespace PodcastApp
 
         }
 
-        public string GetUrlName(string url)
+        //Returns the name of a podcast from a url
+        public string GetPodcastName(string url)
         {
-            urlDocument = XDocument.Load(url);
-            var items = (from x in urlDocument.Descendants("image")
+            string podcastName = "";
+            xDocument = XDocument.Load(url);
+            var podcast = (from x in xDocument.Descendants("image")
                          select new { 
                              title = x.Element("title").Value 
                          });
 
-            if ( items!= null)
+            if ( podcast!= null)
             {
-                foreach (var item in items)
+                foreach (var item in podcast)
                 {
-                    podTitleName = item.title;
+                    podcastName = item.title;
                 }
             }
-            return podTitleName;
+            return podcastName;
         }
 
+        //Returns a list of Episode of a podcast from a url
         public List<Episode> GetEpisodes (string url)
         {
             List<Episode> episodeList = new List<Episode>();
-            
-            
-                urlDocument = XDocument.Load(url);
-                episodeList = (from x in urlDocument.Descendants("item")
-                               select new Episode
-                               {
+            xDocument = XDocument.Load(url);
+            episodeList = (from x in xDocument.Descendants("item")
+                               select new Episode {
                                    EpisodeName = x.Element("title").Value,
                                    EpisodeDescription = x.Element("description").Value
                                }).ToList();
-            
             return episodeList;
         }
-
-
-
 
     }
 }

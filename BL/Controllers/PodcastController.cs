@@ -20,11 +20,13 @@ namespace BL.Controllers
             podcastRepository.Create(newPodcast);
         }
 
+        //Returns all saved podcasts
         public List<Podcast> RetrieveAllPodcasts()
         {
             return podcastRepository.GetAll();
         }
 
+        //Returns the url from a saved podcast
         public string GetPodcastUrl(int index)
         {
             Podcast podcastObj = podcastRepository.GetAll()[index];
@@ -32,6 +34,7 @@ namespace BL.Controllers
             return url;
         }
 
+        //Returns the category of a saved podcast
         public string GetPodcastCategory(int index)
         {
             Podcast podcastObj = podcastRepository.GetAll()[index];
@@ -39,6 +42,7 @@ namespace BL.Controllers
             return category;
         }
 
+        //Returns the string value of interval of a saved podcast
         public string GetPodcastInterval(int index)
         {
             Podcast podcastObj = podcastRepository.GetAll()[index];
@@ -46,6 +50,7 @@ namespace BL.Controllers
             return interval + " min";
         }
 
+        //Returns a list of Episode from a saved podcast
         public List<Episode> GetEpisodeList(int podIndex)
         {
             DataManager dataManager = new DataManager();
@@ -57,17 +62,19 @@ namespace BL.Controllers
             return listOfEpisodes;
         }
 
+        //Deletes a podcast based on an index
         public void DeletePodcast(int index)
         {
             podcastRepository.Delete(index);
         }
 
+        //Deletes a podcasts based on a category 
         public void DeletePodcast(string category)
         {
             podcastRepository.Delete(category);
         }
 
-
+        
         public void UpdatePodcastName(int index, string name)
         {
             Podcast podcastObj = podcastRepository.GetAll()[index];

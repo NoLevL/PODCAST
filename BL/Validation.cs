@@ -12,7 +12,7 @@ namespace BL
         private readonly PodcastRepository podRepo = new PodcastRepository();
         private readonly CategoryRepository catRepo = new CategoryRepository();
        
-
+        //Returns true if the parameter is not already in the savedCategory file
         public bool CategoryIsUnique(string category)
         {
             bool isValid = true;
@@ -37,6 +37,7 @@ namespace BL
             return isValid;
         }
 
+        //Returns true if the parameter is not already in the Podcasts file
         public bool PodcastIsUnique(string url)
         {
             bool isValid = true;
@@ -60,7 +61,7 @@ namespace BL
             return isValid;
         }
 
-
+        
         public bool TboxUrlNotEmpty(TextBox url)
         {
             bool isValid = false;
@@ -167,6 +168,7 @@ namespace BL
             return isValid;
         }
 
+        //Checks if the file exists
         public bool SavedCategoryFileExists()
         {
             string file = @"savedCategories.xml";
@@ -174,6 +176,7 @@ namespace BL
             return fileExists;
         }
 
+        //Checks if the file exists
         public bool PodcastFileExists()
         {
             string file = @"Podcasts.xml";

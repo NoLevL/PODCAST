@@ -10,6 +10,7 @@ namespace PodcastApp
     public class FormHandler
     {
 
+        //Fills a listbox with a list of saved categories
         public static void FillCategoryList(List<Category> list, ListBox listBox)
         {
             listBox.Items.Clear();
@@ -18,7 +19,8 @@ namespace PodcastApp
                 listBox.Items.Add(item.Name);
             }
         }
-
+        
+        //Fills a combobox with a list of saved categories
         public static void FillCategoryComboBox(List<Category> list, ComboBox comboBox)
         {
             comboBox.Items.Clear();
@@ -28,6 +30,7 @@ namespace PodcastApp
             }
         }
 
+        //Fills a combobox with interval values
         public static void FillIntervalComboBox(ComboBox comboBox)
         {
             comboBox.Items.Clear();
@@ -36,6 +39,7 @@ namespace PodcastApp
             comboBox.Items.Add("60 min");
         }
 
+        //Fills a DataGridView table with all saved podcasts
         public static void AllPodcasts(DataGridView podcastFeed)
         {
             Validation validator = new Validation();
@@ -50,6 +54,7 @@ namespace PodcastApp
             }
         }
 
+        
         public static void ClearEpisodeList(ListBox list)
         {
             list.Items.Clear();

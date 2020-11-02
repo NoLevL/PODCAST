@@ -33,7 +33,7 @@ namespace PodcastApp
 
         }
 
-
+        //Lists all episodes from the selected podcast
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             LblPodEpi.Text = "";
@@ -50,7 +50,7 @@ namespace PodcastApp
             }
 
             string url = podcastController.GetPodcastUrl(selectedRow);
-            LblPodEpi.Text = handler.GetUrlName(url);
+            LblPodEpi.Text = handler.GetPodcastName(url);
             TxtURL.Text = url;
             CmbCat.SelectedItem = podcastController.GetPodcastCategory(selectedRow);
             CmbUpdateFreq.SelectedItem = podcastController.GetPodcastInterval(selectedRow);
@@ -58,6 +58,7 @@ namespace PodcastApp
 
         }
 
+        //Adds a new podcast
         private async void BtnNewPod_Click(object sender, EventArgs e)
         {
             PodcastFeed.Rows.Clear();
@@ -103,6 +104,7 @@ namespace PodcastApp
             }
         }
 
+        //Adds a new cateogry
         private void BtnNewCat_Click(object sender, EventArgs e)
         {
             string addCategory = TxtCat.Text;
@@ -121,6 +123,7 @@ namespace PodcastApp
             }
         }
 
+        //Displays the description of an episode when it's clicked
         private void LstEpisodes_SelectedIndexChanged(object sender, EventArgs e)
         {
             FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
@@ -142,6 +145,7 @@ namespace PodcastApp
             }
         }
 
+        //Changes the name of a category
         private void BtnSaveCat_Click(object sender, EventArgs e)
         {
             FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
@@ -157,6 +161,7 @@ namespace PodcastApp
             }
         }
 
+        //Deletes a category
         private void BtnDeleteCat_Click(object sender, EventArgs e)
         {
             FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
@@ -174,8 +179,8 @@ namespace PodcastApp
                 {
                     if (item.Category.Equals(category))
                     {
+                        //If the deleted category has any podcasts they are deleted
                         podcastController.DeletePodcast(category);
-                        
                     }
                 }
                 categoryController.DeleteCategory(LstCat.SelectedIndex);
@@ -183,12 +188,14 @@ namespace PodcastApp
             }
         }
 
+        //Clears a textbox when it's clicked
         private void TxtCat_Click(object sender, EventArgs e)
         {
             FormHandler.HideNewPodcastName(TxtNewPodName, BtnNewPodName);
             TxtCat.Text = "";
         }
 
+        //Converts a string value in a combobox to double
         private double IntervalToDouble(ComboBox comboBox)
         {
             
@@ -197,6 +204,7 @@ namespace PodcastApp
             return interval;
         }
 
+        //Deletes a podcast
         private void BtnDeletePod_Click(object sender, EventArgs e)
         {
             if (validator.CanPodcastBeDeleted(PodcastFeed))
@@ -216,6 +224,7 @@ namespace PodcastApp
             }
         }
 
+        //Clears and updates boxes in the form
         private void ClearAndSet()
         {
             PodcastFeed.Rows.Clear();
@@ -231,6 +240,7 @@ namespace PodcastApp
             FormHandler.AllPodcasts(PodcastFeed);
         }
 
+        //Changes the name of a selected podcast
         private void BtnNewPodName_Click(object sender, EventArgs e)
         {
             if (validator.TboxUrlNotEmpty(TxtNewPodName))
@@ -242,6 +252,7 @@ namespace PodcastApp
             }
         }
 
+        //Changes the interval time and category of a selected podcast
         private void BtnSavePod_Click(object sender, EventArgs e)
         {
             if (validator.ComboIntervalChoosen(CmbUpdateFreq) && validator.ComboCategoryChoosen(CmbCat))
@@ -255,11 +266,13 @@ namespace PodcastApp
             }
         }
 
+        //Clears text when the textbox is clicked
         private void TxtURL_Click(object sender, EventArgs e)
         {
             TxtURL.Text = "";
         }
 
+        //Displays the podcasts based on what category is selected
         private void BtnSortPodByCat_Click(object sender, EventArgs e)
         {
             if (validator.CategorySelected(LstCat))
@@ -283,6 +296,7 @@ namespace PodcastApp
             
         }
 
+        //Displays all podcasts
         private void BtnListAllPodcasts_Click(object sender, EventArgs e)
         {
             ClearAndSet();

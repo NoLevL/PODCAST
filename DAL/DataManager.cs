@@ -8,11 +8,9 @@ namespace DAL
     public class DataManager
     {
         private readonly string fileOfPodcasts = @"Podcasts.xml";
-        //public List<Podcast> listOfPodcasts = new List<Podcast>();
         protected string savedCategories = @"savedCategories.xml";
-        //public List<string> categories = new List<string>();
-
-
+        
+        //Creates a XML-file containing a list of Podcast objects
         public void SavePodcastList(List<Podcast> podcastList)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(podcastList.GetType());
@@ -23,6 +21,7 @@ namespace DAL
             }
         }
 
+        //Returns saved podcasts as a list of Podcast objects
         public List<Podcast> ReturnPodcasts()
         {
             List<Podcast> listOfPodcastsToBeReturned;
@@ -35,6 +34,7 @@ namespace DAL
             return listOfPodcastsToBeReturned;
         }
 
+        //Creates a XML-file containing a list of Category objects
         public void SaveCategoryList(List<Category> categoryList)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(categoryList.GetType());
@@ -45,6 +45,7 @@ namespace DAL
             }
         }
 
+        //Returns saved categories as a list of Category objects
         public List<Category> ReturnCategories()
         {
             List<Category> listOfCategoriesToBeReturned;
